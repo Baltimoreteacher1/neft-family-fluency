@@ -1,0 +1,14 @@
+node_modules
+.git
+tests
+playwright.config.js
+package.json
+package-lock.json
+setup
+CLAUDE.md
+README.md
+SETUP.md
+LICENSE
+.gitignore
+test-results
+playwright-report

@@ -6,13 +6,19 @@
 import { loadLang, t, currentLang } from '../engine/i18n.js';
 import { el, mount } from '../engine/dom.js';
 import { storage, KEY } from '../engine/storage.js';
+import { loadCurriculum } from '../engine/setBuilder.js';
 import config from '../config.js';
 
 const main = () => document.getElementById('main');
 
+// How many weeks exist comes from the curriculum, never from a number written
+// here. A hardcoded bound is exactly what makes "add week 9 by editing JSON"
+// stop being true.
+let totalWeeks = 0;
+
 function weekFromUrl() {
   const n = Number(new URLSearchParams(location.search).get('week'));
-  return Number.isInteger(n) && n >= 1 && n <= 8 ? n : 1;
+  return Number.isInteger(n) && n >= 1 && n <= totalWeeks ? n : 1;
 }
 
 async function loadCard(week) {
@@ -90,7 +96,7 @@ async function render() {
         week > 1
           ? el('a', { class: 'btn btn--ghost', href: `?week=${week - 1}` }, t('app.back'))
           : null,
-        week < 8
+        week < totalWeeks
           ? el('a', { class: 'btn btn--ghost', href: `?week=${week + 1}` }, t('app.next'))
           : null,
       ),
@@ -108,6 +114,9 @@ async function setLang(lang) {
 }
 
 async function boot() {
+  const curriculum = await loadCurriculum();
+  totalWeeks = curriculum.weeks.length;
+
   const saved = storage.get(KEY.settings, {}).lang;
   const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
   await setLang(['en', 'es'].includes(saved) ? saved : ['en', 'es'].includes(nav) ? nav : 'en');
