@@ -162,7 +162,8 @@
     "noNames": "Los estudiantes aparecen como codigo de clase y numero de lista. Esta herramienta nunca ve un nombre.",
     "formOverrideOk": "Guardado. Se enviara al campo {entry}.",
     "formOverrideNoEntry": "Se guardo la direccion, pero todavia no hay identificador de campo. Pegue un enlace pre-llenado para que el codigo se escriba solo.",
-    "formOverrideBad": "Eso no parece un enlace de formulario."
+    "formOverrideBad": "Eso no parece un enlace de formulario.",
+    "added": "{n} codigo(s) agregado(s)"
   },
   "days": {
     "mon": "Lun",

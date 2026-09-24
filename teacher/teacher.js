@@ -126,7 +126,14 @@ function download(filename, text) {
   URL.revokeObjectURL(url);
 }
 
-function render() {
+/**
+ * @param {{message?:string}} [flash] a line to show after the rebuild.
+ *
+ * Adding codes re-renders the whole page, which wipes anything written into the
+ * status line first. A teacher pasting a damaged code has to be told -- silence
+ * reads as "accepted", and the row they expect never appears.
+ */
+function render(flash = {}) {
   document.getElementById('page-title').textContent = t('teacher.title');
   const rows = stored();
 
@@ -136,7 +143,12 @@ function render() {
     'aria-label': t('teacher.pasteTitle'),
   });
 
-  const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite' });
+  const status = el('p', {
+    class: 'muted',
+    role: 'status',
+    'aria-live': 'polite',
+    text: flash.message || '',
+  });
 
   const override = el('input', {
     type: 'url',
@@ -161,11 +173,14 @@ function render() {
           onClick: () => {
             const { added, rejected } = addCodes(input.value);
             input.value = '';
-            status.textContent = rejected
-              ? t('teacher.rejected', { n: rejected })
-              : `${added}`;
-            announce(status.textContent);
-            render();
+
+            const parts = [];
+            if (added) parts.push(t('teacher.added', { n: added }));
+            if (rejected) parts.push(t('teacher.rejected', { n: rejected }));
+            const message = parts.join(' ');
+
+            announce(message);
+            render({ message });
           },
         }, t('teacher.add')),
       ),

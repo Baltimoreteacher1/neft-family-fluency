@@ -10,7 +10,7 @@
 // that nobody receives.
 // ---------------------------------------------------------------------------
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE = `ewl-fluency-${CACHE_VERSION}`;
 
 // Everything needed to run offline from a cold start. The curriculum and both

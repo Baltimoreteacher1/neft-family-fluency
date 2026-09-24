@@ -16,7 +16,7 @@ needs your Google account.
 | ✅ | Repo created, public, default branch `main` |
 | ✅ | Cloudflare Pages project `neft-family-fluency` created and **deployed** |
 | ✅ | Site verified live: full journey, badge, progress code, offline, flyer, teacher decode |
-| ✅ | 71 unit tests + 7 end-to-end tests passing |
+| ✅ | 71 unit tests + 9 end-to-end tests passing |
 
 **Not done yet:** the Google Form (needs your login), and Git auto-deploy
 (needs a dashboard click). Both are below.
@@ -177,7 +177,7 @@ keep the old version. This is the most common way to ship a fix nobody receives.
 
 ```bash
 npm test          # 71 unit tests (math, progress code, mastery, data-driven)
-npm run test:e2e  # 7 end-to-end tests at 360×740
+npm run test:e2e  # 9 end-to-end tests at 360×740
 npm run serve     # http://localhost:8127
 
 npx wrangler pages deploy . --project-name neft-family-fluency --branch main

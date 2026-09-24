@@ -161,7 +161,8 @@
     "noNames": "Students appear as class code + list number. This tool never sees a name.",
     "formOverrideOk": "Saved. Sending to field {entry}.",
     "formOverrideNoEntry": "Saved the address, but no field id yet. Paste a pre-filled link so the code fills in by itself.",
-    "formOverrideBad": "That does not look like a form link."
+    "formOverrideBad": "That does not look like a form link.",
+    "added": "{n} code(s) added"
   },
   "days": {
     "mon": "Mon",

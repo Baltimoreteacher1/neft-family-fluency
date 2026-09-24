@@ -148,3 +148,35 @@ test.describe('the procedure workspace', () => {
     await expect(page.locator('.work__in[data-state="no"]')).toBeVisible();
   });
 });
+
+test.describe('the teacher view', () => {
+  test('tells you when a code could not be read, instead of silently dropping it', async ({ page }) => {
+    // Adding codes rebuilds the page, which is exactly how the message got
+    // lost the first time: the code was correctly refused, and the teacher was
+    // told nothing at all.
+    await page.goto('/teacher/');
+
+    const good = '53500-0W174-00G00-00000-00000-00SM';
+    await page.fill('#codes', good);
+    await page.getByRole('button', { name: 'Add codes' }).click();
+    await expect(page.locator('tbody tr')).toHaveCount(1);
+    await expect(page.locator('#main')).toContainText('1 code(s) added');
+
+    // One character changed: the checksum must catch it and say so.
+    const damaged = good.slice(0, -2) + 'ZZ';
+    await page.fill('#codes', damaged);
+    await page.getByRole('button', { name: 'Add codes' }).click();
+    await expect(page.locator('#main')).toContainText('could not be read');
+    await expect(page.locator('tbody tr')).toHaveCount(1);
+  });
+
+  test('re-sending the same week replaces the row rather than duplicating it', async ({ page }) => {
+    await page.goto('/teacher/');
+    const code = '53500-0W174-00G00-00000-00000-00SM';
+    for (let i = 0; i < 3; i++) {
+      await page.fill('#codes', code);
+      await page.getByRole('button', { name: 'Add codes' }).click();
+    }
+    await expect(page.locator('tbody tr')).toHaveCount(1);
+  });
+});
