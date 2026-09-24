@@ -1,0 +1,46 @@
+{
+  "week": 3,
+  "level": 3,
+  "why": {
+    "en": "Six is three doubled, so every × 6 fact sits one short step from a × 3 fact. Threes themselves are worth slowing down for: they are the first table where skip counting stops being automatic, and where children start genuinely reasoning instead of reciting. If your child pauses on 3 × 7, that pause is thinking, not failing.",
+    "es": "Seis es tres duplicado, asi que cada operacion de × 6 esta a un paso corto de una operacion de × 3. Los tres merecen calma: son la primera tabla donde contar salteado deja de salir solo, y donde los ninos empiezan a razonar de verdad en vez de recitar. Si su hijo se detiene en 3 × 7, esa pausa es pensamiento, no fracaso."
+  },
+  "say": {
+    "en": [
+      "“What is 3 × 8? Now double it — what does that tell you about 6 × 8?”",
+      "“Three groups of what? Draw it if that helps.”",
+      "“Which is easier for you, the threes or the sixes? Why?”",
+      "“Take your time. I would rather you think it out than guess fast.”"
+    ],
+    "es": [
+      "“¿Cuanto es 3 × 8? Ahora duplicalo: ¿que te dice eso de 6 × 8?”",
+      "“¿Tres grupos de cuanto? Dibujalo si te ayuda.”",
+      "“¿Que te sale mas facil, los tres o los seis? ¿Por que?”",
+      "“Tomate tu tiempo. Prefiero que lo pienses a que adivines rapido.”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Three and Free",
+      "es": "Tres y libre"
+    },
+    "needs": {
+      "en": "A deck of cards with the face cards taken out (ace = 1)",
+      "es": "Una baraja sin las figuras (as = 1)"
+    },
+    "how": {
+      "en": [
+        "Shuffle and put the deck face down between you.",
+        "Turn one card over. Both players race to say 3 × that card.",
+        "Whoever says it first doubles their own answer out loud to get the × 6 fact, and keeps the card.",
+        "If they double wrong, the other player can take the card by saying it correctly. Most cards at the end wins."
+      ],
+      "es": [
+        "Barajen y pongan el mazo boca abajo entre los dos.",
+        "Volteen una carta. Los dos jugadores compiten por decir 3 × esa carta.",
+        "Quien lo diga primero duplica su propia respuesta en voz alta para sacar la operacion de × 6, y se queda con la carta.",
+        "Si duplica mal, el otro jugador puede llevarse la carta diciendolo bien. Gana quien tenga mas cartas al final."
+      ]
+    }
+  }
+}

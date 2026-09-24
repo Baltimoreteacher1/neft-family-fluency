@@ -1,0 +1,46 @@
+{
+  "week": 5,
+  "level": 5,
+  "why": {
+    "en": "Division is not a new operation to memorise — it is multiplication with a piece missing. “42 ÷ 6” and “what times 6 is 42?” are the same question, and the second one your child can already answer. This week is mostly about hearing division that way. If they reach for the multiplication fact instead of a division fact, that is exactly right.",
+    "es": "La division no es una operacion nueva que memorizar: es una multiplicacion a la que le falta una pieza. “42 ÷ 6” y “¿cuanto por 6 es 42?” son la misma pregunta, y la segunda su hijo ya la sabe contestar. Esta semana se trata sobre todo de oir la division asi. Si busca la multiplicacion en vez de una division, eso es justo lo correcto."
+  },
+  "say": {
+    "en": [
+      "“Say it as a multiplication. What times 6 is 42?”",
+      "“If 8 × 4 is 32, what is 32 ÷ 4? What about 32 ÷ 8?”",
+      "“How many groups of 7 fit into 56?”",
+      "“What multiplication fact would help you here?”"
+    ],
+    "es": [
+      "“Dilo como multiplicacion. ¿Cuanto por 6 es 42?”",
+      "“Si 8 × 4 es 32, ¿cuanto es 32 ÷ 4? ¿Y 32 ÷ 8?”",
+      "“¿Cuantos grupos de 7 caben en 56?”",
+      "“¿Que multiplicacion te ayudaria aqui?”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Fact Family Four",
+      "es": "Familia de cuatro"
+    },
+    "needs": {
+      "en": "Two dice and paper",
+      "es": "Dos dados y papel"
+    },
+    "how": {
+      "en": [
+        "Roll both dice. Multiply them and write the answer in the middle of the paper.",
+        "Around it, write all four facts in that family. For 6 and 7: 6 × 7 = 42, 7 × 6 = 42, 42 ÷ 6 = 7, 42 ÷ 7 = 6.",
+        "Say the whole family out loud. Four facts, one picture.",
+        "Play to ten families. Keep them — they make a good fridge page."
+      ],
+      "es": [
+        "Tiren los dos dados. Multipliquenlos y escriban la respuesta en el centro del papel.",
+        "Alrededor, escriban las cuatro operaciones de esa familia. Para 6 y 7: 6 × 7 = 42, 7 × 6 = 42, 42 ÷ 6 = 7, 42 ÷ 7 = 6.",
+        "Digan toda la familia en voz alta. Cuatro operaciones, un solo dibujo.",
+        "Jueguen hasta diez familias. Guardenlas: quedan bien en el refrigerador."
+      ]
+    }
+  }
+}

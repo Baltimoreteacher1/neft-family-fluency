@@ -109,8 +109,10 @@ function drawUnique(rng, curriculum, weekNumber, seen, missed, boost) {
 }
 
 /** Load and parse the curriculum in the browser. */
-export async function loadCurriculum(url = 'curriculum/skills.json') {
-  const res = await fetch(url);
+export async function loadCurriculum(url) {
+  // Module-relative, so a page in a subdirectory loads the same curriculum.
+  const target = url || new URL('../curriculum/skills.json', import.meta.url);
+  const res = await fetch(target);
   if (!res.ok) throw new Error(`Could not load curriculum (${res.status})`);
   return res.json();
 }

@@ -1,23 +1,26 @@
 // Translation lookup. Both language files ship with the app and are cached by
 // the service worker, so switching language works offline.
 
-import { storage, KEY } from './storage.js';
+import { storage, KEY } from "./storage.js";
 
-const LANGS = ['en', 'es'];
+const LANGS = ["en", "es"];
 let dict = null;
-let current = 'en';
+let current = "en";
 
 /** The language to start in: saved choice, else the phone's, else English. */
 export function preferredLang() {
   const saved = storage.get(KEY.settings, {})?.lang;
   if (LANGS.includes(saved)) return saved;
-  const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-  return LANGS.includes(nav) ? nav : 'en';
+  const nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+  return LANGS.includes(nav) ? nav : "en";
 }
 
 export async function loadLang(lang) {
-  const chosen = LANGS.includes(lang) ? lang : 'en';
-  const res = await fetch(`i18n/${chosen}.json`);
+  const chosen = LANGS.includes(lang) ? lang : "en";
+  // Resolved against this module, not the page: /family/ and /teacher/ load the
+  // same dictionaries, and a page-relative path would 404 in both.
+  const url = new URL(`../i18n/${chosen}.json`, import.meta.url);
+  const res = await fetch(url);
   if (!res.ok) throw new Error(`Could not load ${chosen}.json`);
   dict = await res.json();
   current = chosen;
@@ -37,11 +40,11 @@ export function currentLang() {
  */
 export function t(path, vars) {
   let node = dict;
-  for (const part of path.split('.')) {
+  for (const part of path.split(".")) {
     if (node == null) break;
     node = node[part];
   }
-  if (typeof node !== 'string') return path;
+  if (typeof node !== "string") return path;
   if (!vars) return node;
   return node.replace(/\{(\w+)\}/g, (match, name) =>
     Object.hasOwn(vars, name) ? String(vars[name]) : match,
@@ -50,14 +53,14 @@ export function t(path, vars) {
 
 /** Fill every [data-t] element in a tree. */
 export function applyTranslations(root = document) {
-  for (const el of root.querySelectorAll('[data-t]')) {
+  for (const el of root.querySelectorAll("[data-t]")) {
     el.textContent = t(el.dataset.t);
   }
-  for (const el of root.querySelectorAll('[data-t-label]')) {
-    el.setAttribute('aria-label', t(el.dataset.tLabel));
+  for (const el of root.querySelectorAll("[data-t-label]")) {
+    el.setAttribute("aria-label", t(el.dataset.tLabel));
   }
-  for (const el of root.querySelectorAll('[data-t-placeholder]')) {
-    el.setAttribute('placeholder', t(el.dataset.tPlaceholder));
+  for (const el of root.querySelectorAll("[data-t-placeholder]")) {
+    el.setAttribute("placeholder", t(el.dataset.tPlaceholder));
   }
 }
 

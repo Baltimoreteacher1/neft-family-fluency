@@ -1,0 +1,46 @@
+{
+  "week": 2,
+  "level": 2,
+  "why": {
+    "en": "Four is two twos, and eight is two fours. That means every × 4 fact is a doubling your child already knows, done twice — and every × 8 fact is that same doubling done once more. This is worth more than memorising: it turns eighteen separate facts into one move repeated. A child who forgets 8 × 6 can still get there in three seconds by doubling 6 three times.",
+    "es": "Cuatro son dos doses, y ocho son dos cuatros. Eso quiere decir que cada operacion de × 4 es un doble que su hijo ya sabe, hecho dos veces, y cada operacion de × 8 es ese mismo doble una vez mas. Esto vale mas que memorizar: convierte dieciocho operaciones sueltas en un solo movimiento repetido. Un nino que olvida 8 × 6 todavia puede llegar en tres segundos duplicando 6 tres veces."
+  },
+  "say": {
+    "en": [
+      "“Double it. Now double it again. What did you get?”",
+      "“You know 4 × 7. How could that help you with 8 × 7?”",
+      "“If 4 × 6 is 24, what is 8 × 6? Why?”",
+      "“Show me the doubling. I want to see the middle step.”"
+    ],
+    "es": [
+      "“Duplicalo. Ahora duplicalo otra vez. ¿Que te dio?”",
+      "“Ya sabes 4 × 7. ¿Como te puede ayudar eso con 8 × 7?”",
+      "“Si 4 × 6 es 24, ¿cuanto es 8 × 6? ¿Por que?”",
+      "“Muestrame como duplicaste. Quiero ver el paso del medio.”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Double Trouble",
+      "es": "Doble problema"
+    },
+    "needs": {
+      "en": "Two dice",
+      "es": "Dos dados"
+    },
+    "how": {
+      "en": [
+        "Roll both dice and add them. That is your starting number.",
+        "Player one doubles it. Player two doubles that answer.",
+        "Say what you have made: “We started at 7, doubled to 14, doubled to 28 — that is 4 × 7.”",
+        "Go one more round to reach × 8. First to say the whole chain without stopping wins the round."
+      ],
+      "es": [
+        "Tiren los dos dados y sumenlos. Ese es su numero para empezar.",
+        "El primer jugador lo duplica. El segundo jugador duplica esa respuesta.",
+        "Digan lo que hicieron: “Empezamos en 7, duplicamos a 14, duplicamos a 28: eso es 4 × 7.”",
+        "Den una vuelta mas para llegar a × 8. Gana la ronda quien diga toda la cadena sin parar."
+      ]
+    }
+  }
+}

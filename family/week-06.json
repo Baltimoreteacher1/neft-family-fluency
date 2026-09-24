@@ -1,0 +1,46 @@
+{
+  "week": 6,
+  "level": 6,
+  "why": {
+    "en": "Once a child knows 4 × 7 = 28, they also know 40 × 7 and 400 × 7 — they just have not been told yet. The zeros follow a pattern, they are not extra work. This is the week that makes long division possible next week, because estimating “about how many” depends entirely on seeing 3600 ÷ 9 as 36 ÷ 9 wearing two extra zeros.",
+    "es": "En cuanto un nino sabe 4 × 7 = 28, tambien sabe 40 × 7 y 400 × 7: solo que todavia nadie se lo ha dicho. Los ceros siguen un patron, no son trabajo extra. Esta es la semana que hace posible la division larga la semana que viene, porque estimar “mas o menos cuantos” depende por completo de ver 3600 ÷ 9 como 36 ÷ 9 con dos ceros puestos."
+  },
+  "say": {
+    "en": [
+      "“What is the basic fact hiding inside this one?”",
+      "“You know 3 × 8. So what is 30 × 8? And 300 × 8?”",
+      "“How many zeros should the answer have? How do you know?”",
+      "“Does that answer look about the right size?”"
+    ],
+    "es": [
+      "“¿Cual es la operacion basica que se esconde aqui?”",
+      "“Sabes 3 × 8. ¿Entonces cuanto es 30 × 8? ¿Y 300 × 8?”",
+      "“¿Cuantos ceros debe tener la respuesta? ¿Como lo sabes?”",
+      "“¿Esa respuesta se ve del tamano correcto?”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Add a Zero",
+      "es": "Ponle un cero"
+    },
+    "needs": {
+      "en": "Two dice and a coin",
+      "es": "Dos dados y una moneda"
+    },
+    "how": {
+      "en": [
+        "Roll both dice. Say the basic fact out loud: “4 × 7 = 28.”",
+        "Flip the coin: heads adds one zero, tails adds two.",
+        "Say the extended fact: “40 × 7 = 280.” Say where the zero went and why.",
+        "Harder round: start from the answer and go backwards. “280 ÷ 7 — what is the basic fact?”"
+      ],
+      "es": [
+        "Tiren los dos dados. Digan la operacion basica en voz alta: “4 × 7 = 28.”",
+        "Tiren la moneda: cara pone un cero, cruz pone dos.",
+        "Digan la operacion extendida: “40 × 7 = 280.” Digan a donde fue el cero y por que.",
+        "Ronda dificil: empiecen por la respuesta y vayan al reves. “280 ÷ 7: ¿cual es la operacion basica?”"
+      ]
+    }
+  }
+}

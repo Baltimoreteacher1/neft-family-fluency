@@ -1,0 +1,46 @@
+{
+  "week": 1,
+  "level": 1,
+  "why": {
+    "en": "Skip counting is the first way most children meet multiplication, and it is not a crutch — it is the number line doing the work. A child who can count 5, 10, 15, 20 already knows 5 × 4; what they are learning this week is that those are the same thing. Doubles (× 2) come first because children hear them everywhere — two hands, two shoes, a pair of anything.",
+    "es": "Contar salteado es la primera manera en que casi todos los ninos conocen la multiplicacion, y no es una muleta: es la recta numerica haciendo el trabajo. Un nino que puede contar 5, 10, 15, 20 ya sabe 5 × 4; lo que aprende esta semana es que son la misma cosa. Los dobles (× 2) van primero porque los ninos los oyen en todas partes: dos manos, dos zapatos, un par de cualquier cosa."
+  },
+  "say": {
+    "en": [
+      "“Count by 5s with me. How many fives did we say?”",
+      "“If two hands have 5 fingers each, how many fingers is that?”",
+      "“What is double 7? How do you know?”",
+      "“Tens are the easy ones. What is 10 × 6? How can you tell so fast?”"
+    ],
+    "es": [
+      "“Cuenta de 5 en 5 conmigo. ¿Cuantos cincos dijimos?”",
+      "“Si dos manos tienen 5 dedos cada una, ¿cuantos dedos son?”",
+      "“¿Cuanto es el doble de 7? ¿Como lo sabes?”",
+      "“Los dieces son los faciles. ¿Cuanto es 10 × 6? ¿Como lo supiste tan rapido?”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Roll and Skip",
+      "es": "Tira y cuenta"
+    },
+    "needs": {
+      "en": "One dice and a coin",
+      "es": "Un dado y una moneda"
+    },
+    "how": {
+      "en": [
+        "Flip the coin: heads means count by 5s, tails means count by 10s.",
+        "Roll the dice. That is how many times you count.",
+        "Say the count out loud together: “5, 10, 15” — then say the multiplication: “5 × 3 = 15.”",
+        "Take turns. If someone is stuck, count it out on fingers together — that is the strategy, not a failure."
+      ],
+      "es": [
+        "Tire la moneda: cara es contar de 5 en 5, cruz es contar de 10 en 10.",
+        "Tire el dado. Ese es el numero de veces que va a contar.",
+        "Digan la cuenta en voz alta juntos: “5, 10, 15”, y luego digan la multiplicacion: “5 × 3 = 15.”",
+        "Tomen turnos. Si alguien se atora, cuenten con los dedos juntos: eso es la estrategia, no un fracaso."
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "week": 7,
+  "level": 7,
+  "why": {
+    "en": "This is the week the facts become a procedure. Partial quotients comes first because it is honest about what division is — pulling out chunks you recognise until nothing is left. “372 ÷ 4: I know 90 fours is 360, that leaves 12, which is 3 more fours.” The standard algorithm is the same reasoning written more compactly, and a child who sees that connection will not panic when a step goes wrong.",
+    "es": "Esta es la semana en que las operaciones se vuelven un procedimiento. Los cocientes parciales van primero porque son honestos sobre lo que es dividir: sacar pedazos que uno reconoce hasta que no queda nada. “372 ÷ 4: se que noventa cuatros son 360, quedan 12, que son 3 cuatros mas.” El algoritmo estandar es el mismo razonamiento escrito mas corto, y un nino que ve esa conexion no se asusta cuando un paso sale mal."
+  },
+  "say": {
+    "en": [
+      "“What chunk do you already know? Start there.”",
+      "“How many fours are definitely in 372? Take those out first.”",
+      "“What is left over now? Can you take another chunk?”",
+      "“If you get lost, say what each number on the page means.”"
+    ],
+    "es": [
+      "“¿Que pedazo ya te sabes? Empieza ahi.”",
+      "“¿Cuantos cuatros hay seguro en 372? Saca esos primero.”",
+      "“¿Que queda ahora? ¿Puedes sacar otro pedazo?”",
+      "“Si te pierdes, di que significa cada numero en el papel.”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Chunk It Out",
+      "es": "Sacalo por pedazos"
+    },
+    "needs": {
+      "en": "A deck of cards (face cards out) and paper",
+      "es": "Una baraja sin figuras y papel"
+    },
+    "how": {
+      "en": [
+        "Turn over three cards to make a three-digit number. Turn one more for the divisor.",
+        "Both players work it out — one using chunks, one using the short method. Swap next round.",
+        "Compare answers. If they disagree, find the step where you parted ways.",
+        "The point is the conversation, not the speed. Same answer by two routes is the win."
+      ],
+      "es": [
+        "Volteen tres cartas para hacer un numero de tres digitos. Volteen una mas para el divisor.",
+        "Los dos jugadores lo resuelven: uno por pedazos, otro por el metodo corto. Cambien en la siguiente ronda.",
+        "Comparen respuestas. Si no coinciden, busquen el paso donde se separaron.",
+        "Lo importante es la conversacion, no la rapidez. La misma respuesta por dos caminos es el triunfo."
+      ]
+    }
+  }
+}

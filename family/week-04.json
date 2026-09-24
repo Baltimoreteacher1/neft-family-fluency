@@ -1,0 +1,46 @@
+{
+  "week": 4,
+  "level": 4,
+  "why": {
+    "en": "Nines and sevens are the last facts most children learn, and the two hardest — but for different reasons. Nines have a pattern hiding in them: 9 × 6 is ten sixes minus one six. Sevens have no pattern, so we break them apart instead: 7 × 8 becomes 5 × 8 plus 2 × 8. Both moves say the same thing — a hard fact is two easy facts standing close together.",
+    "es": "Los nueves y los sietes son las ultimas operaciones que aprenden casi todos los ninos, y las dos mas dificiles, pero por razones distintas. Los nueves esconden un patron: 9 × 6 es diez seises menos un seis. Los sietes no tienen patron, asi que los separamos: 7 × 8 se vuelve 5 × 8 mas 2 × 8. Los dos movimientos dicen lo mismo: una operacion dificil son dos operaciones faciles juntas."
+  },
+  "say": {
+    "en": [
+      "“Ten sixes is 60. So what is nine sixes? What did you take away?”",
+      "“Break the 7 apart. What two easier facts can you use?”",
+      "“These are the hard ones. Everybody finds these hard — that is why we have a trick for them.”",
+      "“Show me the two pieces before you add them.”"
+    ],
+    "es": [
+      "“Diez seises son 60. ¿Entonces cuanto son nueve seises? ¿Que le quitaste?”",
+      "“Separa el 7. ¿Que dos operaciones mas faciles puedes usar?”",
+      "“Estas son las dificiles. A todo el mundo le cuestan: por eso tenemos un truco.”",
+      "“Muestrame las dos partes antes de sumarlas.”"
+    ]
+  },
+  "game": {
+    "name": {
+      "en": "Ten Take One",
+      "es": "Diez quita uno"
+    },
+    "needs": {
+      "en": "One dice and paper",
+      "es": "Un dado y papel"
+    },
+    "how": {
+      "en": [
+        "Roll the dice. Call the number N.",
+        "Both players write 10 × N, then cross out one N to get 9 × N. Say it out loud.",
+        "For the sevens round: write 5 × N and 2 × N, then add them. That is 7 × N.",
+        "Check each other's work. Catching a grown-up's mistake counts double."
+      ],
+      "es": [
+        "Tire el dado. Llame N a ese numero.",
+        "Los dos jugadores escriben 10 × N, y luego tachan una N para sacar 9 × N. Diganlo en voz alta.",
+        "Para la ronda de los sietes: escriban 5 × N y 2 × N, y sumenlos. Eso es 7 × N.",
+        "Revisen el trabajo del otro. Atrapar el error de un adulto vale doble."
+      ]
+    }
+  }
+}
