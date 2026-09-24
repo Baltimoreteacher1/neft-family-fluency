@@ -27,6 +27,8 @@ export function multFact(rng, params, meta = {}) {
     b,
     prompt: `${a} × ${b}`,
     answer,
+    answerType: "integer",
+    accept: [String(answer)],
     strategyTag: meta.strategyTag || null,
     distractors: distractorsFor(a, b, answer),
   };

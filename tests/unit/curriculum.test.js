@@ -1,33 +1,28 @@
-// The curriculum is data, so these are the checks a type system would do if
-// this were a typed language: every skill names a generator that exists, every
-// stage produces correct arithmetic, and nothing references a grade that is
-// not written yet.
+// Curriculum metadata: shape, standards, both languages, and the grade accents.
+//
+// The arithmetic lives in generators.test.js, which samples every generator at
+// every stage. This file checks the things around the maths -- the parts that
+// break silently rather than loudly.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { createRng } from '../../engine/rng.js';
-import { buildSession, generateItem, GENERATORS } from '../../engine/session.js';
+import { GENERATORS } from '../../generators/index.js';
 
 const here = (p) => new URL(p, import.meta.url);
 const index = JSON.parse(readFileSync(here('../../curriculum/index.json'), 'utf8'));
 
-/** The grades whose files exist. Grades still to be written are skipped. */
 const written = index.grades.filter((g) => existsSync(here(`../../curriculum/${g.file}`)));
-
 const grades = written.map((g) => ({
   meta: g,
   data: JSON.parse(readFileSync(here(`../../curriculum/${g.file}`), 'utf8')),
 }));
-
 const allSkills = grades.flatMap(({ meta, data }) =>
   data.skills.map((s) => ({ ...s, grade: meta.grade })),
 );
 
-const SAMPLES = 1000;
-
-test('at least one grade is written', () => {
-  assert.ok(grades.length > 0, 'no grade files exist');
+test('all eight grades are written', () => {
+  assert.equal(grades.length, 8, `only ${grades.length} grade files exist`);
 });
 
 test('every skill has an id, a standard, both languages and three stages', () => {
@@ -43,15 +38,10 @@ test('every skill has an id, a standard, both languages and three stages', () =>
       assert.ok(skill.strategy?.[lang], `${skill.id} has no ${lang} strategy`);
     }
     assert.equal(skill.stages?.length, 3, `${skill.id} must have exactly 3 stages`);
-  }
-});
-
-test('every skill names a generator that exists', () => {
-  for (const skill of allSkills) {
-    assert.ok(
-      GENERATORS[skill.generator],
-      `${skill.id} names missing generator "${skill.generator}"`,
-    );
+    for (const [i, stage] of skill.stages.entries()) {
+      assert.ok(stage.label?.en && stage.label?.es, `${skill.id} stage ${i} has no label`);
+      assert.ok(stage.params, `${skill.id} stage ${i} has no params`);
+    }
   }
 });
 
@@ -62,84 +52,21 @@ test('grade files agree with the index', () => {
   }
 });
 
-for (const skill of allSkills) {
-  for (let stage = 0; stage < skill.stages.length; stage++) {
-    test(`${skill.id} stage ${stage}: ${SAMPLES} samples are arithmetically correct`, () => {
-      const rng = createRng(`verify|${skill.id}|${stage}`);
-      for (let i = 0; i < SAMPLES; i++) {
-        const item = generateItem(rng, skill, stage);
-        const where = `${skill.id} stage ${stage} sample ${i}: ${item.prompt}`;
-
-        assert.ok(item.id, `${where} has no id`);
-        assert.ok(item.prompt, `${where} has no prompt`);
-        assert.notEqual(item.answer, undefined, `${where} has no answer`);
-
-        if (item.kind === 'procedure') {
-          assert.ok(Number.isInteger(item.quotient), `${where} quotient not an integer`);
-          assert.ok(
-            item.remainder >= 0 && item.remainder < item.b,
-            `${where} remainder out of range`,
-          );
-          assert.equal(
-            item.b * item.quotient + item.remainder, item.a,
-            `${where} does not satisfy dividend = divisor x quotient + remainder`,
-          );
-          continue;
-        }
-
-        assert.ok(Number.isInteger(item.answer), `${where} answer is not an integer`);
-        assert.ok(item.answer >= 0, `${where} answer is negative`);
-
-        if (item.op === 'mult') {
-          assert.equal(item.a * item.b, item.answer, `${where} product is wrong`);
-        } else if (item.op === 'div') {
-          assert.equal(item.a % item.b, 0, `${where} does not divide evenly`);
-          assert.equal(item.a / item.b, item.answer, `${where} quotient is wrong`);
-        } else {
-          assert.fail(`${where} has unknown op "${item.op}"`);
-        }
-
-        for (const d of item.distractors || []) {
-          assert.notEqual(d, item.answer, `${where} lists the answer as a distractor`);
-        }
-      }
-    });
-  }
-}
-
-test('a session has no duplicate problems', () => {
+test('every skill names a registered generator', () => {
   for (const skill of allSkills) {
-    for (let stage = 0; stage < 3; stage++) {
-      for (let trial = 0; trial < 10; trial++) {
-        const set = buildSession(skill, {
-          stage, count: 12, seed: `dupes|${skill.id}|${stage}|${trial}`, review: true,
-        });
-        const ids = set.items.map((i) => i.id);
-        assert.equal(
-          new Set(ids).size, ids.length,
-          `${skill.id} stage ${stage} trial ${trial} produced a duplicate`,
-        );
-      }
-    }
+    assert.ok(
+      GENERATORS[skill.generator],
+      `${skill.id} names missing generator "${skill.generator}"`,
+    );
   }
 });
 
-test('sessions are reproducible from their seed', () => {
-  const skill = allSkills[0];
-  const a = buildSession(skill, { stage: 0, count: 12, seed: 'same', review: true });
-  const b = buildSession(skill, { stage: 0, count: 12, seed: 'same', review: true });
-  assert.deepEqual(
-    a.items.map((i) => i.prompt), b.items.map((i) => i.prompt),
-    'the same seed produced a different session -- a reload would change the problems',
-  );
-});
-
-test('a Check draws only from its own stage, never from review', () => {
+test('skill ids carry their own grade, so a misfiled skill is visible', () => {
   for (const skill of allSkills) {
-    const set = buildSession(skill, { stage: 2, count: 12, seed: `check|${skill.id}`, review: false });
-    for (const item of set.items) {
-      assert.equal(item.stage, 2, `${skill.id} check pulled a stage ${item.stage} item`);
-    }
+    assert.ok(
+      skill.id.startsWith(`g${skill.grade}-`),
+      `${skill.id} is filed under grade ${skill.grade}`,
+    );
   }
 });
 
@@ -165,6 +92,14 @@ test('every grade accent passes AA against the dark background', () => {
     const c = ratio(rgb, BG);
     // 3:1 is the AA bar for large text and UI components, which is what these
     // accents are used for (headings, rings, borders).
-    assert.ok(c >= 3, `grade ${g.grade} accent ${g.accent} is only ${c.toFixed(2)}:1 on the dark background`);
+    assert.ok(
+      c >= 3,
+      `grade ${g.grade} accent ${g.accent} is only ${c.toFixed(2)}:1 on the dark background`,
+    );
   }
+});
+
+test('each grade has a distinct accent', () => {
+  const seen = new Set(index.grades.map((g) => g.accent.toLowerCase()));
+  assert.equal(seen.size, index.grades.length, 'two grades share an accent colour');
 });

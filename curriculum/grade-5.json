@@ -1,8 +1,66 @@
 {
-  "$comment": "Grade 5 fluency. Skills without a generator yet are added in step 3.",
+  "$comment": "Grade 5 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
   "schemaVersion": 2,
   "grade": 5,
   "skills": [
+    {
+      "id": "g5-multi-digit-mul",
+      "ccss": "5.NBT.B.5",
+      "generator": "multiDigitMul",
+      "strategyTag": "standard-algorithm",
+      "title": {
+        "en": "Multiplying big numbers",
+        "es": "Multiplicar numeros grandes"
+      },
+      "strategy": {
+        "en": "The standard method, place by place",
+        "es": "El metodo estandar, valor por valor"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "3 by 1",
+            "es": "3 por 1"
+          },
+          "params": {
+            "aDigits": [
+              3
+            ],
+            "bDigits": [
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "2 by 2",
+            "es": "2 por 2"
+          },
+          "params": {
+            "aDigits": [
+              2
+            ],
+            "bDigits": [
+              2
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "3 by 2",
+            "es": "3 por 2"
+          },
+          "params": {
+            "aDigits": [
+              3
+            ],
+            "bDigits": [
+              2
+            ]
+          }
+        }
+      ]
+    },
     {
       "id": "g5-divide-2digits",
       "ccss": "5.NBT.B.6",
@@ -116,6 +174,258 @@
           }
         }
       }
+    },
+    {
+      "id": "g5-decimal-add-sub",
+      "ccss": "5.NBT.B.7",
+      "generator": "decimalArithmetic",
+      "strategyTag": "line-up-points",
+      "title": {
+        "en": "Decimal adding and taking away",
+        "es": "Sumar y restar decimales"
+      },
+      "strategy": {
+        "en": "Line up the decimal points first",
+        "es": "Alinea los puntos decimales primero"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Tenths",
+            "es": "Decimos"
+          },
+          "params": {
+            "ops": [
+              "+"
+            ],
+            "places": 1,
+            "min": 0.1,
+            "max": 9.9
+          }
+        },
+        {
+          "label": {
+            "en": "Hundredths",
+            "es": "Centesimos"
+          },
+          "params": {
+            "ops": [
+              "+",
+              "-"
+            ],
+            "places": 2,
+            "min": 0.1,
+            "max": 20
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "ops": [
+              "+",
+              "-"
+            ],
+            "places": 2,
+            "min": 0.1,
+            "max": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "g5-powers-of-ten",
+      "ccss": "5.NBT.A.2",
+      "generator": "powersOfTen",
+      "strategyTag": "shift-the-point",
+      "title": {
+        "en": "Times and divide by 10, 100, 1000",
+        "es": "Por y entre 10, 100, 1000"
+      },
+      "strategy": {
+        "en": "The digits slide; the point stays put",
+        "es": "Los digitos se mueven; el punto se queda"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "By 10",
+            "es": "Por 10"
+          },
+          "params": {
+            "powers": [
+              10
+            ],
+            "ops": [
+              "×",
+              "÷"
+            ],
+            "places": 1
+          }
+        },
+        {
+          "label": {
+            "en": "By 100",
+            "es": "Por 100"
+          },
+          "params": {
+            "powers": [
+              10,
+              100
+            ],
+            "ops": [
+              "×",
+              "÷"
+            ],
+            "places": 2
+          }
+        },
+        {
+          "label": {
+            "en": "All",
+            "es": "Todas"
+          },
+          "params": {
+            "powers": [
+              10,
+              100,
+              1000
+            ],
+            "ops": [
+              "×",
+              "÷"
+            ],
+            "places": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "g5-fraction-add-sub",
+      "ccss": "5.NF.A.1",
+      "generator": "fractionAddSub",
+      "strategyTag": "common-denominator",
+      "title": {
+        "en": "Adding fractions",
+        "es": "Sumar fracciones"
+      },
+      "strategy": {
+        "en": "Make the bottoms match, then add the tops",
+        "es": "Iguala los denominadores y suma los numeradores"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Easy denominators",
+            "es": "Denominadores faciles"
+          },
+          "params": {
+            "denominators": [
+              2,
+              4,
+              8
+            ],
+            "op": "add"
+          }
+        },
+        {
+          "label": {
+            "en": "More denominators",
+            "es": "Mas denominadores"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "op": "add"
+          }
+        },
+        {
+          "label": {
+            "en": "Add and take away",
+            "es": "Sumar y restar"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              8
+            ],
+            "op": "both"
+          }
+        }
+      ]
+    },
+    {
+      "id": "g5-fraction-times-whole",
+      "ccss": "5.NF.B.4",
+      "generator": "fractionMultiply",
+      "strategyTag": "of-means-times",
+      "title": {
+        "en": "Fractions of whole numbers",
+        "es": "Fracciones de numeros enteros"
+      },
+      "strategy": {
+        "en": "\"Of\" means multiply",
+        "es": "\"De\" significa multiplicar"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "By a whole",
+            "es": "Por un entero"
+          },
+          "params": {
+            "byWhole": true,
+            "denominators": [
+              2,
+              3,
+              4
+            ],
+            "maxWhole": 8
+          }
+        },
+        {
+          "label": {
+            "en": "Bigger wholes",
+            "es": "Enteros mayores"
+          },
+          "params": {
+            "byWhole": true,
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "maxWhole": 12
+          }
+        },
+        {
+          "label": {
+            "en": "Fraction by fraction",
+            "es": "Fraccion por fraccion"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        }
+      ]
     }
   ]
 }

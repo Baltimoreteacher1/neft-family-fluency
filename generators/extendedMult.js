@@ -18,6 +18,8 @@ export function extendedMult(rng, params, meta = {}) {
     prompt: `${scaled} × ${other}`,
     basicFact: { a: base, b: other, answer: base * other, scale },
     answer,
+    answerType: "integer",
+    accept: [String(answer)],
     strategyTag: meta.strategyTag || null,
     // The classic error is the wrong number of zeros, so that is the distractor.
     distractors: [base * other, (base * other) * scale * 10, answer + scale].filter(

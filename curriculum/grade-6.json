@@ -1,0 +1,399 @@
+{
+  "$comment": "Grade 6 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
+  "schemaVersion": 2,
+  "grade": 6,
+  "skills": [
+    {
+      "id": "g6-multi-digit-div",
+      "ccss": "6.NS.B.2",
+      "generator": "longDivision",
+      "strategyTag": "estimate-then-divide",
+      "title": {
+        "en": "Long division",
+        "es": "Division larga"
+      },
+      "strategy": {
+        "en": "Estimate first, then divide",
+        "es": "Estima primero y luego divide"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "2-digit divisors",
+            "es": "Divisores de 2 digitos"
+          },
+          "params": {
+            "dividendDigits": [
+              3
+            ],
+            "divisorRange": [
+              11,
+              25
+            ],
+            "allowRemainder": false,
+            "remainderRate": 0
+          }
+        },
+        {
+          "label": {
+            "en": "With remainders",
+            "es": "Con residuo"
+          },
+          "params": {
+            "dividendDigits": [
+              3,
+              4
+            ],
+            "divisorRange": [
+              11,
+              49
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        },
+        {
+          "label": {
+            "en": "4 digits",
+            "es": "4 digitos"
+          },
+          "params": {
+            "dividendDigits": [
+              4
+            ],
+            "divisorRange": [
+              12,
+              89
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-decimal-ops",
+      "ccss": "6.NS.B.3",
+      "generator": "decimalArithmetic",
+      "strategyTag": "all-four",
+      "title": {
+        "en": "All four with decimals",
+        "es": "Las cuatro con decimales"
+      },
+      "strategy": {
+        "en": "Same rules as whole numbers, then place the point",
+        "es": "Las mismas reglas, y luego coloca el punto"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Add and take away",
+            "es": "Sumar y restar"
+          },
+          "params": {
+            "ops": [
+              "+",
+              "-"
+            ],
+            "places": 2,
+            "min": 0.1,
+            "max": 50
+          }
+        },
+        {
+          "label": {
+            "en": "Multiply",
+            "es": "Multiplicar"
+          },
+          "params": {
+            "ops": [
+              "×"
+            ],
+            "places": 1,
+            "min": 0.1,
+            "max": 20
+          }
+        },
+        {
+          "label": {
+            "en": "Divide too",
+            "es": "Dividir tambien"
+          },
+          "params": {
+            "ops": [
+              "+",
+              "-",
+              "×",
+              "÷"
+            ],
+            "places": 2,
+            "min": 0.1,
+            "max": 30,
+            "divisorWhole": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-gcf-lcm",
+      "ccss": "6.NS.B.4",
+      "generator": "gcfLcm",
+      "strategyTag": "factor-lists",
+      "title": {
+        "en": "GCF and LCM",
+        "es": "MCD y mcm"
+      },
+      "strategy": {
+        "en": "Greatest shared factor; smallest shared multiple",
+        "es": "El mayor factor comun; el menor multiplo comun"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "GCF",
+            "es": "MCD"
+          },
+          "params": {
+            "which": "gcf",
+            "max": 24
+          }
+        },
+        {
+          "label": {
+            "en": "LCM",
+            "es": "mcm"
+          },
+          "params": {
+            "which": "lcm",
+            "max": 12
+          }
+        },
+        {
+          "label": {
+            "en": "Both",
+            "es": "Los dos"
+          },
+          "params": {
+            "which": "both",
+            "max": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-divide-fractions",
+      "ccss": "6.NS.A.1",
+      "generator": "fractionDivide",
+      "strategyTag": "multiply-reciprocal",
+      "title": {
+        "en": "Dividing fractions",
+        "es": "Dividir fracciones"
+      },
+      "strategy": {
+        "en": "Flip the second one, then multiply",
+        "es": "Voltea la segunda y multiplica"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "By a whole number",
+            "es": "Entre un entero"
+          },
+          "params": {
+            "byWhole": true,
+            "denominators": [
+              2,
+              3,
+              4
+            ],
+            "maxWhole": 6
+          }
+        },
+        {
+          "label": {
+            "en": "By a fraction",
+            "es": "Entre una fraccion"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              6
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              8
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-expressions",
+      "ccss": "6.EE.A.2",
+      "generator": "evaluateExpression",
+      "strategyTag": "order-of-operations",
+      "title": {
+        "en": "Order of operations",
+        "es": "Orden de las operaciones"
+      },
+      "strategy": {
+        "en": "Brackets, then powers, then times and divide, then add and take away",
+        "es": "Parentesis, potencias, por y entre, y al final sumar y restar"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Times before plus",
+            "es": "Por antes de mas"
+          },
+          "params": {
+            "shapes": [
+              "a+b*c"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "With brackets",
+            "es": "Con parentesis"
+          },
+          "params": {
+            "shapes": [
+              "a+b*c",
+              "a*(b+c)",
+              "(a+b)/c"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "With powers",
+            "es": "Con potencias"
+          },
+          "params": {
+            "shapes": [
+              "a+b*c",
+              "a*(b+c)",
+              "a+b^n",
+              "(a+b)/c"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-one-step-eq",
+      "ccss": "6.EE.B.7",
+      "generator": "oneStepEq",
+      "strategyTag": "undo-the-operation",
+      "title": {
+        "en": "One-step equations",
+        "es": "Ecuaciones de un paso"
+      },
+      "strategy": {
+        "en": "Do the opposite to both sides",
+        "es": "Haz lo contrario en los dos lados"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Add and take away",
+            "es": "Sumar y restar"
+          },
+          "params": {
+            "forms": [
+              "add",
+              "sub"
+            ],
+            "maxX": 20
+          }
+        },
+        {
+          "label": {
+            "en": "Times and divide",
+            "es": "Por y entre"
+          },
+          "params": {
+            "forms": [
+              "mul",
+              "div"
+            ],
+            "maxX": 12
+          }
+        },
+        {
+          "label": {
+            "en": "All four",
+            "es": "Las cuatro"
+          },
+          "params": {
+            "forms": [
+              "add",
+              "sub",
+              "mul",
+              "div"
+            ],
+            "maxX": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "g6-unit-rates",
+      "ccss": "6.RP.A.2",
+      "generator": "unitRate",
+      "strategyTag": "divide-to-one",
+      "title": {
+        "en": "Unit rates",
+        "es": "Tasas unitarias"
+      },
+      "strategy": {
+        "en": "Divide to find \"how many in one\"",
+        "es": "Divide para hallar \"cuantos en uno\""
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
+          },
+          "params": {
+            "maxRate": 20
+          }
+        },
+        {
+          "label": {
+            "en": "Bigger numbers",
+            "es": "Numeros mayores"
+          },
+          "params": {
+            "maxRate": 60
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "maxRate": 90
+          }
+        }
+      ]
+    }
+  ]
+}

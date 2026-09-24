@@ -1,5 +1,5 @@
 {
-  "$comment": "Grade 3 fluency: multiply and divide within 100.",
+  "$comment": "Grade 3 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
   "schemaVersion": 2,
   "grade": 3,
   "skills": [
@@ -691,6 +691,157 @@
           }
         }
       }
+    },
+    {
+      "id": "g3-add-sub-1000",
+      "ccss": "3.NBT.A.2",
+      "generator": "addSub",
+      "strategyTag": "regroup",
+      "title": {
+        "en": "Adding and taking away to 1000",
+        "es": "Sumar y restar hasta 1000"
+      },
+      "strategy": {
+        "en": "Line up the places, then work right to left",
+        "es": "Alinea los valores y trabaja de derecha a izquierda"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "No regrouping",
+            "es": "Sin reagrupar"
+          },
+          "params": {
+            "op": "both",
+            "min": 100,
+            "max": 999,
+            "regroup": false
+          }
+        },
+        {
+          "label": {
+            "en": "With regrouping",
+            "es": "Reagrupando"
+          },
+          "params": {
+            "op": "both",
+            "min": 100,
+            "max": 999
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "op": "both",
+            "min": 100,
+            "max": 999
+          }
+        }
+      ]
+    },
+    {
+      "id": "g3-mult-multiples-10",
+      "ccss": "3.NBT.A.3",
+      "generator": "multByMultiples",
+      "strategyTag": "place-value-pattern",
+      "title": {
+        "en": "Multiply by tens",
+        "es": "Multiplicar por decenas"
+      },
+      "strategy": {
+        "en": "Use the basic fact, then add the zero",
+        "es": "Usa la operacion basica y agrega el cero"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Small facts",
+            "es": "Operaciones pequenas"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "scales": [
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "scales": [
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "scales": [
+              10
+            ]
+          }
+        }
+      ]
     }
   ]
 }

@@ -22,6 +22,8 @@ export function extendedDiv(rng, params, meta = {}) {
       scale,
     },
     answer: quotient,
+    answerType: "integer",
+    accept: [String(quotient)],
     strategyTag: meta.strategyTag || null,
     distractors: [baseQuotient, quotient * 10, quotient / 10]
       .filter((d) => Number.isInteger(d) && d > 0 && d !== quotient)

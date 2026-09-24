@@ -1,0 +1,336 @@
+{
+  "$comment": "Grade 2 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
+  "schemaVersion": 2,
+  "grade": 2,
+  "skills": [
+    {
+      "id": "g2-add-within-20",
+      "ccss": "2.OA.B.2",
+      "generator": "addSub",
+      "strategyTag": "make-ten",
+      "title": {
+        "en": "Adding to 20",
+        "es": "Sumar hasta 20"
+      },
+      "strategy": {
+        "en": "Make a ten first, then add the rest",
+        "es": "Forma un diez primero y luego suma el resto"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 12",
+            "es": "Hasta 12"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 12
+          }
+        },
+        {
+          "label": {
+            "en": "To 20",
+            "es": "Hasta 20"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 20
+          }
+        },
+        {
+          "label": {
+            "en": "From memory",
+            "es": "De memoria"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2-sub-within-20",
+      "ccss": "2.OA.B.2",
+      "generator": "addSub",
+      "strategyTag": "think-addition",
+      "title": {
+        "en": "Taking away to 20",
+        "es": "Restar hasta 20"
+      },
+      "strategy": {
+        "en": "Think addition: what plus this makes that?",
+        "es": "Piensa en suma: ¿cuanto mas esto da eso?"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 12",
+            "es": "Hasta 12"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 12
+          }
+        },
+        {
+          "label": {
+            "en": "To 20",
+            "es": "Hasta 20"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 20
+          }
+        },
+        {
+          "label": {
+            "en": "From memory",
+            "es": "De memoria"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2-add-sub-10-100",
+      "ccss": "2.NBT.B.8",
+      "generator": "addSubRound",
+      "strategyTag": "place-value",
+      "title": {
+        "en": "Add and take away 10 and 100",
+        "es": "Sumar y restar 10 y 100"
+      },
+      "strategy": {
+        "en": "Change one digit, leave the rest alone",
+        "es": "Cambia un digito y deja los demas"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Tens",
+            "es": "Decenas"
+          },
+          "params": {
+            "steps": [
+              10
+            ],
+            "ops": [
+              "add",
+              "sub"
+            ],
+            "min": 20,
+            "max": 89
+          }
+        },
+        {
+          "label": {
+            "en": "Hundreds",
+            "es": "Centenas"
+          },
+          "params": {
+            "steps": [
+              100
+            ],
+            "ops": [
+              "add",
+              "sub"
+            ],
+            "min": 120,
+            "max": 800
+          }
+        },
+        {
+          "label": {
+            "en": "Both",
+            "es": "Los dos"
+          },
+          "params": {
+            "steps": [
+              10,
+              100
+            ],
+            "ops": [
+              "add",
+              "sub"
+            ],
+            "min": 120,
+            "max": 800
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2-two-digit-add",
+      "ccss": "2.NBT.B.5",
+      "generator": "addSub",
+      "strategyTag": "regroup",
+      "title": {
+        "en": "Two-digit adding",
+        "es": "Sumar de dos digitos"
+      },
+      "strategy": {
+        "en": "Add the tens, add the ones, then put them together",
+        "es": "Suma las decenas, suma las unidades y juntalas"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "No carrying",
+            "es": "Sin llevar"
+          },
+          "params": {
+            "op": "add",
+            "min": 10,
+            "max": 99,
+            "regroup": false
+          }
+        },
+        {
+          "label": {
+            "en": "With carrying",
+            "es": "Llevando"
+          },
+          "params": {
+            "op": "add",
+            "min": 10,
+            "max": 99
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "op": "add",
+            "min": 10,
+            "max": 99
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2-two-digit-sub",
+      "ccss": "2.NBT.B.5",
+      "generator": "addSub",
+      "strategyTag": "regroup",
+      "title": {
+        "en": "Two-digit taking away",
+        "es": "Restar de dos digitos"
+      },
+      "strategy": {
+        "en": "Take away the tens, then the ones",
+        "es": "Quita las decenas y luego las unidades"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "No borrowing",
+            "es": "Sin prestar"
+          },
+          "params": {
+            "op": "sub",
+            "min": 10,
+            "max": 99,
+            "regroup": false
+          }
+        },
+        {
+          "label": {
+            "en": "With borrowing",
+            "es": "Prestando"
+          },
+          "params": {
+            "op": "sub",
+            "min": 10,
+            "max": 99
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "op": "sub",
+            "min": 10,
+            "max": 99
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2-skip-count",
+      "ccss": "2.NBT.A.2",
+      "generator": "skipCount",
+      "strategyTag": "skip-count",
+      "title": {
+        "en": "Skip counting",
+        "es": "Contar salteado"
+      },
+      "strategy": {
+        "en": "Jump by the same amount each time",
+        "es": "Salta la misma cantidad cada vez"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "2s, 5s, 10s",
+            "es": "De 2, 5 y 10"
+          },
+          "params": {
+            "steps": [
+              2,
+              5,
+              10
+            ],
+            "shown": 3,
+            "fromZero": false
+          }
+        },
+        {
+          "label": {
+            "en": "Add 100s",
+            "es": "Agrega de 100"
+          },
+          "params": {
+            "steps": [
+              2,
+              5,
+              10,
+              100
+            ],
+            "shown": 3,
+            "fromZero": false
+          }
+        },
+        {
+          "label": {
+            "en": "Start anywhere",
+            "es": "Empieza donde sea"
+          },
+          "params": {
+            "steps": [
+              2,
+              5,
+              10,
+              100
+            ],
+            "shown": 3,
+            "fromZero": false
+          }
+        }
+      ]
+    }
+  ]
+}

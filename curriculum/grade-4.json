@@ -1,8 +1,61 @@
 {
-  "$comment": "Grade 4 fluency. Skills without a generator yet are added in step 3.",
+  "$comment": "Grade 4 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
   "schemaVersion": 2,
   "grade": 4,
   "skills": [
+    {
+      "id": "g4-multi-digit-add-sub",
+      "ccss": "4.NBT.B.4",
+      "generator": "multiDigitAddSub",
+      "strategyTag": "standard-algorithm",
+      "title": {
+        "en": "Big adding and taking away",
+        "es": "Sumas y restas grandes"
+      },
+      "strategy": {
+        "en": "The standard method, one column at a time",
+        "es": "El metodo estandar, columna por columna"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "3 digits",
+            "es": "3 digitos"
+          },
+          "params": {
+            "digits": [
+              3
+            ],
+            "op": "add"
+          }
+        },
+        {
+          "label": {
+            "en": "4 digits",
+            "es": "4 digitos"
+          },
+          "params": {
+            "digits": [
+              4
+            ],
+            "op": "both"
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "digits": [
+              3,
+              4
+            ],
+            "op": "both"
+          }
+        }
+      ]
+    },
     {
       "id": "g4-extended-facts",
       "ccss": "4.NBT.B.5",
@@ -14,7 +67,7 @@
         "en": "Use the basic fact, then the place-value pattern",
         "es": "Usa la operacion basica y luego el patron de valor posicional"
       },
-      "generator": "extendedMult",
+      "generator": "extendedFacts",
       "strategyTag": "place-value-pattern",
       "stages": [
         {
@@ -41,7 +94,8 @@
             ],
             "scales": [
               10
-            ]
+            ],
+            "include": "mult"
           }
         },
         {
@@ -73,7 +127,8 @@
             "scales": [
               10,
               100
-            ]
+            ],
+            "include": "both"
           }
         },
         {
@@ -105,7 +160,8 @@
             "scales": [
               10,
               100
-            ]
+            ],
+            "include": "both"
           }
         }
       ],
@@ -269,6 +325,180 @@
           }
         }
       }
+    },
+    {
+      "id": "g4-multi-digit-mul",
+      "ccss": "4.NBT.B.5",
+      "generator": "multiDigitMul",
+      "strategyTag": "partial-products",
+      "title": {
+        "en": "Big multiplying",
+        "es": "Multiplicaciones grandes"
+      },
+      "strategy": {
+        "en": "Break one factor apart, multiply each piece, then add",
+        "es": "Separa un factor, multiplica cada parte y suma"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "2 by 1",
+            "es": "2 por 1"
+          },
+          "params": {
+            "aDigits": [
+              2
+            ],
+            "bDigits": [
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "3 by 1",
+            "es": "3 por 1"
+          },
+          "params": {
+            "aDigits": [
+              3
+            ],
+            "bDigits": [
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "2 by 2",
+            "es": "2 por 2"
+          },
+          "params": {
+            "aDigits": [
+              2
+            ],
+            "bDigits": [
+              2
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g4-equiv-fractions",
+      "ccss": "4.NF.A.1",
+      "generator": "equivFraction",
+      "strategyTag": "scale-both",
+      "title": {
+        "en": "Equal fractions",
+        "es": "Fracciones iguales"
+      },
+      "strategy": {
+        "en": "Multiply the top and bottom by the same number",
+        "es": "Multiplica arriba y abajo por el mismo numero"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Halves and quarters",
+            "es": "Medios y cuartos"
+          },
+          "params": {
+            "denominators": [
+              2,
+              4
+            ],
+            "maxFactor": 3
+          }
+        },
+        {
+          "label": {
+            "en": "More denominators",
+            "es": "Mas denominadores"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "maxFactor": 4
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "denominators": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              8
+            ],
+            "maxFactor": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "g4-factors-multiples",
+      "ccss": "4.OA.B.4",
+      "generator": "factorsMultiples",
+      "strategyTag": "factor-pairs",
+      "title": {
+        "en": "Factors and multiples",
+        "es": "Factores y multiplos"
+      },
+      "strategy": {
+        "en": "Factors fit inside; multiples are jumps outward",
+        "es": "Los factores caben adentro; los multiplos son saltos hacia afuera"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Multiples",
+            "es": "Multiplos"
+          },
+          "params": {
+            "modes": [
+              "nthMultiple"
+            ],
+            "max": 60
+          }
+        },
+        {
+          "label": {
+            "en": "Factors",
+            "es": "Factores"
+          },
+          "params": {
+            "modes": [
+              "isFactor"
+            ],
+            "max": 60
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "modes": [
+              "isFactor",
+              "nthMultiple",
+              "countFactors"
+            ],
+            "max": 100
+          }
+        }
+      ]
     }
   ]
 }

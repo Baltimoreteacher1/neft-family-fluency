@@ -22,6 +22,8 @@ export function divFact(rng, params, meta = {}) {
     // The missing-factor phrasing the week actually teaches, shown as the hint.
     missingFactorPrompt: { product: dividend, known: divisor },
     answer: quotient,
+    answerType: "integer",
+    accept: [String(quotient)],
     strategyTag: meta.strategyTag || null,
     distractors: distractorsFor(divisor, quotient, dividend),
   };

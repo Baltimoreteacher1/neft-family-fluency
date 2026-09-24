@@ -37,6 +37,18 @@ export function longDivision(rng, params, meta = {}) {
     b: divisor,
     prompt: `${dividend} ÷ ${divisor}`,
     answer: remainder === 0 ? quotient : `${quotient} R${remainder}`,
+    // A remainder answer is judged against the quotient AND the remainder, so
+    // "93 R 1", "93r1" and "93 remainder 1" are all the same correct answer.
+    answerType: remainder === 0 ? "integer" : "remainder",
+    accept:
+      remainder === 0
+        ? [String(quotient)]
+        : [
+            `${quotient} R${remainder}`,
+            `${quotient}R${remainder}`,
+            `${quotient} r ${remainder}`,
+            `${quotient} remainder ${remainder}`,
+          ],
     quotient,
     remainder,
     // Estimation is the taught strategy in week 8; the workspace shows this

@@ -1,0 +1,292 @@
+{
+  "$comment": "Grade 7 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
+  "schemaVersion": 2,
+  "grade": 7,
+  "skills": [
+    {
+      "id": "g7-integer-add-sub",
+      "ccss": "7.NS.A.1",
+      "generator": "integerAddSub",
+      "strategyTag": "number-line",
+      "title": {
+        "en": "Adding and taking away integers",
+        "es": "Sumar y restar enteros"
+      },
+      "strategy": {
+        "en": "Same signs add; different signs find the difference",
+        "es": "Signos iguales se suman; signos distintos se restan"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Same signs",
+            "es": "Signos iguales"
+          },
+          "params": {
+            "op": "add",
+            "max": 20,
+            "sameSigns": true
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed signs to 20",
+            "es": "Signos mezclados hasta 20"
+          },
+          "params": {
+            "op": "both",
+            "max": 20
+          }
+        },
+        {
+          "label": {
+            "en": "To 100",
+            "es": "Hasta 100"
+          },
+          "params": {
+            "op": "both",
+            "max": 100
+          }
+        }
+      ]
+    },
+    {
+      "id": "g7-integer-mul-div",
+      "ccss": "7.NS.A.2",
+      "generator": "integerMulDiv",
+      "strategyTag": "sign-rules",
+      "title": {
+        "en": "Multiplying and dividing integers",
+        "es": "Multiplicar y dividir enteros"
+      },
+      "strategy": {
+        "en": "Two negatives make a positive",
+        "es": "Dos negativos dan un positivo"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Multiplying",
+            "es": "Multiplicar"
+          },
+          "params": {
+            "op": "mul",
+            "max": 9
+          }
+        },
+        {
+          "label": {
+            "en": "Dividing",
+            "es": "Dividir"
+          },
+          "params": {
+            "op": "div",
+            "max": 9
+          }
+        },
+        {
+          "label": {
+            "en": "Both",
+            "es": "Los dos"
+          },
+          "params": {
+            "op": "both",
+            "max": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "g7-rational-ops",
+      "ccss": "7.NS.A.3",
+      "generator": "rationalOp",
+      "strategyTag": "same-rules",
+      "title": {
+        "en": "Signed decimals and fractions",
+        "es": "Decimales y fracciones con signo"
+      },
+      "strategy": {
+        "en": "The sign rules do not change",
+        "es": "Las reglas de los signos no cambian"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Adding",
+            "es": "Sumar"
+          },
+          "params": {
+            "ops": [
+              "+"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Taking away",
+            "es": "Restar"
+          },
+          "params": {
+            "ops": [
+              "−"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Both",
+            "es": "Los dos"
+          },
+          "params": {
+            "ops": [
+              "+",
+              "−"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g7-percent",
+      "ccss": "7.RP.A.3",
+      "generator": "percent",
+      "strategyTag": "percent-of",
+      "title": {
+        "en": "Percents",
+        "es": "Porcentajes"
+      },
+      "strategy": {
+        "en": "Percent means \"out of 100\"",
+        "es": "Por ciento significa \"de cada 100\""
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Percent of a number",
+            "es": "Porcentaje de un numero"
+          },
+          "params": {
+            "modes": [
+              "of"
+            ],
+            "percents": [
+              10,
+              25,
+              50
+            ],
+            "maxWhole": 200
+          }
+        },
+        {
+          "label": {
+            "en": "Increase and decrease",
+            "es": "Aumento y descuento"
+          },
+          "params": {
+            "modes": [
+              "change"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Tax, tip and discount",
+            "es": "Impuesto, propina y descuento"
+          },
+          "params": {
+            "modes": [
+              "money"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g7-two-step-eq",
+      "ccss": "7.EE.B.4",
+      "generator": "twoStepEq",
+      "strategyTag": "undo-in-order",
+      "title": {
+        "en": "Two-step equations",
+        "es": "Ecuaciones de dos pasos"
+      },
+      "strategy": {
+        "en": "Undo the adding first, then the multiplying",
+        "es": "Deshaz la suma primero y luego la multiplicacion"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Positive numbers",
+            "es": "Numeros positivos"
+          },
+          "params": {
+            "maxX": 10
+          }
+        },
+        {
+          "label": {
+            "en": "Bigger numbers",
+            "es": "Numeros mayores"
+          },
+          "params": {
+            "maxX": 15
+          }
+        },
+        {
+          "label": {
+            "en": "With negatives",
+            "es": "Con negativos"
+          },
+          "params": {
+            "maxX": 12,
+            "allowNegative": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g7-proportionality",
+      "ccss": "7.RP.A.2",
+      "generator": "constantOfProportionality",
+      "strategyTag": "divide-y-by-x",
+      "title": {
+        "en": "Constant of proportionality",
+        "es": "Constante de proporcionalidad"
+      },
+      "strategy": {
+        "en": "Divide y by x. It is the same every time",
+        "es": "Divide y entre x. Siempre da lo mismo"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Small k",
+            "es": "k pequena"
+          },
+          "params": {
+            "maxK": 6
+          }
+        },
+        {
+          "label": {
+            "en": "Bigger k",
+            "es": "k mayor"
+          },
+          "params": {
+            "maxK": 12
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "maxK": 15
+          }
+        }
+      ]
+    }
+  ]
+}

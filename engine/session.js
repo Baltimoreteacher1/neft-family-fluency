@@ -5,19 +5,9 @@
 // mix of review differ.
 
 import { createRng, seedFrom } from './rng.js';
-import multFact from './generators/multFact.js';
-import divFact from './generators/divFact.js';
-import extendedMult from './generators/extendedMult.js';
-import extendedDiv from './generators/extendedDiv.js';
-import longDivision from './generators/longDivision.js';
+import { GENERATORS } from '../generators/index.js';
 
-export const GENERATORS = {
-  multFact,
-  divFact,
-  extendedMult,
-  extendedDiv,
-  longDivision,
-};
+export { GENERATORS };
 
 export function generateItem(rng, skill, stageIndex) {
   const fn = GENERATORS[skill.generator];
@@ -48,10 +38,36 @@ export function dueFacts(record, limit = 6) {
  * @param {string[]} [opts.due] fact ids to favour (from the Leitner boxes)
  * @param {boolean} [opts.review] mix in earlier stages (Practice does, Check does not)
  */
+/**
+ * How many distinct problems a stage can actually produce.
+ *
+ * Early stages are small on purpose -- "pairs that make 5" is six problems and
+ * no more. Asking for twelve would force repeats, so the session is capped at
+ * what the stage really holds. A Grade 1 child gets a six-question set, which
+ * is the honest length, not a padded one.
+ */
+export function poolSize(skill, stageIndex, probes = 400) {
+  const rng = createRng(`pool|${skill.id}|${stageIndex}`);
+  const seen = new Set();
+  let sinceNew = 0;
+  for (let i = 0; i < probes; i++) {
+    const before = seen.size;
+    seen.add(generateItem(rng, skill, stageIndex).id);
+    sinceNew = seen.size === before ? sinceNew + 1 : 0;
+    // Once 60 draws in a row turn up nothing new, the pool is mapped.
+    if (sinceNew > 60) break;
+  }
+  return seen.size;
+}
+
 export function buildSession(skill, opts) {
-  const { stage, count, seed } = opts;
+  const { stage, seed } = opts;
   const rng = createRng(typeof seed === 'string' ? seedFrom(seed) : seed);
   const due = opts.due || [];
+
+  // Never ask for more unique problems than the stage can supply.
+  const available = poolSize(skill, stage);
+  const count = Math.min(opts.count, Math.max(4, available));
 
   const items = [];
   const seen = new Set();
@@ -64,7 +80,7 @@ export function buildSession(skill, opts) {
     seen.add(items[items.length - 1].id);
   }
 
-  return { skillId: skill.id, stage, items };
+  return { skillId: skill.id, stage, items, requested: opts.count, available };
 }
 
 /**

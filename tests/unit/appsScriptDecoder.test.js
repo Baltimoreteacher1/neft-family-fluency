@@ -236,8 +236,12 @@ test('the spreadsheet columns work for both versions', () => {
   assert.equal(DECODE_PROGRESS(v2, 'class'), '6B');
   assert.equal(DECODE_PROGRESS(v2, 'student'), 5);
   assert.equal(DECODE_PROGRESS(v2, 'grade'), 4);
-  // Grade 4, skill index 1 is "Divide by 1 digit" in curriculum/grade-4.json.
-  assert.equal(DECODE_PROGRESS(v2, 'skill'), 'Divide by 1 digit');
+  // Read the expected name from the curriculum rather than hardcoding it: the
+  // position IS the wire format, so the curriculum is the source of truth.
+  const g4 = JSON.parse(
+    readFileSync(new URL('../../curriculum/grade-4.json', import.meta.url), 'utf8'),
+  );
+  assert.equal(DECODE_PROGRESS(v2, 'skill'), g4.skills[1].title.en);
   assert.equal(DECODE_PROGRESS(v2, 'stage'), 3, 'stages are shown 1-based to a teacher');
   assert.equal(DECODE_PROGRESS(v2, 'accuracy'), 92);
   assert.equal(DECODE_PROGRESS(v2, 'badge'), 'yes');

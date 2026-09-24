@@ -1,0 +1,309 @@
+{
+  "$comment": "Grade 8 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
+  "schemaVersion": 2,
+  "grade": 8,
+  "skills": [
+    {
+      "id": "g8-exponent-rules",
+      "ccss": "8.EE.A.1",
+      "generator": "expRule",
+      "strategyTag": "exponent-rules",
+      "title": {
+        "en": "Exponent rules",
+        "es": "Reglas de los exponentes"
+      },
+      "strategy": {
+        "en": "Multiplying adds the exponents; dividing takes them away",
+        "es": "Al multiplicar se suman los exponentes; al dividir se restan"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Multiplying",
+            "es": "Multiplicar"
+          },
+          "params": {
+            "rules": [
+              "product"
+            ],
+            "bases": [
+              2,
+              3,
+              5,
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Dividing",
+            "es": "Dividir"
+          },
+          "params": {
+            "rules": [
+              "product",
+              "quotient"
+            ],
+            "bases": [
+              2,
+              3,
+              5,
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Power of a power",
+            "es": "Potencia de potencia"
+          },
+          "params": {
+            "rules": [
+              "product",
+              "quotient",
+              "power"
+            ],
+            "bases": [
+              2,
+              3,
+              5,
+              10,
+              "x"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g8-roots",
+      "ccss": "8.EE.A.2",
+      "generator": "roots",
+      "strategyTag": "perfect-squares",
+      "title": {
+        "en": "Square and cube roots",
+        "es": "Raices cuadradas y cubicas"
+      },
+      "strategy": {
+        "en": "Ask: what times itself gives this?",
+        "es": "Preguntate: ¿que por si mismo da esto?"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Squares to 100",
+            "es": "Cuadrados hasta 100"
+          },
+          "params": {
+            "maxRoot": 10
+          }
+        },
+        {
+          "label": {
+            "en": "Squares to 225",
+            "es": "Cuadrados hasta 225"
+          },
+          "params": {
+            "maxRoot": 15
+          }
+        },
+        {
+          "label": {
+            "en": "Cubes too",
+            "es": "Cubos tambien"
+          },
+          "params": {
+            "maxRoot": 15,
+            "cubes": true,
+            "maxCubeRoot": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "g8-sci-notation",
+      "ccss": "8.EE.A.3",
+      "generator": "sciNotation",
+      "strategyTag": "sci-notation",
+      "title": {
+        "en": "Scientific notation",
+        "es": "Notacion cientifica"
+      },
+      "strategy": {
+        "en": "One digit before the point, then a power of ten",
+        "es": "Un digito antes del punto y una potencia de diez"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Write it",
+            "es": "Escribirla"
+          },
+          "params": {
+            "modes": [
+              "toSci"
+            ],
+            "minExp": 2,
+            "maxExp": 5
+          }
+        },
+        {
+          "label": {
+            "en": "Read it",
+            "es": "Leerla"
+          },
+          "params": {
+            "modes": [
+              "fromSci"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Multiply and divide",
+            "es": "Multiplicar y dividir"
+          },
+          "params": {
+            "modes": [
+              "op"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "g8-multi-step-eq",
+      "ccss": "8.EE.C.7",
+      "generator": "multiStepEq",
+      "strategyTag": "collect-like-terms",
+      "title": {
+        "en": "Equations with x on both sides",
+        "es": "Ecuaciones con x en los dos lados"
+      },
+      "strategy": {
+        "en": "Get all the x on one side first",
+        "es": "Junta todas las x en un solo lado primero"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
+          },
+          "params": {
+            "maxX": 8
+          }
+        },
+        {
+          "label": {
+            "en": "Bigger numbers",
+            "es": "Numeros mayores"
+          },
+          "params": {
+            "maxX": 12
+          }
+        },
+        {
+          "label": {
+            "en": "With negatives",
+            "es": "Con negativos"
+          },
+          "params": {
+            "maxX": 12,
+            "allowNegative": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g8-slope",
+      "ccss": "8.EE.B.5",
+      "generator": "slope",
+      "strategyTag": "rise-over-run",
+      "title": {
+        "en": "Slope",
+        "es": "Pendiente"
+      },
+      "strategy": {
+        "en": "Rise over run: how much up for each step across",
+        "es": "Subida sobre avance: cuanto sube por cada paso"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "From a table",
+            "es": "De una tabla"
+          },
+          "params": {
+            "fromTable": true,
+            "maxSlope": 5
+          }
+        },
+        {
+          "label": {
+            "en": "From two points",
+            "es": "De dos puntos"
+          },
+          "params": {
+            "maxSlope": 6
+          }
+        },
+        {
+          "label": {
+            "en": "With negatives",
+            "es": "Con negativos"
+          },
+          "params": {
+            "maxSlope": 6,
+            "allowNegative": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g8-irrational",
+      "ccss": "8.NS.A.2",
+      "generator": "irrationalBetween",
+      "strategyTag": "nearest-squares",
+      "title": {
+        "en": "Estimating roots",
+        "es": "Estimar raices"
+      },
+      "strategy": {
+        "en": "Find the perfect squares on each side",
+        "es": "Busca los cuadrados perfectos a cada lado"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 50",
+            "es": "Hasta 50"
+          },
+          "params": {
+            "min": 2,
+            "max": 50
+          }
+        },
+        {
+          "label": {
+            "en": "To 100",
+            "es": "Hasta 100"
+          },
+          "params": {
+            "min": 2,
+            "max": 100
+          }
+        },
+        {
+          "label": {
+            "en": "To 150",
+            "es": "Hasta 150"
+          },
+          "params": {
+            "min": 2,
+            "max": 150
+          }
+        }
+      ]
+    }
+  ]
+}

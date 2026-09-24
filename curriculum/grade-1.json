@@ -1,0 +1,308 @@
+{
+  "$comment": "Grade 1 fluency skills. Stage order is the wire format for progress code v2 -- reordering renames every code already in a teacher's Sheet.",
+  "schemaVersion": 2,
+  "grade": 1,
+  "skills": [
+    {
+      "id": "g1-make-ten",
+      "ccss": "1.OA.C.6",
+      "generator": "makeTen",
+      "strategyTag": "make-ten",
+      "title": {
+        "en": "Make 10",
+        "es": "Formar 10"
+      },
+      "strategy": {
+        "en": "Find the partner that makes ten",
+        "es": "Busca la pareja que forma diez"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 5",
+            "es": "Hasta 5"
+          },
+          "params": {
+            "total": 5
+          }
+        },
+        {
+          "label": {
+            "en": "To 10",
+            "es": "Hasta 10"
+          },
+          "params": {
+            "total": 10
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "total": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "g1-add-within-10",
+      "ccss": "1.OA.C.6",
+      "generator": "addSub",
+      "strategyTag": "count-on",
+      "title": {
+        "en": "Adding to 10",
+        "es": "Sumar hasta 10"
+      },
+      "strategy": {
+        "en": "Start with the bigger number and count on",
+        "es": "Empieza con el numero mayor y sigue contando"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 5",
+            "es": "Hasta 5"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 5
+          }
+        },
+        {
+          "label": {
+            "en": "To 10",
+            "es": "Hasta 10"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 10
+          }
+        },
+        {
+          "label": {
+            "en": "All of them",
+            "es": "Todas"
+          },
+          "params": {
+            "op": "add",
+            "min": 0,
+            "max": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "g1-sub-within-10",
+      "ccss": "1.OA.B.4",
+      "generator": "addSub",
+      "strategyTag": "think-addition",
+      "title": {
+        "en": "Taking away to 10",
+        "es": "Restar hasta 10"
+      },
+      "strategy": {
+        "en": "Think of the adding fact that goes with it",
+        "es": "Piensa en la suma que va con ella"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 5",
+            "es": "Hasta 5"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 5
+          }
+        },
+        {
+          "label": {
+            "en": "To 10",
+            "es": "Hasta 10"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 10
+          }
+        },
+        {
+          "label": {
+            "en": "All of them",
+            "es": "Todas"
+          },
+          "params": {
+            "op": "sub",
+            "min": 0,
+            "max": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "g1-doubles",
+      "ccss": "1.OA.C.6",
+      "generator": "doubles",
+      "strategyTag": "doubles",
+      "title": {
+        "en": "Doubles and near doubles",
+        "es": "Dobles y casi dobles"
+      },
+      "strategy": {
+        "en": "If you know 7 + 7, you nearly know 7 + 8",
+        "es": "Si sabes 7 + 7, casi sabes 7 + 8"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Doubles to 10",
+            "es": "Dobles hasta 10"
+          },
+          "params": {
+            "min": 1,
+            "max": 5,
+            "near": false
+          }
+        },
+        {
+          "label": {
+            "en": "Doubles to 20",
+            "es": "Dobles hasta 20"
+          },
+          "params": {
+            "min": 1,
+            "max": 10,
+            "near": false
+          }
+        },
+        {
+          "label": {
+            "en": "Near doubles",
+            "es": "Casi dobles"
+          },
+          "params": {
+            "min": 1,
+            "max": 10,
+            "near": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g1-add-sub-ten",
+      "ccss": "1.NBT.C.5",
+      "generator": "addSubRound",
+      "strategyTag": "place-value",
+      "title": {
+        "en": "Ten more, ten less",
+        "es": "Diez mas, diez menos"
+      },
+      "strategy": {
+        "en": "Only the tens digit changes",
+        "es": "Solo cambia el digito de las decenas"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "Ten more",
+            "es": "Diez mas"
+          },
+          "params": {
+            "steps": [
+              10
+            ],
+            "ops": [
+              "add"
+            ],
+            "min": 10,
+            "max": 89
+          }
+        },
+        {
+          "label": {
+            "en": "Ten less",
+            "es": "Diez menos"
+          },
+          "params": {
+            "steps": [
+              10
+            ],
+            "ops": [
+              "sub"
+            ],
+            "min": 10,
+            "max": 99
+          }
+        },
+        {
+          "label": {
+            "en": "Both",
+            "es": "Los dos"
+          },
+          "params": {
+            "steps": [
+              10
+            ],
+            "ops": [
+              "add",
+              "sub"
+            ],
+            "min": 10,
+            "max": 89
+          }
+        }
+      ]
+    },
+    {
+      "id": "g1-missing-addend",
+      "ccss": "1.OA.D.8",
+      "generator": "missingAddend",
+      "strategyTag": "think-addition",
+      "title": {
+        "en": "Find the missing number",
+        "es": "Encuentra el numero que falta"
+      },
+      "strategy": {
+        "en": "How many more to get there?",
+        "es": "¿Cuantos mas para llegar?"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "To 10",
+            "es": "Hasta 10"
+          },
+          "params": {
+            "min": 3,
+            "max": 10
+          }
+        },
+        {
+          "label": {
+            "en": "To 15",
+            "es": "Hasta 15"
+          },
+          "params": {
+            "min": 5,
+            "max": 15
+          }
+        },
+        {
+          "label": {
+            "en": "To 20",
+            "es": "Hasta 20"
+          },
+          "params": {
+            "min": 5,
+            "max": 20
+          }
+        }
+      ]
+    }
+  ]
+}
