@@ -13,11 +13,11 @@ import { renderProcedure } from './procedure.js';
 /**
  * @param {HTMLElement} container
  * @param {object} app
- * @param {{set:object, week:object, allowHints?:boolean, showTimer?:boolean,
+ * @param {{set:object, skill:object, allowHints?:boolean, showTimer?:boolean,
  *          onFinish:(attempts:object[])=>void, title?:string}} opts
  */
 export function runSet(container, app, opts) {
-  const { set, week } = opts;
+  const { set, skill } = opts;
   const allowHints = opts.allowHints !== false;
   const attempts = [];
   let index = 0;
@@ -106,18 +106,18 @@ export function runSet(container, app, opts) {
 
     if (correct) {
       if (input) input.dataset.state = 'yes';
-      feedback.textContent = t('practice.correct');
+      feedback.textContent = t('feedback.yes');
       feedback.dataset.state = 'yes';
-      announce(t('a11y.correctAnnounce'));
+      announce(t('a11y.correct'));
       finishItem(true);
       return;
     }
 
     wrongThisItem++;
     if (input) input.dataset.state = 'no';
-    feedback.textContent = t('practice.notYet');
+    feedback.textContent = t('feedback.notYet');
     feedback.dataset.state = 'no';
-    announce(t('a11y.incorrectAnnounce'));
+    announce(t('a11y.incorrect'));
 
     // In the Friday Check there is no second try -- it is a measurement.
     if (!allowHints) {
@@ -180,7 +180,7 @@ export function runSet(container, app, opts) {
   }
 
   function showHint(level) {
-    const texts = hintsFor(item(), week.strategy.id);
+    const texts = hintsFor(item(), item().strategyTag || skill.strategyTag);
     hintLevel = Math.max(hintLevel, level);
     mount(hintBox,
       texts.slice(0, level).map((text, i) =>

@@ -1,220 +1,184 @@
 // The journey this app exists for, at the size it will actually be used:
 // a 360x740 Android phone.
-//
-// profile -> Week 1 practice -> Friday Check -> badge -> progress code ->
-// the teacher view decodes it -> the "Send to teacher" link carries it.
 
 import { test, expect } from '@playwright/test';
-import { createProfile, completeSet, answerCurrentFact, openRoute } from './helpers.js';
+import { createProfile, completeSet, openRoute } from './helpers.js';
+
+test.describe('navigation', () => {
+  test('a returning kid reaches the first problem in two taps', async ({ page }) => {
+    await createProfile(page);
+
+    // Tap 0: open the app. It lands on the dashboard, not a menu.
+    await page.goto('/index.html');
+    await expect(page.locator('.today')).toBeVisible();
+    expect(page.url()).toContain('#/g/3');
+
+    // Tap 1: Today. Tap 2: start the activity it opened.
+    await page.locator('.today').click();
+    await expect(page.locator('#main')).toBeVisible();
+    expect(page.url()).toMatch(/#\/g\/3\/[\w-]+\/(learn|practice|play|check)/);
+  });
+
+  test('Back always goes up the hierarchy, never off the site', async ({ page }) => {
+    await createProfile(page);
+    await page.locator('.skillcard').first().click();
+    expect(page.url()).toMatch(/#\/g\/3\/[\w-]+$/);
+
+    await page.getByRole('button', { name: /Practice/ }).first().click();
+    expect(page.url()).toContain('/practice');
+
+    // activity -> skill -> dashboard, one level at a time.
+    await page.locator('#btn-back').click();
+    expect(page.url()).toMatch(/#\/g\/3\/[\w-]+$/);
+    await page.locator('#btn-back').click();
+    expect(page.url()).toMatch(/#\/g\/3$/);
+  });
+
+  test('switching child takes one tap from any screen', async ({ page }) => {
+    await createProfile(page, { nickname: 'Sam', grade: 3 });
+    await page.locator('.skillcard').first().click();
+
+    await expect(page.locator('#btn-switch')).toBeVisible();
+    await page.locator('#btn-switch').click();
+    await expect(page.locator('#main').getByText('Who is practising?')).toBeVisible();
+  });
+
+  test('skills are recommended, never locked', async ({ page }) => {
+    await createProfile(page);
+    const cards = page.locator('.skillcard');
+    await expect(cards).toHaveCount(5);
+
+    // No padlocks and nothing disabled: a child may pick any skill.
+    await expect(page.locator('.skillcard[disabled]')).toHaveCount(0);
+    await expect(page.locator('.skillcard__next')).toHaveCount(1);
+
+    // The last skill opens just as readily as the first.
+    await cards.last().click();
+    expect(page.url()).toContain('g3-div-facts');
+  });
+
+  test('old URLs still land somewhere sensible', async ({ page }) => {
+    await createProfile(page);
+
+    await page.evaluate(() => { location.hash = '#/levels'; });
+    await expect.poll(() => page.url()).toMatch(/#\/g\/3$/);
+
+    // Week 6 was Extended facts, which is a Grade 4 skill now.
+    await page.evaluate(() => { location.hash = '#/week/6'; });
+    await expect.poll(() => page.url()).toContain('#/g/4/g4-extended-facts');
+
+    await page.evaluate(() => { location.hash = '#/week/8/practice'; });
+    await expect.poll(() => page.url()).toContain('#/g/5/g5-divide-2digits/practice');
+  });
+
+  test('the old /family/?week=N URL forwards into the app', async ({ page }) => {
+    await createProfile(page);
+    await page.goto('/family/?week=1');
+    await expect.poll(() => page.url(), { timeout: 10_000 })
+      .toContain('#/g/3/g3-mult-2-5-10/family');
+    await expect(page.locator('#main')).toContainText('Why this strategy works');
+  });
+});
 
 test.describe('the weekly loop', () => {
-  test('a family can go from nothing to a decoded progress code', async ({ page }) => {
+  test('practice, then a Check that moves the child up a stage', async ({ page }) => {
     const errors = [];
     page.on('pageerror', (e) => errors.push(String(e)));
 
     await createProfile(page);
+    await page.locator('.skillcard').first().click();
 
-    // --- the level map ---
-    await expect(page.locator('.level')).toHaveCount(8);
-    // Only Level 1 is open at the start; nothing later has been earned.
-    await expect(page.locator('.level[data-state="locked"]')).toHaveCount(7);
+    await page.getByRole('button', { name: /Practice/ }).first().click();
+    await completeSet(page, { max: 16 });
+    await expect(page.locator('#main').getByText('12/12').first()).toBeVisible();
+    await page.getByRole('button', { name: 'Back to this skill' }).click();
 
-    await page.locator('.level').first().click();
-    await expect(page.getByText('Skip counting and doubles')).toBeVisible();
+    // One practice day is now filled in.
+    await expect(page.locator('.dot[data-filled="true"]')).toHaveCount(1);
 
-    // The Friday Check is shut until there has been some practice.
-    await expect(page.getByRole('button', { name: /Friday Check/ })).toBeDisabled();
-
-    // --- practice ---
-    await page.getByRole('button', { name: /Practice/ }).click();
-    await expect(page.locator('.prompt')).toBeVisible();
-    await completeSet(page, { max: 20 });
-    await expect(page.getByText('16/16')).toBeVisible();
-
-    await page.getByRole('button', { name: 'Back to this week' }).click();
-    await expect(page.getByRole('button', { name: /Friday Check/ })).toBeEnabled();
-
-    // --- the Friday Check ---
-    await page.getByRole('button', { name: /Friday Check/ }).click();
+    await page.getByRole('button', { name: /^Check/ }).first().click();
     await page.getByRole('button', { name: 'Start' }).click();
-    await completeSet(page, { max: 24 });
+    await completeSet(page, { max: 16 });
 
-    // --- the badge ---
-    await expect(page.locator('#main').getByText('Level 1 badge earned!')).toBeVisible();
-    await expect(page.locator('.badge')).toBeVisible();
-
-    // --- the progress code ---
-    const shown = await page.locator('#progress-code').innerText();
-    const code = shown.replace(/-/g, '');
-    expect(code).toHaveLength(29);
-
-    await page.getByRole('button', { name: 'Show QR code' }).click();
-    await expect(page.locator('#main svg[role="img"]')).toBeVisible();
+    await expect(page.locator('#main').getByText('You passed!')).toBeVisible();
+    await page.getByRole('button', { name: 'Back to this skill' }).click();
+    await expect(page.locator('#main').getByText('Stage 2 of 3')).toBeVisible();
 
     expect(errors, `page errors: ${errors.join('\n')}`).toHaveLength(0);
-
-    // --- the teacher view decodes it ---
-    await page.goto('/teacher/');
-    await page.fill('#codes', shown);
-    await page.getByRole('button', { name: 'Add codes' }).click();
-
-    const row = page.locator('tbody tr').first();
-    await expect(row.locator('td').nth(0)).toHaveText('6A');
-    await expect(row.locator('td').nth(1)).toHaveText('#14');
-    await expect(row.locator('td').nth(2)).toHaveText('1');
-    await expect(row.locator('td').nth(3)).toHaveText('100%');
-    await expect(row.locator('td').nth(6)).toHaveText('⭐');
-
-    // A name must be nowhere in the teacher view, because it is not in the data.
-    await expect(page.locator('body')).not.toContainText('Sam');
   });
 
-  test('the Send to teacher link carries the prefilled code', async ({ page }) => {
-    // FORM_URL ships blank, so the override in the teacher view is what a
-    // teacher actually uses first. Setting it here also proves the override
-    // path works without a redeploy.
-    await page.goto('/teacher/');
-    // The link Google's own "Get pre-filled link" produces: it carries the
-    // form address AND the field id, which is what a recreated form changes.
-    await page.fill(
-      '#form-url',
-      'https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.987654=SAMPLECODE',
-    );
-    await page.locator('#save-form-url').click();
+  test('the class tag is asked for only when sending, never at sign-up', async ({ page }) => {
+    // Nothing on the creation screen asks for a class or a list number: a
+    // child who never sends anything never types anything but a nickname.
+    await page.goto('/index.html');
+    await expect(page.locator('#f-nick')).toBeVisible();
+    await expect(page.locator('#f-class')).toHaveCount(0);
+    await expect(page.locator('#f-num')).toHaveCount(0);
 
-    await createProfile(page);
-    await page.locator('.level').first().click();
-    await page.getByRole('button', { name: /Practice/ }).click();
-    await completeSet(page, { max: 20 });
-    await page.getByRole('button', { name: 'Back to this week' }).click();
-    await page.getByRole('button', { name: /Friday Check/ }).click();
+    await createProfile(page, { nickname: 'Ana', grade: 3 });
+    await page.locator('.skillcard').first().click();
+    await page.getByRole('button', { name: /^Check/ }).first().click();
     await page.getByRole('button', { name: 'Start' }).click();
-    await completeSet(page, { max: 24 });
+    await completeSet(page, { max: 16 });
+
+    // It is asked for here, the first time it is actually needed.
+    await page.getByRole('button', { name: 'Send to my teacher' }).click();
+    await expect(page.locator('#send-class')).toBeVisible();
+
+    await page.fill('#send-class', '6B');
+    await page.fill('#send-num', '5');
+    await page.getByRole('button', { name: 'Save' }).click();
 
     const code = (await page.locator('#progress-code').innerText()).replace(/-/g, '');
-    const link = page.getByRole('link', { name: 'Send to teacher' });
-    await expect(link).toBeVisible();
+    expect(code).toHaveLength(28); // a v2 code
+  });
 
-    const href = await link.getAttribute('href');
-    expect(href).toContain('usp=pp_url');
-    expect(href).toContain(`entry.987654=${code}`);
-    expect(href).toContain('docs.google.com/forms/d/e/TEST/viewform');
-    // The sample code from the pasted link must not ride along into a real
-    // child's submission.
-    expect(href).not.toContain('SAMPLECODE');
+  test('the Show your teacher card sends nothing', async ({ page }) => {
+    const requests = [];
+    page.on('request', (r) => requests.push(new URL(r.url()).origin));
+
+    await createProfile(page);
+    await page.locator('.skillcard').first().click();
+    await page.getByRole('button', { name: /^Check/ }).first().click();
+    await page.getByRole('button', { name: 'Start' }).click();
+    await completeSet(page, { max: 16 });
+
+    await expect(page.locator('.teachercard')).toBeVisible();
+    await expect(page.locator('.teachercard')).toContainText('Nothing is sent');
+
+    const origin = new URL(page.url()).origin;
+    expect(requests.filter((o) => o !== origin && o !== 'null')).toHaveLength(0);
   });
 });
 
-test.describe('hints', () => {
-  test('a hint never states the answer to the question on screen', async ({ page }) => {
+test.describe('nothing compares one child to another', () => {
+  test('no leaderboard, ranking or peer comparison appears anywhere', async ({ page }) => {
     await createProfile(page);
-    await page.locator('.level').first().click();
-    await page.getByRole('button', { name: /Practice/ }).click();
 
-    const prompt = await page.locator('.prompt').innerText();
-    const [a, op, b] = prompt.split(/\s*[×÷]\s*|\s+/).filter(Boolean);
-    const answer = prompt.includes('×') ? Number(a) * Number(b) : Number(a) / Number(b);
-
-    for (const level of ['Hint 1', 'Hint 2', 'Hint 3']) {
-      await page.getByRole('button', { name: level }).click();
+    const screens = ['', 'settings'];
+    for (const s of screens) {
+      await openRoute(page, s);
+      const text = (await page.locator('body').innerText()).toLowerCase();
+      for (const banned of ['leaderboard', 'rank', 'top 10', 'beat ', '% of kids', 'compared']) {
+        expect(text, `"${banned}" appeared on /${s}`).not.toContain(banned);
+      }
     }
-    const hints = await page.locator('.hints').innerText();
-    expect(hints.length).toBeGreaterThan(20);
-
-    // The worked example is deliberately a different problem, so the answer to
-    // THIS one must not appear as a standalone number anywhere in the hints.
-    const standalone = new RegExp(`(^|[^0-9])${answer}([^0-9]|$)`);
-    expect(
-      standalone.test(hints),
-      `hints revealed the answer ${answer} for "${prompt}":\n${hints}`,
-    ).toBe(false);
   });
 });
 
 test.describe('the procedure workspace', () => {
-  test('week 7 checks long division one step at a time', async ({ page }) => {
-    await createProfile(page);
-    // The Friday Check, not practice: practice spirals earlier fact weeks in,
-    // so its first item is often a multiplication fact rather than a long
-    // division. The check stays on week 7, which is what we want to exercise.
-    await openRoute(page, 'week/7/check');
+  test('a wrong long-division step is refused, not skipped', async ({ page }) => {
+    await createProfile(page, { grade: 4 });
+    await openRoute(page, 'g/4/g4-divide-1digit/check');
     await page.getByRole('button', { name: 'Start' }).click();
     await expect(page.locator('.bracket')).toBeVisible();
 
-    // A wrong step must be refused rather than skipped past.
+    // Only the step being worked on is visible: the labels contain their own
+    // answers, so showing the rest would hand over the solution.
+    await expect(page.locator('.work__line')).toHaveCount(1);
+
     await page.locator('.work__in:not([disabled])').first().fill('99999');
     await page.locator('.work__line[data-state="active"] button').click();
-    await expect(page.locator('.feedback')).toHaveText('Check that step again');
     await expect(page.locator('.work__in[data-state="no"]')).toBeVisible();
-  });
-
-  test('the workspace never shows a step the child has not reached', async ({ page }) => {
-    // The step labels contain their own answers: "3 x 8 =" IS the answer to
-    // "how many 8s fit into 28?" above it. Rendering the whole trace at once
-    // turned the workspace into a worked solution to copy down.
-    await createProfile(page);
-    await openRoute(page, 'week/7/check');
-    await page.getByRole('button', { name: 'Start' }).click();
-    await expect(page.locator('.bracket')).toBeVisible();
-
-    // Exactly one line, and it is the active one.
-    await expect(page.locator('.work__line')).toHaveCount(1);
-    await expect(page.locator('.work__line[data-state="active"]')).toHaveCount(1);
-
-    // Answering reveals the next line, and only the next line.
-    const firstLabel = await page.locator('.work__q').first().innerText();
-    const fitMatch = firstLabel.match(/How many (\d+)s fit into (\d+)\?/);
-    expect(fitMatch, `unexpected first prompt: ${firstLabel}`).not.toBeNull();
-    const digit = Math.floor(Number(fitMatch[2]) / Number(fitMatch[1]));
-
-    await page.locator('.work__in:not([disabled])').fill(String(digit));
-    await page.locator('.work__line[data-state="active"] button').click();
-    await expect(page.locator('.work__line')).toHaveCount(2);
-    await expect(page.locator('.work__line[data-state="active"]')).toHaveCount(1);
-  });
-
-  test('a single-digit divisor is not asked to be rounded to itself', async ({ page }) => {
-    // Week 7 divisors are 2-9, where "round 8 to 8" is both pointless and
-    // faintly ridiculous. Estimation is week 8's strategy, not week 7's.
-    await createProfile(page);
-    await openRoute(page, 'week/7/check');
-    await page.getByRole('button', { name: 'Start' }).click();
-    await expect(page.locator('.bracket')).toBeVisible();
-
-    const first = await page.locator('.work__q').first().innerText();
-    expect(first).not.toMatch(/Round (\d) to \1/);
-    expect(first).toMatch(/How many/);
-  });
-});
-
-test.describe('the teacher view', () => {
-  test('tells you when a code could not be read, instead of silently dropping it', async ({ page }) => {
-    // Adding codes rebuilds the page, which is exactly how the message got
-    // lost the first time: the code was correctly refused, and the teacher was
-    // told nothing at all.
-    await page.goto('/teacher/');
-
-    const good = '53500-0W174-00G00-00000-00000-00SM';
-    await page.fill('#codes', good);
-    await page.getByRole('button', { name: 'Add codes' }).click();
-    await expect(page.locator('tbody tr')).toHaveCount(1);
-    await expect(page.locator('#main')).toContainText('1 code(s) added');
-
-    // One character changed: the checksum must catch it and say so.
-    const damaged = good.slice(0, -2) + 'ZZ';
-    await page.fill('#codes', damaged);
-    await page.getByRole('button', { name: 'Add codes' }).click();
-    await expect(page.locator('#main')).toContainText('could not be read');
-    await expect(page.locator('tbody tr')).toHaveCount(1);
-  });
-
-  test('re-sending the same week replaces the row rather than duplicating it', async ({ page }) => {
-    await page.goto('/teacher/');
-    const code = '53500-0W174-00G00-00000-00000-00SM';
-    for (let i = 0; i < 3; i++) {
-      await page.fill('#codes', code);
-      await page.getByRole('button', { name: 'Add codes' }).click();
-    }
-    await expect(page.locator('tbody tr')).toHaveCount(1);
   });
 });

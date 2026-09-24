@@ -8,7 +8,7 @@
 import { loadLang, t } from '../engine/i18n.js';
 import { el, mount, announce } from '../engine/dom.js';
 import { storage, KEY } from '../engine/storage.js';
-import { decodeProgress, formatCode, parseFormLink } from '../engine/progressCode.js';
+import { decodeAny, formatCode, parseFormLink } from '../engine/progressCode.js';
 import config from '../config.js';
 
 const main = () => document.getElementById('main');
@@ -33,14 +33,20 @@ function addCodes(text) {
   let rejected = 0;
 
   for (const line of lines) {
-    const out = decodeProgress(line);
+    const out = decodeAny(line);
     if (!out.ok) {
       rejected++;
       continue;
     }
     const v = out.value;
-    const key = `${v.classCode}|${v.studentNumber}|${v.week}`;
-    const existing = rows.findIndex((r) => `${r.classCode}|${r.studentNumber}|${r.week}` === key);
+    // v1 rows are identified by week, v2 by grade+skill. Keying on whichever
+    // the code carries stops a re-send appearing as a second row.
+    const idOf = (r) =>
+      r.version === 2
+        ? `${r.classCode}|${r.studentNumber}|g${r.grade}|s${r.skillIndex}`
+        : `${r.classCode}|${r.studentNumber}|w${r.week}`;
+    const key = idOf(v);
+    const existing = rows.findIndex((r) => idOf(r) === key);
     const row = { ...v, code: line.toUpperCase(), addedAt: Date.now() };
     if (existing >= 0) rows[existing] = row;
     else rows.push(row);
@@ -62,7 +68,7 @@ function table(rows) {
   );
 
   const head = el('tr', {},
-    ['colClass', 'colStudent', 'colWeek', 'colAccuracy', 'colDays', 'colMedian', 'colBadge', 'colMissed']
+    ['colClass', 'colStudent', 'colWhat', 'colAccuracy', 'colDays', 'colBadge', 'colMissed']
       .map((k) => el('th', { scope: 'col', text: t(`teacher.${k}`) })),
   );
 
@@ -75,7 +81,8 @@ function table(rows) {
     return el('tr', {},
       el('td', { text: r.classCode }),
       el('td', { text: `#${r.studentNumber}` }),
-      el('td', { text: String(r.week) }),
+      // One column for "what was practised", so v1 and v2 rows sit together.
+      el('td', { text: describe(r) }),
       el('td', { dataset: { flag: lowAccuracy ? 'low' : r.accuracyPct >= 90 ? 'good' : '' }, text: `${r.accuracyPct}%` }),
       el('td', { dataset: { flag: lowDays ? 'low' : '' }, text: String(r.daysPractised) }),
       el('td', { text: r.medianMs ? `${(r.medianMs / 1000).toFixed(1)}s` : '—' }),
@@ -89,6 +96,27 @@ function table(rows) {
   );
 }
 
+/** What this row is about, in words, whichever version the code was. */
+function describe(r) {
+  if (r.version === 2) {
+    const name = SKILL_LABELS[r.grade]?.[r.skillIndex];
+    const skill = name || `#${r.skillIndex + 1}`;
+    return `G${r.grade} \u00b7 ${skill} \u00b7 ${t('teacher.stageN', { n: r.stage + 1 })}`;
+  }
+  return t('teacher.weekN', { n: r.week });
+}
+
+/**
+ * Skill names by position, matching the order in each grade file. v2 encodes a
+ * skill by its position, so this list and the curriculum must stay in step --
+ * tests/unit/appsScriptDecoder.test.js enforces the same thing for the Sheet.
+ */
+const SKILL_LABELS = {
+  3: ['\u00d72, \u00d75, \u00d710', '\u00d74, \u00d78', '\u00d73, \u00d76', '\u00d79, \u00d77', 'Division facts'],
+  4: ['Extended facts', 'Divide by 1 digit'],
+  5: ['Divide by 2 digits'],
+};
+
 /** "mult:7x8" reads as "7 x 8" to a human. */
 function pretty(itemId) {
   const [op, rest] = String(itemId).split(':');
@@ -98,16 +126,19 @@ function pretty(itemId) {
 }
 
 function toCsv(rows) {
-  const header = ['class', 'student', 'week', 'accuracy_pct', 'days_practised', 'median_ms', 'badge', 'top_missed'];
+  const header = ['class', 'student', 'version', 'week', 'grade', 'skill_index', 'stage', 'accuracy_pct', 'days_practised', 'badge', 'top_missed'];
   const lines = [header.join(',')];
   for (const r of rows) {
     lines.push([
       r.classCode,
       r.studentNumber,
-      r.week,
+      r.version,
+      r.week ?? '',
+      r.grade ?? '',
+      r.skillIndex ?? '',
+      r.stage == null ? '' : r.stage + 1,
       r.accuracyPct,
       r.daysPractised,
-      r.medianMs,
       r.badge ? 'yes' : 'no',
       // Quoted: the missed list contains commas.
       `"${r.missed.map(pretty).join('; ')}"`,

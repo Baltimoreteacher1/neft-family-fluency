@@ -6,7 +6,9 @@
 // and falls back to an in-memory object, so the app degrades to "works for this
 // session" instead of "white screen".
 //
-// Every key is prefixed `ewl_`.
+// Keys are namespaced `nff_v2_`. The previous version used `ewl_`; those keys
+// are read once by engine/migrate.js and then left alone -- never deleted, so a
+// family who opens an old cached copy of the app still finds their progress.
 
 export const storage = {
   _memory: {},
@@ -27,22 +29,34 @@ export const storage = {
   },
 };
 
+const NS = 'nff_v2_';
+
 export const KEY = {
+  profiles: `${NS}profiles`,
+  activeProfile: `${NS}active_profile`,
+  settings: `${NS}settings`,
+  /** Per-profile progress: one record per skill the child has touched. */
+  progress: (profileId) => `${NS}progress_${profileId}`,
+  /** Set once the v1 -> v2 migration has succeeded. */
+  migrated: `${NS}migrated`,
+  /** A verbatim copy of every v1 key, written before anything is converted. */
+  backup: `${NS}v1_backup`,
+
+  /** Teacher device only: codes pasted here, and the Google Form overrides. */
+  teacherCodes: `${NS}teacher_codes`,
+  formUrlOverride: `${NS}form_url_override`,
+  formEntryOverride: `${NS}form_entry_override`,
+};
+
+/** The v1 keys, read by the migration and never written again. */
+export const V1_KEY = {
   profiles: 'ewl_profiles',
   activeProfile: 'ewl_active_profile',
   settings: 'ewl_settings',
-  /** Per-profile progress: attempts, days practised, badges, missed facts. */
   progress: (profileId) => `ewl_progress_${profileId}`,
-  /** Teacher view: codes pasted on this device. */
   teacherCodes: 'ewl_teacher_codes',
-  /**
-   * Teacher view: overrides for the Google Form, so a form recreated mid-year
-   * needs no redeploy. Both are needed -- a new form gets a new entry id, so
-   * overriding the URL alone would point at the right form and the wrong field.
-   */
   formUrlOverride: 'ewl_form_url_override',
   formEntryOverride: 'ewl_form_entry_override',
-  /** Best game scores, per profile + game. */
   bestScore: (profileId, gameId) => `ewl_best_${profileId}_${gameId}`,
 };
 
@@ -52,5 +66,14 @@ export function remove(key) {
     localStorage.removeItem(key);
   } catch (e) {
     delete storage._memory[key];
+  }
+}
+
+/** Every key currently in storage, for the migration's backup step. */
+export function allKeys() {
+  try {
+    return Object.keys(localStorage);
+  } catch (e) {
+    return Object.keys(storage._memory);
   }
 }

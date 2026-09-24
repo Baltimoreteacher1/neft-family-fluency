@@ -1,0 +1,121 @@
+{
+  "$comment": "Grade 5 fluency. Skills without a generator yet are added in step 3.",
+  "schemaVersion": 2,
+  "grade": 5,
+  "skills": [
+    {
+      "id": "g5-divide-2digits",
+      "ccss": "5.NBT.B.6",
+      "title": {
+        "en": "Divide by 2 digits",
+        "es": "Dividir entre 2 digitos"
+      },
+      "strategy": {
+        "en": "Estimate first, then divide",
+        "es": "Estima primero y luego divide"
+      },
+      "generator": "longDivision",
+      "strategyTag": "estimate-then-divide",
+      "stages": [
+        {
+          "label": {
+            "en": "Friendly divisors",
+            "es": "Divisores faciles"
+          },
+          "params": {
+            "dividendDigits": [
+              3
+            ],
+            "divisorRange": [
+              11,
+              25
+            ],
+            "allowRemainder": false,
+            "remainderRate": 0
+          }
+        },
+        {
+          "label": {
+            "en": "With remainders",
+            "es": "Con residuo"
+          },
+          "params": {
+            "dividendDigits": [
+              3
+            ],
+            "divisorRange": [
+              11,
+              49
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        },
+        {
+          "label": {
+            "en": "4 digits",
+            "es": "4 digitos"
+          },
+          "params": {
+            "dividendDigits": [
+              3,
+              4
+            ],
+            "divisorRange": [
+              11,
+              49
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        }
+      ],
+      "checkLength": 10,
+      "targetSeconds": null,
+      "family": {
+        "why": {
+          "en": "Dividing by a two-digit number is where children most often give up, because the first guess is genuinely hard. Estimating first is what makes it possible: round 23 to 20, and 851 ÷ 23 is clearly near 40, not near 4 or 400. The estimate is not a shortcut to the answer — it is the safety rail that tells you when an answer is nonsense. This is Grade 6 standard 6.NS.B.2.",
+          "es": "Dividir entre un numero de dos digitos es donde mas seguido se rinden los ninos, porque la primera suposicion es de verdad dificil. Estimar primero es lo que lo hace posible: redondee 23 a 20, y 851 ÷ 23 claramente esta cerca de 40, no cerca de 4 ni de 400. La estimacion no es un atajo a la respuesta: es la barandilla que avisa cuando una respuesta no tiene sentido. Este es el estandar 6.NS.B.2 de sexto grado."
+        },
+        "say": {
+          "en": [
+            "“Round the divisor first. About how many do you expect?”",
+            "“Is your answer close to your estimate? If not, where did it go wrong?”",
+            "“Guessing and adjusting is allowed. That is what everyone does.”",
+            "“Multiply your answer back. Does it get you close to where you started?”"
+          ],
+          "es": [
+            "“Redondea el divisor primero. ¿Mas o menos cuantos esperas?”",
+            "“¿Tu respuesta esta cerca de tu estimacion? Si no, ¿donde se torcio?”",
+            "“Se vale probar y ajustar. Eso es lo que hace todo el mundo.”",
+            "“Multiplica tu respuesta al reves. ¿Te acerca a donde empezaste?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Closest Guess",
+            "es": "La estimacion mas cercana"
+          },
+          "needs": {
+            "en": "A deck of cards (face cards out) and paper",
+            "es": "Una baraja sin figuras y papel"
+          },
+          "how": {
+            "en": [
+              "Turn over three cards for the dividend and two for the divisor.",
+              "Before anyone divides, both players write down an estimate. Show them at the same time.",
+              "Now work it out properly. Whoever estimated closer wins the round, even if they were slower.",
+              "This rewards the thing that actually matters at this level: knowing roughly where the answer lives."
+            ],
+            "es": [
+              "Volteen tres cartas para el dividendo y dos para el divisor.",
+              "Antes de que alguien divida, los dos jugadores escriben una estimacion. Muestrenlas al mismo tiempo.",
+              "Ahora resuelvanlo bien. Gana la ronda quien haya estimado mas cerca, aunque haya sido mas lento.",
+              "Esto premia lo que de verdad importa en este nivel: saber mas o menos donde vive la respuesta."
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

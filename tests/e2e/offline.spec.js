@@ -29,21 +29,22 @@ test.describe('offline', () => {
     await context.setOffline(true);
 
     await page.reload();
-    // The profile is on the device, so the app should come straight back to
-    // the level map rather than the browser's offline page.
-    await expect(page.locator('#page-title')).toHaveText('Your levels', { timeout: 15_000 });
-    await expect(page.locator('.level')).toHaveCount(8);
+    // The profile is on the device, so the app comes straight back to that
+    // child's dashboard rather than the browser's offline page.
+    await expect(page.locator('.today')).toBeVisible({ timeout: 15_000 });
+    await expect(page.locator('.skillcard')).toHaveCount(5);
 
     // Questions are generated on the phone, so practice must work offline too.
-    await page.locator('.level').first().click();
-    await page.getByRole('button', { name: /Practice/ }).click();
+    await page.locator('.skillcard').first().click();
+    await page.getByRole('button', { name: /Practice/ }).first().click();
     await expect(page.locator('.prompt')).toBeVisible();
     await completeSet(page, { max: 3 });
-    await expect(page.locator('.qbar')).toContainText('Question 4 of 16');
+    await expect(page.locator('.qbar')).toContainText('Question 4 of 12');
 
-    // The family guidance and both languages are cached too.
-    await page.goto('/family/?week=1');
-    await expect(page.locator('#main')).toContainText('Skip counting', { timeout: 15_000 });
+    // The grown-up page is part of the app shell now, so it is cached with it.
+    await page.locator('#btn-back').click();
+    await page.getByRole('button', { name: 'For grown-ups' }).click();
+    await expect(page.locator('#main')).toContainText('Why this strategy works', { timeout: 15_000 });
 
     await context.setOffline(false);
   });
@@ -95,8 +96,6 @@ test.describe('page weight', () => {
 
     await page.goto('/index.html');
     await expect(page.locator('#f-nick')).toBeVisible();
-    await page.goto('/family/?week=1');
-    await expect(page.locator('#main')).toContainText('Skip counting');
     await page.goto('/qr.html');
     await expect(page.locator('.flyer')).toHaveCount(2);
     await page.goto('/teacher/');
@@ -116,7 +115,7 @@ test.describe('service worker redirect handling', () => {
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.waitForTimeout(2_000);
 
-    for (const path of ['/index.html', '/', '/family/', '/teacher/']) {
+    for (const path of ['/index.html', '/', '/teacher/']) {
       const response = await page.goto(path);
       expect(response, `${path} did not load at all`).not.toBeNull();
       await expect(page.locator('#main'), `${path} rendered nothing`).toBeVisible();

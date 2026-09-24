@@ -67,8 +67,8 @@ function setupProgressForm() {
   // The alphabet excludes I, L, O and U so a handwritten code cannot be
   // misread; the app folds those letters back before encoding.
   var validation = FormApp.createTextValidation()
-    .setHelpText('That does not look like a 29-character progress code.')
-    .requireTextMatchesPattern('^[\\s-]*([0-9A-Za-z][\\s-]*){29}$')
+    .setHelpText('That does not look like a progress code.')
+    .requireTextMatchesPattern('^[\\s-]*([0-9A-Za-z][\\s-]*){28,29}$')
     .build();
   item.setValidation(validation);
 
@@ -140,8 +140,8 @@ function buildDashboard_(ss) {
   dash = ss.insertSheet(DASHBOARD_TAB);
 
   var headers = [
-    'Submitted', 'Class', 'Student #', 'Week', 'Accuracy %', 'Days', 'Median (s)',
-    'Badge', 'Top missed', 'Code', 'Status'
+    'Submitted', 'Class', 'Student #', 'Grade', 'Skill', 'Stage', 'Week',
+    'Accuracy %', 'Days', 'Badge', 'Top missed', 'Code', 'Status'
   ];
   dash.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
   dash.setFrozenRows(1);
@@ -154,16 +154,20 @@ function buildDashboard_(ss) {
     '=ARRAYFORMULA(IF(' + q + '!A2:A="","",' + q + '!A2:A))'
   );
 
+  // v1 codes fill Week and leave Grade/Skill/Stage blank; v2 codes do the
+  // reverse. One table shows both, which is what a changeover needs.
   var fields = [
     ['B', 'class'],
     ['C', 'student'],
-    ['D', 'week'],
-    ['E', 'accuracy'],
-    ['F', 'days'],
-    ['G', 'median'],
-    ['H', 'badge'],
-    ['I', 'missed'],
-    ['K', 'status']
+    ['D', 'grade'],
+    ['E', 'skill'],
+    ['F', 'stage'],
+    ['G', 'week'],
+    ['H', 'accuracy'],
+    ['I', 'days'],
+    ['J', 'badge'],
+    ['K', 'missed'],
+    ['M', 'status']
   ];
   for (var i = 0; i < fields.length; i++) {
     var col = fields[i][0];
@@ -172,25 +176,26 @@ function buildDashboard_(ss) {
       '=ARRAYFORMULA(IF(' + q + '!B2:B="","",DECODE_PROGRESS(' + q + '!B2:B,"' + field + '")))'
     );
   }
-  dash.getRange('J2').setFormula(
+  dash.getRange('L2').setFormula(
     '=ARRAYFORMULA(IF(' + q + '!B2:B="","",' + q + '!B2:B))'
   );
 
   dash.setColumnWidth(1, 150);
-  dash.setColumnWidth(9, 220);
-  dash.setColumnWidth(10, 260);
+  dash.setColumnWidth(5, 180);
+  dash.setColumnWidth(11, 220);
+  dash.setColumnWidth(12, 260);
 
   applyFormatting_(dash);
 
   // A short legend, so a teacher opening this in March remembers what it is.
-  var note = dash.getRange('M1');
+  var note = dash.getRange('O1');
   note.setValue(
     'Decoded automatically from each submitted code. No student names are ' +
     'collected anywhere — a student is a class code plus a list number. ' +
     'Red = accuracy under 70% or fewer than 3 days. Green = badge earned.'
   );
   note.setWrap(true);
-  dash.setColumnWidth(13, 320);
+  dash.setColumnWidth(15, 320);
 }
 
 function applyFormatting_(dash) {
@@ -200,40 +205,40 @@ function applyFormatting_(dash) {
   // Accuracy under 70%.
   rules.push(
     SpreadsheetApp.newConditionalFormatRule()
-      .whenFormulaSatisfied('=AND($E2<>"",$E2<70)')
+      .whenFormulaSatisfied('=AND($H2<>"",$H2<70)')
       .setBackground('#fbeae6')
       .setFontColor('#a3341f')
-      .setRanges([dash.getRange('E2:E' + lastRow)])
+      .setRanges([dash.getRange('H2:H' + lastRow)])
       .build()
   );
 
   // Fewer than 3 days of practice.
   rules.push(
     SpreadsheetApp.newConditionalFormatRule()
-      .whenFormulaSatisfied('=AND($F2<>"",$F2<3)')
+      .whenFormulaSatisfied('=AND($I2<>"",$I2<3)')
       .setBackground('#fbeae6')
       .setFontColor('#a3341f')
-      .setRanges([dash.getRange('F2:F' + lastRow)])
+      .setRanges([dash.getRange('I2:I' + lastRow)])
       .build()
   );
 
   // Badge earned.
   rules.push(
     SpreadsheetApp.newConditionalFormatRule()
-      .whenFormulaSatisfied('=$H2="yes"')
+      .whenFormulaSatisfied('=$J2="yes"')
       .setBackground('#e2f4e8')
       .setFontColor('#1a6b3c')
-      .setRanges([dash.getRange('A2:K' + lastRow)])
+      .setRanges([dash.getRange('A2:M' + lastRow)])
       .build()
   );
 
   // A code that failed its checksum.
   rules.push(
     SpreadsheetApp.newConditionalFormatRule()
-      .whenFormulaSatisfied('=AND($K2<>"",$K2<>"ok")')
+      .whenFormulaSatisfied('=AND($M2<>"",$M2<>"ok")')
       .setBackground('#fbf1d8')
       .setFontColor('#8a6212')
-      .setRanges([dash.getRange('A2:K' + lastRow)])
+      .setRanges([dash.getRange('A2:M' + lastRow)])
       .build()
   );
 
@@ -299,11 +304,15 @@ function DECODE_PROGRESS(code, field) {
   switch (wanted) {
     case 'class':    return v.classCode;
     case 'student':  return v.studentNumber;
-    case 'week':     return v.week;
+    case 'week':     return v.week === null || v.week === undefined ? '' : v.week;
+    case 'grade':    return v.grade === undefined ? '' : v.grade;
+    case 'skill':    return v.grade === undefined ? '' : skillName_(v.grade, v.skillIndex);
+    case 'stage':    return v.stage === undefined ? '' : (v.stage + 1);
+    case 'version':  return v.version;
     case 'accuracy': return v.accuracyPct;
     case 'days':     return v.daysPractised;
-    case 'median':   return v.medianMs / 1000;
     case 'badge':    return v.badge ? 'yes' : 'no';
+    case 'median':   return v.medianMs === null ? '' : v.medianMs / 1000;
     case 'missed':   return v.missed.map(prettyItem_).join(', ');
     case 'status':   return 'ok';
     default:         return 'Unknown field: ' + wanted;
@@ -347,6 +356,14 @@ function unpackItemId_(op, a, b) {
   return name + ':' + a + sep + b;
 }
 
+/**
+ * Decode a code of EITHER version.
+ *
+ * v1 codes (29 characters, carrying a week number) are already sitting in
+ * teachers' Sheets. v2 codes (28 characters, carrying grade + skill + stage)
+ * came with the grade-based app. Both must keep working: a row that stops
+ * decoding is a row of lost data, and the teacher has no way to get it back.
+ */
 function decodeProgressCode_(raw) {
   var clean = String(raw === null || raw === undefined ? '' : raw)
     .toUpperCase()
@@ -355,8 +372,10 @@ function decodeProgressCode_(raw) {
   var folded = '';
   for (var i = 0; i < clean.length; i++) folded += normalizeChar_(clean[i]);
 
+  if (folded.length === 28) return decodeV2_(folded);
+
   if (folded.length !== 29) {
-    return { ok: false, error: 'Expected 29 characters, got ' + folded.length };
+    return { ok: false, error: 'Expected 28 or 29 characters, got ' + folded.length };
   }
 
   var bits = [];
@@ -530,4 +549,104 @@ function testDecoder() {
     : '\n' + failures + ' FAILURE(S) -- this decoder has drifted from engine/progressCode.js');
 
   return failures;
+}
+
+
+// ===========================================================================
+// VERSION 2 -- a port of encodeProgressV2/decodeProgressV2 in
+// engine/progressCode.js. Same rule as v1: keep the two in step, and run
+// testDecoder() after any change.
+// ===========================================================================
+
+var V2_TOTAL_BITS = 140;
+
+function decodeV2_(folded) {
+  var bits = [];
+  for (var j = 0; j < folded.length; j++) {
+    var v = ALPHABET.indexOf(folded[j]);
+    if (v < 0) return { ok: false, error: 'Bad character "' + folded[j] + '"' };
+    for (var k = 4; k >= 0; k--) bits.push((v >> k) & 1);
+  }
+  if (bits.length !== V2_TOTAL_BITS) {
+    return { ok: false, error: 'Wrong length after decoding' };
+  }
+
+  var payload = bits.slice(0, V2_TOTAL_BITS - CHECKSUM_BITS);
+  var given = readBits_(bits, V2_TOTAL_BITS - CHECKSUM_BITS, CHECKSUM_BITS);
+  if (checksumOf_(payload) !== given) {
+    return { ok: false, error: 'Checksum failed -- the code was mistyped or damaged' };
+  }
+
+  var o = 0;
+  function take(w) {
+    var value = readBits_(bits, o, w);
+    o += w;
+    return value;
+  }
+
+  var version = take(3);
+  if (version !== 2) {
+    return { ok: false, error: 'Unsupported code version ' + version };
+  }
+
+  var ccLen = take(3);
+  var classCode = '';
+  for (var m = 0; m < 4; m++) {
+    var idx = take(5);
+    if (m < ccLen) classCode += ALPHABET[idx];
+  }
+
+  var studentNumber = take(8);
+  var grade = take(4);
+  var skillIndex = take(5);
+  var stage = take(2);
+  var accuracyPct = take(7);
+  var daysPractised = take(3);
+  var mastered = take(1) === 1;
+  var missedCount = take(2);
+
+  var missed = [];
+  for (var n = 0; n < 3; n++) {
+    var op = take(3);
+    var a = take(14);
+    var b = take(7);
+    if (n < missedCount) missed.push(unpackItemId_(op, a, b));
+  }
+
+  return {
+    ok: true,
+    value: {
+      version: version,
+      classCode: classCode,
+      studentNumber: studentNumber,
+      grade: grade,
+      skillIndex: skillIndex,
+      stage: stage,
+      accuracy: accuracyPct / 100,
+      accuracyPct: accuracyPct,
+      daysPractised: daysPractised,
+      mastered: mastered,
+      badge: mastered,
+      missed: missed,
+      week: null,
+      medianMs: null
+    }
+  };
+}
+
+/**
+ * Skill names by grade, so the Dashboard shows "Divide by 1 digit" rather than
+ * "grade 4, skill 1". Positions must match the order of `skills` in each
+ * curriculum/grade-N.json -- that order IS the wire format for v2.
+ */
+var SKILL_NAMES = {
+  3: ["×2, ×5, ×10", "×4, ×8", "×3, ×6", "×9, ×7", "Division facts"],
+  4: ["Extended facts", "Divide by 1 digit"],
+  5: ["Divide by 2 digits"]
+};
+
+function skillName_(grade, index) {
+  var list = SKILL_NAMES[grade];
+  if (!list || index >= list.length) return 'Grade ' + grade + ', skill ' + (index + 1);
+  return list[index];
 }

@@ -16,6 +16,7 @@ import { readFileSync } from 'node:fs';
 import { createRng } from '../../engine/rng.js';
 import {
   ALPHABET, OPS, encodeProgress, decodeProgress, formatCode,
+  encodeProgressV2, decodeProgressV2,
 } from '../../engine/progressCode.js';
 import { loadAppsScript } from '../tools/gs-shim.mjs';
 
@@ -161,4 +162,113 @@ test('the vectors pasted into the .gs file match tests/vectors.json', () => {
     'the vectors inside progress-form.gs have drifted from tests/vectors.json -- ' +
       're-paste them after regenerating',
   );
+});
+
+// --- version 2 ------------------------------------------------------------
+//
+// The same contract as v1, for the same reason: DECODE_PROGRESS() is a second
+// implementation of the wire format, and two implementations drift silently.
+
+test('the Apps Script decoder agrees with the JS one on 500 random v2 codes', () => {
+  const rng = createRng('gs-v2-agreement');
+  for (let i = 0; i < 500; i++) {
+    const len = rng.int(0, 4);
+    let classCode = '';
+    for (let c = 0; c < len; c++) classCode += rng.pick(ALPHABET.split(''));
+    const missedCount = rng.int(0, 3);
+    const missed = [];
+    for (let m = 0; m < missedCount; m++) {
+      const op = rng.pick(OPS);
+      const sep = op === 'mult' || op === 'xmult' ? 'x' : '/';
+      missed.push(`${op}:${rng.int(0, 16383)}${sep}${rng.int(0, 127)}`);
+    }
+    const code = encodeProgressV2({
+      classCode,
+      studentNumber: rng.int(0, 255),
+      grade: rng.int(1, 8),
+      skillIndex: rng.int(0, 31),
+      stage: rng.int(0, 3),
+      accuracy: rng.int(0, 100) / 100,
+      daysPractised: rng.int(0, 7),
+      mastered: rng.chance(0.5),
+      missed,
+    });
+
+    const js = decodeProgressV2(code);
+    const gs = gsDecode(code);
+    assert.ok(gs.ok, `payload ${i} failed in Apps Script: ${gs.error}`);
+    const g = plain(gs.value);
+    for (const key of [
+      'version', 'classCode', 'studentNumber', 'grade', 'skillIndex', 'stage',
+      'accuracyPct', 'daysPractised', 'mastered',
+    ]) {
+      assert.equal(g[key], js.value[key], `payload ${i}: ${key} differs`);
+    }
+    assert.deepEqual(g.missed, js.value.missed, `payload ${i}: missed facts differ`);
+  }
+});
+
+test('the Apps Script decoder still reads every v1 vector after the v2 change', () => {
+  for (const v of vectors.vectors) {
+    const gs = gsDecode(v.code);
+    assert.ok(gs.ok, `v1 vector "${v.name}" broke in Apps Script: ${gs.error}`);
+    assert.deepEqual(plain(gs.value), decodeProgress(v.code).value);
+  }
+});
+
+test('both sides route a code to the right version by length alone', () => {
+  const v1 = vectors.vectors[0].code;
+  const v2 = encodeProgressV2({
+    classCode: '6B', studentNumber: 5, grade: 6, skillIndex: 3, stage: 2,
+    accuracy: 0.9, daysPractised: 3, mastered: true, missed: [],
+  });
+  assert.equal(gsDecode(v1).value.version, 1);
+  assert.equal(gsDecode(v2).value.version, 2);
+  assert.equal(DECODE_PROGRESS(v1, 'version'), 1);
+  assert.equal(DECODE_PROGRESS(v2, 'version'), 2);
+});
+
+test('the spreadsheet columns work for both versions', () => {
+  const v2 = encodeProgressV2({
+    classCode: '6B', studentNumber: 5, grade: 4, skillIndex: 1, stage: 2,
+    accuracy: 0.92, daysPractised: 4, mastered: true, missed: ['mult:7x8'],
+  });
+  assert.equal(DECODE_PROGRESS(v2, 'class'), '6B');
+  assert.equal(DECODE_PROGRESS(v2, 'student'), 5);
+  assert.equal(DECODE_PROGRESS(v2, 'grade'), 4);
+  // Grade 4, skill index 1 is "Divide by 1 digit" in curriculum/grade-4.json.
+  assert.equal(DECODE_PROGRESS(v2, 'skill'), 'Divide by 1 digit');
+  assert.equal(DECODE_PROGRESS(v2, 'stage'), 3, 'stages are shown 1-based to a teacher');
+  assert.equal(DECODE_PROGRESS(v2, 'accuracy'), 92);
+  assert.equal(DECODE_PROGRESS(v2, 'badge'), 'yes');
+  // A v2 code has no week and no median; those cells must be blank, not NaN.
+  assert.equal(DECODE_PROGRESS(v2, 'week'), '');
+  assert.equal(DECODE_PROGRESS(v2, 'median'), '');
+
+  // A v1 code still fills the v1 columns, and leaves the v2 ones blank.
+  const v1 = vectors.vectors[0].code;
+  assert.equal(DECODE_PROGRESS(v1, 'week'), 3);
+  assert.equal(DECODE_PROGRESS(v1, 'grade'), '');
+  assert.equal(DECODE_PROGRESS(v1, 'skill'), '');
+});
+
+test('the .gs skill names match the curriculum order that v2 encodes', () => {
+  // v2 encodes a skill by its POSITION in the grade file. If that order ever
+  // changes, every code already in a teacher's Sheet starts naming the wrong
+  // skill -- silently. This test is the thing standing in the way.
+  const names = plain(sandbox.SKILL_NAMES);
+  for (const [grade, list] of Object.entries(names)) {
+    const file = new URL(`../../curriculum/grade-${grade}.json`, import.meta.url);
+    const data = JSON.parse(readFileSync(file, 'utf8'));
+    assert.equal(
+      list.length, data.skills.length,
+      `grade ${grade}: .gs lists ${list.length} skills, the curriculum has ${data.skills.length}`,
+    );
+    list.forEach((name, i) => {
+      assert.equal(
+        name, data.skills[i].title.en,
+        `grade ${grade} position ${i}: .gs says "${name}", curriculum says "${data.skills[i].title.en}"`,
+      );
+    });
+  }
 });

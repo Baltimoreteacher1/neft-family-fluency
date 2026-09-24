@@ -1,0 +1,696 @@
+{
+  "$comment": "Grade 3 fluency: multiply and divide within 100.",
+  "schemaVersion": 2,
+  "grade": 3,
+  "skills": [
+    {
+      "id": "g3-mult-2-5-10",
+      "ccss": "3.OA.C.7",
+      "title": {
+        "en": "×2, ×5, ×10",
+        "es": "×2, ×5, ×10"
+      },
+      "strategy": {
+        "en": "Skip counting and doubles",
+        "es": "Contar salteado y dobles"
+      },
+      "generator": "multFact",
+      "strategyTag": "skip-count-double",
+      "stages": [
+        {
+          "label": {
+            "en": "Start",
+            "es": "Inicio"
+          },
+          "params": {
+            "factors": [
+              2,
+              5,
+              10
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "Build",
+            "es": "Practica"
+          },
+          "params": {
+            "factors": [
+              2,
+              5,
+              10
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "factors": [
+              2,
+              5,
+              10
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 3,
+      "family": {
+        "why": {
+          "en": "Skip counting is the first way most children meet multiplication, and it is not a crutch — it is the number line doing the work. A child who can count 5, 10, 15, 20 already knows 5 × 4; what they are learning this week is that those are the same thing. Doubles (× 2) come first because children hear them everywhere — two hands, two shoes, a pair of anything.",
+          "es": "Contar salteado es la primera manera en que casi todos los ninos conocen la multiplicacion, y no es una muleta: es la recta numerica haciendo el trabajo. Un nino que puede contar 5, 10, 15, 20 ya sabe 5 × 4; lo que aprende esta semana es que son la misma cosa. Los dobles (× 2) van primero porque los ninos los oyen en todas partes: dos manos, dos zapatos, un par de cualquier cosa."
+        },
+        "say": {
+          "en": [
+            "“Count by 5s with me. How many fives did we say?”",
+            "“If two hands have 5 fingers each, how many fingers is that?”",
+            "“What is double 7? How do you know?”",
+            "“Tens are the easy ones. What is 10 × 6? How can you tell so fast?”"
+          ],
+          "es": [
+            "“Cuenta de 5 en 5 conmigo. ¿Cuantos cincos dijimos?”",
+            "“Si dos manos tienen 5 dedos cada una, ¿cuantos dedos son?”",
+            "“¿Cuanto es el doble de 7? ¿Como lo sabes?”",
+            "“Los dieces son los faciles. ¿Cuanto es 10 × 6? ¿Como lo supiste tan rapido?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Roll and Skip",
+            "es": "Tira y cuenta"
+          },
+          "needs": {
+            "en": "One dice and a coin",
+            "es": "Un dado y una moneda"
+          },
+          "how": {
+            "en": [
+              "Flip the coin: heads means count by 5s, tails means count by 10s.",
+              "Roll the dice. That is how many times you count.",
+              "Say the count out loud together: “5, 10, 15” — then say the multiplication: “5 × 3 = 15.”",
+              "Take turns. If someone is stuck, count it out on fingers together — that is the strategy, not a failure."
+            ],
+            "es": [
+              "Tire la moneda: cara es contar de 5 en 5, cruz es contar de 10 en 10.",
+              "Tire el dado. Ese es el numero de veces que va a contar.",
+              "Digan la cuenta en voz alta juntos: “5, 10, 15”, y luego digan la multiplicacion: “5 × 3 = 15.”",
+              "Tomen turnos. Si alguien se atora, cuenten con los dedos juntos: eso es la estrategia, no un fracaso."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g3-mult-4-8",
+      "ccss": "3.OA.C.7",
+      "title": {
+        "en": "×4, ×8",
+        "es": "×4, ×8"
+      },
+      "strategy": {
+        "en": "Double, then double again",
+        "es": "Duplica y vuelve a duplicar"
+      },
+      "generator": "multFact",
+      "strategyTag": "double-double",
+      "stages": [
+        {
+          "label": {
+            "en": "Start",
+            "es": "Inicio"
+          },
+          "params": {
+            "factors": [
+              4,
+              8
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "Build",
+            "es": "Practica"
+          },
+          "params": {
+            "factors": [
+              4,
+              8
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "factors": [
+              4,
+              8
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 3,
+      "family": {
+        "why": {
+          "en": "Four is two twos, and eight is two fours. That means every × 4 fact is a doubling your child already knows, done twice — and every × 8 fact is that same doubling done once more. This is worth more than memorising: it turns eighteen separate facts into one move repeated. A child who forgets 8 × 6 can still get there in three seconds by doubling 6 three times.",
+          "es": "Cuatro son dos doses, y ocho son dos cuatros. Eso quiere decir que cada operacion de × 4 es un doble que su hijo ya sabe, hecho dos veces, y cada operacion de × 8 es ese mismo doble una vez mas. Esto vale mas que memorizar: convierte dieciocho operaciones sueltas en un solo movimiento repetido. Un nino que olvida 8 × 6 todavia puede llegar en tres segundos duplicando 6 tres veces."
+        },
+        "say": {
+          "en": [
+            "“Double it. Now double it again. What did you get?”",
+            "“You know 4 × 7. How could that help you with 8 × 7?”",
+            "“If 4 × 6 is 24, what is 8 × 6? Why?”",
+            "“Show me the doubling. I want to see the middle step.”"
+          ],
+          "es": [
+            "“Duplicalo. Ahora duplicalo otra vez. ¿Que te dio?”",
+            "“Ya sabes 4 × 7. ¿Como te puede ayudar eso con 8 × 7?”",
+            "“Si 4 × 6 es 24, ¿cuanto es 8 × 6? ¿Por que?”",
+            "“Muestrame como duplicaste. Quiero ver el paso del medio.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Double Trouble",
+            "es": "Doble problema"
+          },
+          "needs": {
+            "en": "Two dice",
+            "es": "Dos dados"
+          },
+          "how": {
+            "en": [
+              "Roll both dice and add them. That is your starting number.",
+              "Player one doubles it. Player two doubles that answer.",
+              "Say what you have made: “We started at 7, doubled to 14, doubled to 28 — that is 4 × 7.”",
+              "Go one more round to reach × 8. First to say the whole chain without stopping wins the round."
+            ],
+            "es": [
+              "Tiren los dos dados y sumenlos. Ese es su numero para empezar.",
+              "El primer jugador lo duplica. El segundo jugador duplica esa respuesta.",
+              "Digan lo que hicieron: “Empezamos en 7, duplicamos a 14, duplicamos a 28: eso es 4 × 7.”",
+              "Den una vuelta mas para llegar a × 8. Gana la ronda quien diga toda la cadena sin parar."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g3-mult-3-6",
+      "ccss": "3.OA.C.7",
+      "title": {
+        "en": "×3, ×6",
+        "es": "×3, ×6"
+      },
+      "strategy": {
+        "en": "Times 3, then double it",
+        "es": "Por 3, luego duplica"
+      },
+      "generator": "multFact",
+      "strategyTag": "three-then-double",
+      "stages": [
+        {
+          "label": {
+            "en": "Start",
+            "es": "Inicio"
+          },
+          "params": {
+            "factors": [
+              3,
+              6
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "Build",
+            "es": "Practica"
+          },
+          "params": {
+            "factors": [
+              3,
+              6
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "factors": [
+              3,
+              6
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 3,
+      "family": {
+        "why": {
+          "en": "Six is three doubled, so every × 6 fact sits one short step from a × 3 fact. Threes themselves are worth slowing down for: they are the first table where skip counting stops being automatic, and where children start genuinely reasoning instead of reciting. If your child pauses on 3 × 7, that pause is thinking, not failing.",
+          "es": "Seis es tres duplicado, asi que cada operacion de × 6 esta a un paso corto de una operacion de × 3. Los tres merecen calma: son la primera tabla donde contar salteado deja de salir solo, y donde los ninos empiezan a razonar de verdad en vez de recitar. Si su hijo se detiene en 3 × 7, esa pausa es pensamiento, no fracaso."
+        },
+        "say": {
+          "en": [
+            "“What is 3 × 8? Now double it — what does that tell you about 6 × 8?”",
+            "“Three groups of what? Draw it if that helps.”",
+            "“Which is easier for you, the threes or the sixes? Why?”",
+            "“Take your time. I would rather you think it out than guess fast.”"
+          ],
+          "es": [
+            "“¿Cuanto es 3 × 8? Ahora duplicalo: ¿que te dice eso de 6 × 8?”",
+            "“¿Tres grupos de cuanto? Dibujalo si te ayuda.”",
+            "“¿Que te sale mas facil, los tres o los seis? ¿Por que?”",
+            "“Tomate tu tiempo. Prefiero que lo pienses a que adivines rapido.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Three and Free",
+            "es": "Tres y libre"
+          },
+          "needs": {
+            "en": "A deck of cards with the face cards taken out (ace = 1)",
+            "es": "Una baraja sin las figuras (as = 1)"
+          },
+          "how": {
+            "en": [
+              "Shuffle and put the deck face down between you.",
+              "Turn one card over. Both players race to say 3 × that card.",
+              "Whoever says it first doubles their own answer out loud to get the × 6 fact, and keeps the card.",
+              "If they double wrong, the other player can take the card by saying it correctly. Most cards at the end wins."
+            ],
+            "es": [
+              "Barajen y pongan el mazo boca abajo entre los dos.",
+              "Volteen una carta. Los dos jugadores compiten por decir 3 × esa carta.",
+              "Quien lo diga primero duplica su propia respuesta en voz alta para sacar la operacion de × 6, y se queda con la carta.",
+              "Si duplica mal, el otro jugador puede llevarse la carta diciendolo bien. Gana quien tenga mas cartas al final."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g3-mult-9-7",
+      "ccss": "3.OA.C.7",
+      "title": {
+        "en": "×9, ×7",
+        "es": "×9, ×7"
+      },
+      "strategy": {
+        "en": "Ten groups minus one; break 7 into 5 + 2",
+        "es": "Diez grupos menos uno; separa el 7 en 5 + 2"
+      },
+      "generator": "multFact",
+      "strategyTag": "ten-minus-one-break-apart",
+      "stages": [
+        {
+          "label": {
+            "en": "Start",
+            "es": "Inicio"
+          },
+          "params": {
+            "factors": [
+              9,
+              7
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "Build",
+            "es": "Practica"
+          },
+          "params": {
+            "factors": [
+              9,
+              7
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "factors": [
+              9,
+              7
+            ],
+            "others": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 3,
+      "family": {
+        "why": {
+          "en": "Nines and sevens are the last facts most children learn, and the two hardest — but for different reasons. Nines have a pattern hiding in them: 9 × 6 is ten sixes minus one six. Sevens have no pattern, so we break them apart instead: 7 × 8 becomes 5 × 8 plus 2 × 8. Both moves say the same thing — a hard fact is two easy facts standing close together.",
+          "es": "Los nueves y los sietes son las ultimas operaciones que aprenden casi todos los ninos, y las dos mas dificiles, pero por razones distintas. Los nueves esconden un patron: 9 × 6 es diez seises menos un seis. Los sietes no tienen patron, asi que los separamos: 7 × 8 se vuelve 5 × 8 mas 2 × 8. Los dos movimientos dicen lo mismo: una operacion dificil son dos operaciones faciles juntas."
+        },
+        "say": {
+          "en": [
+            "“Ten sixes is 60. So what is nine sixes? What did you take away?”",
+            "“Break the 7 apart. What two easier facts can you use?”",
+            "“These are the hard ones. Everybody finds these hard — that is why we have a trick for them.”",
+            "“Show me the two pieces before you add them.”"
+          ],
+          "es": [
+            "“Diez seises son 60. ¿Entonces cuanto son nueve seises? ¿Que le quitaste?”",
+            "“Separa el 7. ¿Que dos operaciones mas faciles puedes usar?”",
+            "“Estas son las dificiles. A todo el mundo le cuestan: por eso tenemos un truco.”",
+            "“Muestrame las dos partes antes de sumarlas.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Ten Take One",
+            "es": "Diez quita uno"
+          },
+          "needs": {
+            "en": "One dice and paper",
+            "es": "Un dado y papel"
+          },
+          "how": {
+            "en": [
+              "Roll the dice. Call the number N.",
+              "Both players write 10 × N, then cross out one N to get 9 × N. Say it out loud.",
+              "For the sevens round: write 5 × N and 2 × N, then add them. That is 7 × N.",
+              "Check each other's work. Catching a grown-up's mistake counts double."
+            ],
+            "es": [
+              "Tire el dado. Llame N a ese numero.",
+              "Los dos jugadores escriben 10 × N, y luego tachan una N para sacar 9 × N. Diganlo en voz alta.",
+              "Para la ronda de los sietes: escriban 5 × N y 2 × N, y sumenlos. Eso es 7 × N.",
+              "Revisen el trabajo del otro. Atrapar el error de un adulto vale doble."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g3-div-facts",
+      "ccss": "3.OA.C.7",
+      "title": {
+        "en": "Division facts",
+        "es": "Divisiones basicas"
+      },
+      "strategy": {
+        "en": "What times 6 is 42?",
+        "es": "Cuanto por 6 es 42?"
+      },
+      "generator": "divFact",
+      "strategyTag": "missing-factor",
+      "stages": [
+        {
+          "label": {
+            "en": "Start",
+            "es": "Inicio"
+          },
+          "params": {
+            "divisors": [
+              2,
+              5,
+              10
+            ],
+            "quotients": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Build",
+            "es": "Practica"
+          },
+          "params": {
+            "divisors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              10
+            ],
+            "quotients": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "All facts",
+            "es": "Todas"
+          },
+          "params": {
+            "divisors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "quotients": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 3,
+      "family": {
+        "why": {
+          "en": "Division is not a new operation to memorise — it is multiplication with a piece missing. “42 ÷ 6” and “what times 6 is 42?” are the same question, and the second one your child can already answer. This week is mostly about hearing division that way. If they reach for the multiplication fact instead of a division fact, that is exactly right.",
+          "es": "La division no es una operacion nueva que memorizar: es una multiplicacion a la que le falta una pieza. “42 ÷ 6” y “¿cuanto por 6 es 42?” son la misma pregunta, y la segunda su hijo ya la sabe contestar. Esta semana se trata sobre todo de oir la division asi. Si busca la multiplicacion en vez de una division, eso es justo lo correcto."
+        },
+        "say": {
+          "en": [
+            "“Say it as a multiplication. What times 6 is 42?”",
+            "“If 8 × 4 is 32, what is 32 ÷ 4? What about 32 ÷ 8?”",
+            "“How many groups of 7 fit into 56?”",
+            "“What multiplication fact would help you here?”"
+          ],
+          "es": [
+            "“Dilo como multiplicacion. ¿Cuanto por 6 es 42?”",
+            "“Si 8 × 4 es 32, ¿cuanto es 32 ÷ 4? ¿Y 32 ÷ 8?”",
+            "“¿Cuantos grupos de 7 caben en 56?”",
+            "“¿Que multiplicacion te ayudaria aqui?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Fact Family Four",
+            "es": "Familia de cuatro"
+          },
+          "needs": {
+            "en": "Two dice and paper",
+            "es": "Dos dados y papel"
+          },
+          "how": {
+            "en": [
+              "Roll both dice. Multiply them and write the answer in the middle of the paper.",
+              "Around it, write all four facts in that family. For 6 and 7: 6 × 7 = 42, 7 × 6 = 42, 42 ÷ 6 = 7, 42 ÷ 7 = 6.",
+              "Say the whole family out loud. Four facts, one picture.",
+              "Play to ten families. Keep them — they make a good fridge page."
+            ],
+            "es": [
+              "Tiren los dos dados. Multipliquenlos y escriban la respuesta en el centro del papel.",
+              "Alrededor, escriban las cuatro operaciones de esa familia. Para 6 y 7: 6 × 7 = 42, 7 × 6 = 42, 42 ÷ 6 = 7, 42 ÷ 7 = 6.",
+              "Digan toda la familia en voz alta. Cuatro operaciones, un solo dibujo.",
+              "Jueguen hasta diez familias. Guardenlas: quedan bien en el refrigerador."
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

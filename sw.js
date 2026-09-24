@@ -10,7 +10,7 @@
 // that nobody receives.
 // ---------------------------------------------------------------------------
 
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE = `ewl-fluency-${CACHE_VERSION}`;
 
 // Everything needed to run offline from a cold start. The curriculum and both
@@ -26,17 +26,20 @@ const SHELL = [
   'app.js',
   'config.js',
   'manifest.webmanifest',
-  'curriculum/skills.json',
+  'curriculum/index.json',
   'i18n/en.json',
   'i18n/es.json',
   'engine/rng.js',
   'engine/storage.js',
+  'engine/model.js',
+  'engine/migrate.js',
+  'engine/curriculum.js',
+  'engine/scheduler.js',
+  'engine/session.js',
   'engine/i18n.js',
   'engine/dom.js',
   'engine/mastery.js',
-  'engine/progress.js',
   'engine/progressCode.js',
-  'engine/setBuilder.js',
   'engine/hints.js',
   'engine/qr.js',
   'engine/generators/multFact.js',
@@ -44,20 +47,22 @@ const SHELL = [
   'engine/generators/extendedMult.js',
   'engine/generators/extendedDiv.js',
   'engine/generators/longDivision.js',
-  'views/profiles.js',
-  'views/levels.js',
-  'views/week.js',
+  'views/home.js',
+  'views/dashboard.js',
+  'views/skill.js',
+  'views/settings.js',
   'views/learn.js',
+  'views/explainers.js',
   'views/practice.js',
   'views/procedure.js',
   'views/play.js',
   'views/check.js',
+  'views/family.js',
+  'views/sendToTeacher.js',
   'views/runner.js',
   'views/keypad.js',
   'family/',
-  'family/family.js',
-  // The week cards are NOT listed here -- they are derived from the curriculum
-  // at install time, so adding week 9 stays a JSON-only change.
+  'family/redirect.js',
   'teacher/',
   'teacher/teacher.js',
   'qr',
@@ -70,19 +75,18 @@ const SHELL = [
 ];
 
 /**
- * The family cards, one per week in the curriculum. Reading the curriculum
- * here rather than listing the cards keeps "add a week by editing JSON" true:
- * a week added to skills.json is precached on the next service-worker install
- * without anyone remembering to edit this file.
+ * Every grade file named by the index. Derived rather than listed, so adding a
+ * grade stays a JSON-only change -- and so a Grade 1 phone is not asked to
+ * download Grade 8 before it can work offline.
+ *
+ * A grade that 404s (not written yet) is skipped by the per-file catch below.
  */
-async function familyCards() {
+async function gradeFiles() {
   try {
-    const res = await fetch('curriculum/skills.json', { cache: 'reload' });
+    const res = await fetch('curriculum/index.json', { cache: 'reload' });
     if (!res.ok) return [];
-    const curriculum = await res.json();
-    return curriculum.weeks.map(
-      (w) => `family/week-${String(w.week).padStart(2, '0')}.json`,
-    );
+    const index = await res.json();
+    return index.grades.map((g) => `curriculum/${g.file}`);
   } catch {
     // Offline during install is possible; the fetch handler caches these on
     // demand, so a missing precache costs one online visit, not the feature.
@@ -94,7 +98,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      const shell = SHELL.concat(await familyCards());
+      const shell = SHELL.concat(await gradeFiles());
       // addAll is all-or-nothing: one 404 and the whole install fails, leaving
       // families with no offline app and no clue why. Cache individually and
       // report what is missing instead.

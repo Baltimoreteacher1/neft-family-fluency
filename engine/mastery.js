@@ -1,6 +1,6 @@
 // Mastery rules and the spiral mixer.
 //
-// Thresholds are never hardcoded here -- they come from curriculum/skills.json
+// Thresholds are never hardcoded here -- they come from the curriculum files
 // so they can be tuned without touching code. This module only knows how to
 // apply them.
 

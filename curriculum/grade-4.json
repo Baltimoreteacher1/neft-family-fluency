@@ -1,0 +1,274 @@
+{
+  "$comment": "Grade 4 fluency. Skills without a generator yet are added in step 3.",
+  "schemaVersion": 2,
+  "grade": 4,
+  "skills": [
+    {
+      "id": "g4-extended-facts",
+      "ccss": "4.NBT.B.5",
+      "title": {
+        "en": "Extended facts",
+        "es": "Operaciones extendidas"
+      },
+      "strategy": {
+        "en": "Use the basic fact, then the place-value pattern",
+        "es": "Usa la operacion basica y luego el patron de valor posicional"
+      },
+      "generator": "extendedMult",
+      "strategyTag": "place-value-pattern",
+      "stages": [
+        {
+          "label": {
+            "en": "Tens",
+            "es": "Decenas"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "scales": [
+              10
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Hundreds",
+            "es": "Centenas"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "scales": [
+              10,
+              100
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "Mixed",
+            "es": "Mezclado"
+          },
+          "params": {
+            "factors": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "others": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "scales": [
+              10,
+              100
+            ]
+          }
+        }
+      ],
+      "checkLength": 12,
+      "targetSeconds": 4,
+      "family": {
+        "why": {
+          "en": "Once a child knows 4 × 7 = 28, they also know 40 × 7 and 400 × 7 — they just have not been told yet. The zeros follow a pattern, they are not extra work. This is the week that makes long division possible next week, because estimating “about how many” depends entirely on seeing 3600 ÷ 9 as 36 ÷ 9 wearing two extra zeros.",
+          "es": "En cuanto un nino sabe 4 × 7 = 28, tambien sabe 40 × 7 y 400 × 7: solo que todavia nadie se lo ha dicho. Los ceros siguen un patron, no son trabajo extra. Esta es la semana que hace posible la division larga la semana que viene, porque estimar “mas o menos cuantos” depende por completo de ver 3600 ÷ 9 como 36 ÷ 9 con dos ceros puestos."
+        },
+        "say": {
+          "en": [
+            "“What is the basic fact hiding inside this one?”",
+            "“You know 3 × 8. So what is 30 × 8? And 300 × 8?”",
+            "“How many zeros should the answer have? How do you know?”",
+            "“Does that answer look about the right size?”"
+          ],
+          "es": [
+            "“¿Cual es la operacion basica que se esconde aqui?”",
+            "“Sabes 3 × 8. ¿Entonces cuanto es 30 × 8? ¿Y 300 × 8?”",
+            "“¿Cuantos ceros debe tener la respuesta? ¿Como lo sabes?”",
+            "“¿Esa respuesta se ve del tamano correcto?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Add a Zero",
+            "es": "Ponle un cero"
+          },
+          "needs": {
+            "en": "Two dice and a coin",
+            "es": "Dos dados y una moneda"
+          },
+          "how": {
+            "en": [
+              "Roll both dice. Say the basic fact out loud: “4 × 7 = 28.”",
+              "Flip the coin: heads adds one zero, tails adds two.",
+              "Say the extended fact: “40 × 7 = 280.” Say where the zero went and why.",
+              "Harder round: start from the answer and go backwards. “280 ÷ 7 — what is the basic fact?”"
+            ],
+            "es": [
+              "Tiren los dos dados. Digan la operacion basica en voz alta: “4 × 7 = 28.”",
+              "Tiren la moneda: cara pone un cero, cruz pone dos.",
+              "Digan la operacion extendida: “40 × 7 = 280.” Digan a donde fue el cero y por que.",
+              "Ronda dificil: empiecen por la respuesta y vayan al reves. “280 ÷ 7: ¿cual es la operacion basica?”"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g4-divide-1digit",
+      "ccss": "4.NBT.B.6",
+      "title": {
+        "en": "Divide by 1 digit",
+        "es": "Dividir entre 1 digito"
+      },
+      "strategy": {
+        "en": "Partial quotients, then the standard algorithm",
+        "es": "Cocientes parciales y luego el algoritmo estandar"
+      },
+      "generator": "longDivision",
+      "strategyTag": "partial-quotients",
+      "stages": [
+        {
+          "label": {
+            "en": "3 digits",
+            "es": "3 digitos"
+          },
+          "params": {
+            "dividendDigits": [
+              3
+            ],
+            "divisorRange": [
+              2,
+              5
+            ],
+            "allowRemainder": false,
+            "remainderRate": 0
+          }
+        },
+        {
+          "label": {
+            "en": "With remainders",
+            "es": "Con residuo"
+          },
+          "params": {
+            "dividendDigits": [
+              3
+            ],
+            "divisorRange": [
+              2,
+              9
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        },
+        {
+          "label": {
+            "en": "4 digits",
+            "es": "4 digitos"
+          },
+          "params": {
+            "dividendDigits": [
+              3,
+              4
+            ],
+            "divisorRange": [
+              2,
+              9
+            ],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          }
+        }
+      ],
+      "checkLength": 10,
+      "targetSeconds": null,
+      "family": {
+        "why": {
+          "en": "This is the week the facts become a procedure. Partial quotients comes first because it is honest about what division is — pulling out chunks you recognise until nothing is left. “372 ÷ 4: I know 90 fours is 360, that leaves 12, which is 3 more fours.” The standard algorithm is the same reasoning written more compactly, and a child who sees that connection will not panic when a step goes wrong.",
+          "es": "Esta es la semana en que las operaciones se vuelven un procedimiento. Los cocientes parciales van primero porque son honestos sobre lo que es dividir: sacar pedazos que uno reconoce hasta que no queda nada. “372 ÷ 4: se que noventa cuatros son 360, quedan 12, que son 3 cuatros mas.” El algoritmo estandar es el mismo razonamiento escrito mas corto, y un nino que ve esa conexion no se asusta cuando un paso sale mal."
+        },
+        "say": {
+          "en": [
+            "“What chunk do you already know? Start there.”",
+            "“How many fours are definitely in 372? Take those out first.”",
+            "“What is left over now? Can you take another chunk?”",
+            "“If you get lost, say what each number on the page means.”"
+          ],
+          "es": [
+            "“¿Que pedazo ya te sabes? Empieza ahi.”",
+            "“¿Cuantos cuatros hay seguro en 372? Saca esos primero.”",
+            "“¿Que queda ahora? ¿Puedes sacar otro pedazo?”",
+            "“Si te pierdes, di que significa cada numero en el papel.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Chunk It Out",
+            "es": "Sacalo por pedazos"
+          },
+          "needs": {
+            "en": "A deck of cards (face cards out) and paper",
+            "es": "Una baraja sin figuras y papel"
+          },
+          "how": {
+            "en": [
+              "Turn over three cards to make a three-digit number. Turn one more for the divisor.",
+              "Both players work it out — one using chunks, one using the short method. Swap next round.",
+              "Compare answers. If they disagree, find the step where you parted ways.",
+              "The point is the conversation, not the speed. Same answer by two routes is the win."
+            ],
+            "es": [
+              "Volteen tres cartas para hacer un numero de tres digitos. Volteen una mas para el divisor.",
+              "Los dos jugadores lo resuelven: uno por pedazos, otro por el metodo corto. Cambien en la siguiente ronda.",
+              "Comparen respuestas. Si no coinciden, busquen el paso donde se separaron.",
+              "Lo importante es la conversacion, no la rapidez. La misma respuesta por dos caminos es el triunfo."
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -15,10 +15,15 @@ import {
   weeklyGoalMet,
 } from '../../engine/mastery.js';
 
-const curriculum = JSON.parse(
-  readFileSync(new URL('../../curriculum/skills.json', import.meta.url), 'utf8'),
+const index = JSON.parse(
+  readFileSync(new URL('../../curriculum/index.json', import.meta.url), 'utf8'),
 );
-const CRITERIA = curriculum.defaults.mastery;
+// The v2 curriculum keeps one pass bar; the fact/procedure split lives in the
+// skill's own targetSeconds now.
+const CRITERIA = {
+  fact: { minAccuracy: index.defaults.check.passAccuracy, maxMedianMs: 3000 },
+  procedure: { minAccuracy: 0.85, maxMedianMs: null },
+};
 
 /** n attempts, `correct` of them right, every response taking `ms`. */
 function attempts(n, correct, ms) {
@@ -109,7 +114,7 @@ test('missed facts come back worst-first and capped', () => {
 test('week 1 has nothing to spiral into', () => {
   const rng = createRng('spiral-1');
   const plan = spiralPlan({
-    currentWeek: 1, itemCount: 16, spiral: curriculum.defaults.spiral, rng,
+    currentWeek: 1, itemCount: 16, spiral: { currentWeight: 0.7, pastWeight: 0.3 }, rng,
   });
   assert.equal(plan.length, 16);
   assert.ok(plan.every((w) => w === 1));
@@ -121,7 +126,7 @@ test('later weeks mix roughly 70/30 current to past', () => {
   let total = 0;
   for (let trial = 0; trial < 200; trial++) {
     const plan = spiralPlan({
-      currentWeek: 6, itemCount: 16, spiral: curriculum.defaults.spiral, rng,
+      currentWeek: 6, itemCount: 16, spiral: { currentWeight: 0.7, pastWeight: 0.3 }, rng,
     });
     assert.equal(plan.length, 16);
     assert.ok(plan.every((w) => w >= 1 && w <= 6));
@@ -133,13 +138,13 @@ test('later weeks mix roughly 70/30 current to past', () => {
 });
 
 test('a missed fact is weighted up, an unmissed one is not', () => {
-  const boost = curriculum.defaults.spiral.missedFactBoost;
+  const boost = 3;
   assert.equal(itemWeight('mult:7x8', ['mult:7x8'], boost), boost);
   assert.equal(itemWeight('mult:2x2', ['mult:7x8'], boost), 1);
 });
 
 test('the weekly goal is 3 of 5 days, and missing a week costs nothing', () => {
-  const goal = curriculum.defaults.goal;
+  const goal = { daysPerWeek: index.defaults.goal.daysPerWeek };
   assert.equal(goal.daysPerWeek, 3);
   assert.equal(weeklyGoalMet(2, goal), false);
   assert.equal(weeklyGoalMet(3, goal), true);

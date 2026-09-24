@@ -869,12 +869,23 @@ td[data-flag="good"] {
 
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   }
-  /* On dark, the accent is light, so button text must flip to dark ink. */
-  :root:not([data-theme="light"]) .btn,
+  /* On dark, the accent is light, so text sitting ON the accent must flip to
+     dark ink. This must NOT hit .btn--ghost (transparent) or .btn--soft (a
+     dark panel): doing so put near-black text on a near-black background at
+     1.07:1, which is what made Back, Switch, Remove and Add someone
+     unreadable. Only buttons with an accent FILL are listed here. */
+  :root:not([data-theme="light"]) .btn:not(.btn--ghost):not(.btn--soft),
   :root:not([data-theme="light"]) .keypad button[data-key="check"],
   :root:not([data-theme="light"]) .lang-toggle button[aria-pressed="true"],
+  :root:not([data-theme="light"]) .grade-pick[aria-pressed="true"],
   :root:not([data-theme="light"]) .skip-link {
     color: #10201a;
+  }
+
+  /* Ghost and soft buttons keep light text on their dark surfaces. */
+  :root:not([data-theme="light"]) .btn--ghost,
+  :root:not([data-theme="light"]) .btn--soft {
+    color: var(--accent-ink);
   }
 }
 
@@ -888,4 +899,380 @@ td[data-flag="good"] {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* ===========================================================================
+   v2 shell: Grade > Skill > Session
+   =========================================================================== */
+
+/* Each grade sets --grade-accent on :root so its dashboard is recognisable at
+   a glance. It falls back to the app accent for screens with no grade. */
+:root {
+  --grade-accent: var(--accent);
+}
+
+/* Text size is a Settings choice, not a browser-only concern: many families
+   never discover the browser's own control. */
+:root[data-text-size="large"] body {
+  font-size: 19px;
+}
+:root[data-text-size="xlarge"] body {
+  font-size: 22px;
+}
+
+/* High-contrast mode strengthens every border and removes soft fills. */
+:root[data-contrast="high"] {
+  --line: #8b93a1;
+  --ink-soft: #e6e6e6;
+  --card: #000;
+  --paper: #000;
+}
+
+/* --- header --------------------------------------------------------------- */
+
+.avatar-switch {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  font-size: 1.5rem;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.avatar-switch:hover {
+  border-color: var(--grade-accent);
+}
+
+/* --- the Today card ------------------------------------------------------- */
+/* The one dominant action on the dashboard. Everything else is quieter. */
+
+.today {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "label go"
+    "what  go"
+    "skill go"
+    "meta  go";
+  gap: 2px 12px;
+  width: 100%;
+  padding: 18px;
+  margin-bottom: var(--gap);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--grade-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--speed) ease;
+}
+.today:active {
+  transform: scale(0.99);
+}
+.today__label {
+  grid-area: label;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grade-accent);
+}
+.today__what {
+  grid-area: what;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.today__skill {
+  grid-area: skill;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+.today__meta {
+  grid-area: meta;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.today__go {
+  grid-area: go;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.3rem;
+  color: #10201a;
+  background: var(--grade-accent);
+  border-radius: 50%;
+}
+.today--empty {
+  display: block;
+  border-style: dashed;
+  cursor: default;
+}
+
+/* --- weekly goal ---------------------------------------------------------- */
+
+.weekgoal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px var(--gap);
+  margin-bottom: var(--gap);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+}
+.weekgoal--inline {
+  margin: 12px 0 0;
+  padding: 10px 0;
+  background: none;
+  border: 0;
+}
+.weekgoal__dots {
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+}
+/* A filled dot is a day practised. An empty one is simply not yet -- there is
+   deliberately no "missed" state and no colour that reads as failure. */
+.dot[data-filled="true"] {
+  background: var(--grade-accent);
+  border-color: var(--grade-accent);
+}
+.weekgoal__text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+/* --- skill cards ---------------------------------------------------------- */
+
+.section-head {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+.skills {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0 0 var(--gap);
+  list-style: none;
+}
+
+.skillcard {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  min-height: 76px;
+  padding: 14px;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.skillcard:hover {
+  border-color: var(--grade-accent);
+}
+.skillcard[data-mastered="true"] {
+  border-color: var(--gold);
+}
+.skillcard__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.skillcard__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.skillcard__badge {
+  font-size: 1.2rem;
+}
+.skillcard__next {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--grade-accent);
+}
+
+/* Three segments, one per stage. Not a percentage: "2 of 3 done" is something
+   a seven-year-old can read, and 67% is not. */
+.stagebar {
+  display: flex;
+  gap: 4px;
+}
+.stagebar__seg {
+  flex: 1;
+  height: 8px;
+  background: var(--line);
+  border-radius: 99px;
+}
+.stagebar__seg[data-on="true"] {
+  background: var(--grade-accent);
+}
+
+/* --- activities on the skill page ----------------------------------------- */
+
+.activity__body {
+  display: grid;
+}
+.activity[data-suggested="true"] {
+  border-color: var(--grade-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--grade-accent) 22%, transparent);
+}
+.activity__next {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--grade-accent);
+}
+.activity__chev {
+  color: var(--ink-soft);
+}
+
+/* --- grade picker --------------------------------------------------------- */
+
+.grade-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.grade-pick {
+  min-height: 56px;
+  font-family: var(--font-num);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.grade-pick[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* --- misc ----------------------------------------------------------------- */
+
+.fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--gap);
+}
+.fieldset legend {
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 6px;
+}
+.flush {
+  margin: 0;
+}
+.row--between {
+  justify-content: space-between;
+  align-items: center;
+}
+.row--center {
+  justify-content: center;
+}
+.form-error {
+  color: var(--no);
+  font-weight: 600;
+  min-height: 1.2em;
+  margin: 0 0 8px;
+}
+.chip {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-radius: 99px;
+}
+.chip--gold {
+  color: var(--gold);
+  background: var(--gold-soft);
+}
+.profile__grade,
+.profile__tag {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--tap);
+  cursor: pointer;
+  font-weight: 600;
+}
+.switch input {
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  flex: 0 0 auto;
+}
+.othergrades {
+  margin-bottom: var(--gap);
+}
+.othergrades summary {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.teachercard {
+  text-align: center;
+  border: 2px dashed var(--line);
+}
+.teachercard__skill {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 4px 0 0;
+}
+.teachercard__score {
+  font-family: var(--font-num);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 4px 0;
+  color: var(--grade-accent);
+}
+.qr-holder {
+  text-align: center;
+}
+.qbar__spacer {
+  flex: 1;
+}
+.play__score {
+  font-family: var(--font-num);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--grade-accent);
 }

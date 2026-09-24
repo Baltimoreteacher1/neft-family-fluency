@@ -16,9 +16,20 @@
 
     <div class="shell">
       <header class="topbar">
-        <button class="btn btn--ghost btn--small" id="btn-back" hidden data-t="app.back">Back</button>
+        <!-- Back always goes UP one level in Grade > Skill > Session, never
+             into browser history. It keeps its label: an arrow alone is not a
+             word, and this app has readers who are six. -->
+        <button class="btn btn--ghost btn--small" id="btn-back" hidden>
+          <span aria-hidden="true">&#8592;</span>
+          <span data-t="app.back">Back</span>
+        </button>
         <h1 id="page-title" data-t="app.title">Family Math Fluency</h1>
-        <button class="btn btn--ghost btn--small" id="btn-settings" aria-label="Settings" title="Settings">&#9881;</button>
+        <!-- One tap to switch child, from any screen: siblings share phones. -->
+        <button class="avatar-switch" id="btn-switch" hidden></button>
+        <button class="btn btn--ghost btn--small" id="btn-settings">
+          <span aria-hidden="true">&#9881;</span>
+          <span data-t="settings.title">Settings</span>
+        </button>
       </header>
 
       <!-- Every view renders into here. One live region serves the whole app so

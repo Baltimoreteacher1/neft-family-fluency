@@ -2,27 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description" content="How to help your child with this week's math practice. English and Spanish." />
-    <meta name="theme-color" content="#1f5f4b" />
-    <title>How to help this week</title>
-    <link rel="icon" href="../icons/icon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>For grown-ups</title>
     <link rel="stylesheet" href="../app.css" />
+    <script type="module" src="redirect.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
     <div class="shell">
-      <header class="topbar no-print">
-        <a class="btn btn--ghost btn--small" href="../" id="back">Back</a>
-        <h1 id="page-title">How to help this week</h1>
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-es" aria-pressed="false">ES</button>
-        </div>
-      </header>
-      <main id="main" tabindex="-1"></main>
-      <p class="visually-hidden" role="status" aria-live="polite" id="live"></p>
+      <div class="card">
+        <h1>For grown-ups</h1>
+        <!-- Shown only if the redirect cannot run (no JS). The link is a real
+             link so it works either way. -->
+        <p>This page has moved into the app.</p>
+        <p><a class="btn" id="go" href="../">Open the app</a></p>
+      </div>
     </div>
-    <script type="module" src="family.js"></script>
   </body>
 </html>

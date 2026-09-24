@@ -1,0 +1,21 @@
+{
+  "$comment": "The grade list. Accent colours are per grade so a child can tell 'my grade' at a glance; every one is checked against the dark background for WCAG AA in tests/unit/contrast.test.js.",
+  "schemaVersion": 2,
+  "grades": [
+    { "grade": 1, "file": "grade-1.json", "accent": "#7fb3ff", "label": { "en": "Grade 1", "es": "Grado 1" } },
+    { "grade": 2, "file": "grade-2.json", "accent": "#63d0c4", "label": { "en": "Grade 2", "es": "Grado 2" } },
+    { "grade": 3, "file": "grade-3.json", "accent": "#6fd3ae", "label": { "en": "Grade 3", "es": "Grado 3" } },
+    { "grade": 4, "file": "grade-4.json", "accent": "#a8d474", "label": { "en": "Grade 4", "es": "Grado 4" } },
+    { "grade": 5, "file": "grade-5.json", "accent": "#e8c46a", "label": { "en": "Grade 5", "es": "Grado 5" } },
+    { "grade": 6, "file": "grade-6.json", "accent": "#f0a878", "label": { "en": "Grade 6", "es": "Grado 6" } },
+    { "grade": 7, "file": "grade-7.json", "accent": "#f2929e", "label": { "en": "Grade 7", "es": "Grado 7" } },
+    { "grade": 8, "file": "grade-8.json", "accent": "#c9a6f0", "label": { "en": "Grade 8", "es": "Grado 8" } }
+  ],
+  "defaults": {
+    "practice": { "items": 12 },
+    "check": { "items": 12, "passAccuracy": 0.9 },
+    "play": { "seconds": 60, "items": 20 },
+    "goal": { "daysPerWeek": 3 },
+    "spaced": { "boxes": 5, "reviewShare": 0.3 }
+  }
+}

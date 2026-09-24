@@ -1,0 +1,11 @@
+{
+  "$comment": "A verbatim copy of the v1 localStorage shape, captured from the deployed app by creating a profile, completing a Practice set and a Friday Check. Do not hand-edit: recapture it if the v1 app ever changes.",
+  "ewl_profiles": "[{\"id\":\"pmufrohk33y\",\"nickname\":\"Sam\",\"avatar\":\"🦊\",\"classCode\":\"6B\",\"studentNumber\":5}]",
+  "ewl_active_profile": "\"pmufrohk33y\"",
+  "ewl_settings": "{\"lang\":\"es\",\"motion\":\"reduced\",\"timer\":true}",
+  "ewl_progress_pmufrohk33y": "{\"weeks\":{\"1\":{\"days\":[\"2026-09-22\",\"2026-09-24\"],\"attempts\":[{\"itemId\":\"mult:4x5\",\"skillId\":\"w1-mult-2-5-10\",\"correct\":true,\"ms\":634,\"hints\":0},{\"itemId\":\"mult:7x8\",\"skillId\":\"w1-mult-2-5-10\",\"correct\":false,\"ms\":4100,\"hints\":2},{\"itemId\":\"mult:7x8\",\"skillId\":\"w1-mult-2-5-10\",\"correct\":false,\"ms\":3900,\"hints\":1}],\"check\":{\"day\":\"2026-09-24\",\"accuracy\":0.95,\"medianMs\":2100,\"mastered\":true,\"nextFocus\":null,\"total\":20,\"correct\":19},\"badge\":true},\"2\":{\"days\":[\"2026-09-25\"],\"attempts\":[{\"itemId\":\"mult:4x6\",\"skillId\":\"w2-mult-4-8\",\"correct\":true,\"ms\":900,\"hints\":0}],\"check\":null,\"badge\":false},\"6\":{\"days\":[\"2026-09-26\"],\"attempts\":[{\"itemId\":\"xmult:40x7\",\"skillId\":\"w6-extended-mult\",\"correct\":true,\"ms\":2200,\"hints\":0}],\"check\":null,\"badge\":false},\"8\":{\"days\":[\"2026-09-27\",\"2026-09-28\",\"2026-09-29\"],\"attempts\":[{\"itemId\":\"longdiv:851/23\",\"skillId\":\"w8-long-div-2digit\",\"correct\":true,\"ms\":30000,\"hints\":0}],\"check\":{\"day\":\"2026-09-29\",\"accuracy\":0.9,\"medianMs\":28000,\"mastered\":true,\"nextFocus\":null,\"total\":20,\"correct\":18},\"badge\":true}}}",
+  "ewl_best_pmufrohk33y_raceTrack": "12",
+  "ewl_teacher_codes": "[]",
+  "ewl_form_url_override": "\"https://docs.google.com/forms/d/e/ABC/viewform\"",
+  "ewl_form_entry_override": "\"entry.987654\""
+}

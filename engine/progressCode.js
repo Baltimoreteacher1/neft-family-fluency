@@ -313,3 +313,198 @@ export function parseFormLink(input) {
   // this one code's, and must not be carried over to the next child's link.
   return { formUrl: `${url.origin}${url.pathname}`, entryId };
 }
+
+// ---------------------------------------------------------------------------
+// VERSION 2
+// ---------------------------------------------------------------------------
+//
+// v1 carried a week number, which the grade-based app no longer has. v2 carries
+// grade + skill + stage instead, so a teacher can see WHICH skill was checked
+// rather than "week 3 of the old ladder".
+//
+// v1 codes must keep decoding forever: they are already in teachers' Google
+// Sheets, and a code that stops being readable is a row of lost data. The
+// version field is the first 3 bits of both, so the decoder branches on it.
+//
+// Bit layout (v2), most-significant bit first:
+//
+//   version        3   2
+//   classCodeLen   3   0-4 characters
+//   classCode     20   4 x 5-bit alphabet index
+//   studentNumber  8   0-255
+//   grade          4   1-8
+//   skillIndex     5   position of the skill within its grade file (0-31)
+//   stage          2   0-3
+//   accuracy       7   0-100 whole percent
+//   daysPractised  3   0-7
+//   mastered       1
+//   missedCount    2   0-3
+//   missed[3]     72   op(3) + a(14) + b(7) each
+//   --------------------
+//   payload      130
+//   checksum      10
+//   total        140  -> 28 base32 characters
+
+export const VERSION_2 = 2;
+
+const V2 = {
+  version: 3,
+  classCodeLen: 3,
+  classCode: 20,
+  studentNumber: 8,
+  grade: 4,
+  skillIndex: 5,
+  stage: 2,
+  accuracy: 7,
+  daysPractised: 3,
+  mastered: 1,
+  missedCount: 2,
+};
+const V2_TOTAL_BITS = 140;
+
+function writeBitsV2(bits, value, width) {
+  for (let i = width - 1; i >= 0; i--) bits.push((value >> i) & 1);
+}
+
+/**
+ * @param {{classCode:string, studentNumber:number, grade:number,
+ *          skillIndex:number, stage:number, accuracy:number,
+ *          daysPractised:number, mastered:boolean, missed:string[]}} p
+ * @returns {string} 28 base32 characters
+ */
+export function encodeProgressV2(p) {
+  const classCode = normalizeClassCode(p.classCode);
+  const bits = [];
+
+  writeBitsV2(bits, VERSION_2, V2.version);
+  writeBitsV2(bits, classCode.length, V2.classCodeLen);
+  for (let i = 0; i < 4; i++) {
+    const idx = i < classCode.length ? ALPHABET.indexOf(classCode[i]) : 0;
+    writeBitsV2(bits, idx, 5);
+  }
+  writeBitsV2(bits, clampTo(p.studentNumber, 0, 255), V2.studentNumber);
+  writeBitsV2(bits, clampTo(p.grade, 0, 15), V2.grade);
+  writeBitsV2(bits, clampTo(p.skillIndex, 0, 31), V2.skillIndex);
+  writeBitsV2(bits, clampTo(p.stage, 0, 3), V2.stage);
+  writeBitsV2(bits, clampTo(Math.round((p.accuracy || 0) * 100), 0, 100), V2.accuracy);
+  writeBitsV2(bits, clampTo(p.daysPractised, 0, 7), V2.daysPractised);
+  writeBitsV2(bits, p.mastered ? 1 : 0, V2.mastered);
+
+  const missed = (p.missed || []).slice(0, 3);
+  writeBitsV2(bits, missed.length, V2.missedCount);
+  for (let i = 0; i < 3; i++) {
+    const item = i < missed.length ? packItemId(missed[i]) : { op: 0, a: 0, b: 0 };
+    writeBitsV2(bits, item.op, 3);
+    writeBitsV2(bits, item.a, 14);
+    writeBitsV2(bits, item.b, 7);
+  }
+
+  writeBitsV2(bits, checksumOf(bits), 10);
+
+  let out = '';
+  for (let i = 0; i < bits.length; i += 5) {
+    let v = 0;
+    for (let j = 0; j < 5; j++) v = v * 2 + (bits[i + j] || 0);
+    out += ALPHABET[v];
+  }
+  return out;
+}
+
+function clampTo(n, lo, hi) {
+  const v = Math.round(Number(n) || 0);
+  return v < lo ? lo : v > hi ? hi : v;
+}
+
+/**
+ * Decode a code of either version.
+ *
+ * The caller does not have to know which it is holding -- a teacher pasting a
+ * mix of old and new codes is the normal case during a changeover.
+ */
+export function decodeAny(code) {
+  const clean = String(code || '')
+    .toUpperCase()
+    .replace(/[^0-9A-Z]/g, '')
+    .split('')
+    .map(normalizeChar)
+    .join('');
+
+  if (clean.length === 29) return decodeProgress(clean);
+  if (clean.length === 28) return decodeProgressV2(clean);
+  return { ok: false, error: `Expected 28 or 29 characters, got ${clean.length}` };
+}
+
+/** @returns {{ok:true, value:object} | {ok:false, error:string}} Never throws. */
+export function decodeProgressV2(code) {
+  const clean = String(code || '')
+    .toUpperCase()
+    .replace(/[^0-9A-Z]/g, '')
+    .split('')
+    .map(normalizeChar)
+    .join('');
+
+  if (clean.length !== 28) {
+    return { ok: false, error: `Expected 28 characters, got ${clean.length}` };
+  }
+
+  const bits = [];
+  for (let i = 0; i < clean.length; i++) {
+    const v = ALPHABET.indexOf(clean[i]);
+    if (v < 0) return { ok: false, error: `Bad character "${clean[i]}"` };
+    for (let j = 4; j >= 0; j--) bits.push((v >> j) & 1);
+  }
+
+  const payload = bits.slice(0, V2_TOTAL_BITS - 10);
+  let given = 0;
+  for (let i = V2_TOTAL_BITS - 10; i < V2_TOTAL_BITS; i++) given = given * 2 + bits[i];
+  if (checksumOf(payload) !== given) {
+    return { ok: false, error: 'Checksum failed -- the code was mistyped or damaged' };
+  }
+
+  let o = 0;
+  const take = (w) => {
+    let v = 0;
+    for (let i = 0; i < w; i++) v = v * 2 + bits[o + i];
+    o += w;
+    return v;
+  };
+
+  const version = take(V2.version);
+  if (version !== VERSION_2) {
+    return { ok: false, error: `Unsupported code version ${version}` };
+  }
+
+  const ccLen = take(V2.classCodeLen);
+  let classCode = '';
+  for (let i = 0; i < 4; i++) {
+    const idx = take(5);
+    if (i < ccLen) classCode += ALPHABET[idx];
+  }
+
+  const studentNumber = take(V2.studentNumber);
+  const grade = take(V2.grade);
+  const skillIndex = take(V2.skillIndex);
+  const stage = take(V2.stage);
+  const accuracyPct = take(V2.accuracy);
+  const daysPractised = take(V2.daysPractised);
+  const mastered = take(V2.mastered) === 1;
+  const missedCount = take(V2.missedCount);
+
+  const missed = [];
+  for (let i = 0; i < 3; i++) {
+    const op = take(3);
+    const a = take(14);
+    const b = take(7);
+    if (i < missedCount) missed.push(unpackItemId({ op, a, b }));
+  }
+
+  return {
+    ok: true,
+    value: {
+      version, classCode, studentNumber, grade, skillIndex, stage,
+      accuracy: accuracyPct / 100, accuracyPct, daysPractised, mastered, missed,
+      // v1 shape compatibility, so the teacher table can show one column set.
+      week: null, badge: mastered, medianMs: null,
+    },
+  };
+}

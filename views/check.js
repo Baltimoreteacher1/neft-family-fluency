@@ -1,141 +1,120 @@
-// The Friday Check: 20 seeded items, no hints, no second tries, and the badge
-// decision. This is the only activity that measures anything.
+// The Check: the skill's current stage, no hints, no second tries.
+// Passing moves up a stage; passing the top stage masters the skill.
 
 import { el, mount, announce } from '../engine/dom.js';
 import { t } from '../engine/i18n.js';
-import { buildSet } from '../engine/setBuilder.js';
-import { recordCheck, weekSummary } from '../engine/progress.js';
-import { encodeProgress, formatCode, prefillUrl } from '../engine/progressCode.js';
-import { storage, KEY } from '../engine/storage.js';
-import { qrSvg } from '../engine/qr.js';
+import { findSkill, loadIndex } from '../engine/curriculum.js';
+import { buildSession, updateFacts } from '../engine/session.js';
+import {
+  loadProgress, saveProgress, skillRecord, recordCheck, addAttempts,
+} from '../engine/model.js';
 import { runSet } from './runner.js';
+import { sendCard } from './sendToTeacher.js';
 
 export async function render(container, app, match) {
-  const weekNumber = Number(match[1]);
-  const week = app.weekByNumber(weekNumber);
+  const grade = Number(match[1]);
+  const skillId = match[2];
+  const [skill, index] = await Promise.all([findSkill(grade, skillId), loadIndex()]);
+  if (!skill) throw new Error(`No skill ${skillId}`);
+
+  const record = skillRecord(loadProgress(app.profile.id), skillId);
+  const stage = record.mastered ? skill.stages.length - 1 : record.stage;
 
   mount(container,
     el('div', { class: 'card' },
-      el('h2', { text: t('check.title') }),
-      el('p', { text: t('check.intro') }),
+      el('h2', { text: t('activity.check') }),
+      el('p', { text: t('check.intro', { n: skill.checkLength || index.defaults.check.items }) }),
       el('button', {
         class: 'btn btn--block',
-        onClick: () => start(container, app, weekNumber, week),
+        onClick: () => start(container, app, grade, skill, stage, index),
       }, t('check.start')),
     ),
   );
 }
 
-function start(container, app, weekNumber, week) {
-  // The check is seeded per profile and week but NOT per day: retaking it
-  // should be the same assessment, not a search for an easier draw.
-  const set = buildSet(app.curriculum, {
-    week: weekNumber,
-    kind: 'check',
-    seed: `${app.profile.id}|${weekNumber}|check`,
+function start(container, app, grade, skill, stage, index) {
+  const set = buildSession(skill, {
+    stage,
+    count: skill.checkLength || index.defaults.check.items,
+    // Not seeded by day: retaking a Check should be the same assessment, not
+    // a search for an easier draw.
+    seed: `${app.profile.id}|${skill.id}|check|${stage}`,
+    review: false,
   });
 
   runSet(container, app, {
     set,
-    week,
+    skill,
     allowHints: false,
     onFinish: (attempts) => {
-      const result = recordCheck(
-        app.profile.id, weekNumber, attempts, week.mode, app.curriculum.defaults.mastery,
+      const correct = attempts.filter((a) => a.correct).length;
+      const accuracy = attempts.length ? correct / attempts.length : 0;
+      const passed = accuracy >= index.defaults.check.passAccuracy;
+
+      const times = attempts.filter((a) => a.correct).map((a) => a.ms).sort((x, y) => x - y);
+      const medianMs = times.length ? times[Math.floor(times.length / 2)] : null;
+
+      addAttempts(app.profile.id, skill.id, attempts);
+      const p = loadProgress(app.profile.id);
+      updateFacts(skillRecord(p, skill.id), attempts);
+      saveProgress(app.profile.id, p);
+
+      const before = skillRecord(loadProgress(app.profile.id), skill.id);
+      const wasMastered = before.mastered;
+      const record = recordCheck(
+        app.profile.id, skill.id,
+        { accuracy, total: attempts.length, correct, medianMs, passed },
+        skill.stages.length,
       );
-      showResult(container, app, weekNumber, week, result);
+
+      result(container, app, grade, skill, {
+        accuracy, correct, total: attempts.length, medianMs, passed,
+        stage, record, newlyMastered: record.mastered && !wasMastered,
+      });
     },
   });
 }
 
-function showResult(container, app, weekNumber, week, result) {
-  const pct = Math.round(result.accuracy * 100);
-  const seconds = result.medianMs == null ? '—' : (result.medianMs / 1000).toFixed(1);
+function result(container, app, grade, skill, r) {
+  const pct = Math.round(r.accuracy * 100);
+  const seconds = r.medianMs == null ? null : (r.medianMs / 1000).toFixed(1);
 
-  const summary = weekSummary(app.profile.id, weekNumber);
-  const code = encodeProgress({
-    classCode: app.profile.classCode,
-    studentNumber: app.profile.studentNumber,
-    week: weekNumber,
-    daysPractised: summary.daysPractised,
-    accuracy: summary.accuracy,
-    medianMs: summary.medianMs,
-    badge: summary.badge,
-    missed: summary.missed,
-  });
-
-  announce(result.mastered
-    ? t('check.badgeEarned', { n: week.level })
-    : t('check.badgeNotYet'));
+  announce(r.passed ? t('check.passed') : t('check.notYet'));
 
   mount(container,
     el('div', { class: 'card result' },
-      el('h2', { text: t('check.resultTitle') }),
-      result.mastered
+      r.newlyMastered
         ? el('div', { class: 'badge badge--pop', 'aria-hidden': 'true', text: '⭐' })
         : null,
-      el('p', { class: 'result__figure', text: `${pct}%` }),
+      el('h2', { text: r.newlyMastered ? t('check.mastered') : r.passed ? t('check.passed') : t('check.notYet') }),
+      el('p', { class: 'result__figure', text: `${r.correct}/${r.total}` }),
       el('p', { class: 'muted', text: t('check.accuracy', { pct }) }),
-      el('p', { class: 'muted', text: t('check.medianTime', { seconds }) }),
-      el('h3', { text: result.mastered
-        ? t('check.badgeEarned', { n: week.level })
-        : t('check.badgeNotYet') }),
-      result.nextFocus
-        ? el('p', { text: t(result.nextFocus === 'speed' ? 'check.focusSpeed' : 'check.focusAccuracy') })
+      // Speed is information, never a pass condition.
+      seconds && app.settings.timer
+        ? el('p', { class: 'muted', text: t('check.medianTime', { seconds }) })
         : null,
+      el('p', { text: r.passed ? t('check.movedUp') : t('check.keepGoing') }),
     ),
-    sendCard(app, code),
+
+    // The card the kid can hold up in class: nothing is transmitted.
+    showTeacherCard(app, skill, r),
+
+    // And the optional send, which is the only thing that ever leaves the phone.
+    sendCard(app, { grade, skill, result: r }),
+
     el('button', {
       class: 'btn btn--block',
-      onClick: () => app.go('levels'),
-    }, t('practice.summaryBack')),
+      onClick: () => app.go(`g/${grade}/${skill.id}`),
+    }, t('practice.backToSkill')),
   );
 }
 
-function sendCard(app, code) {
-  const pretty = formatCode(code);
-  // The teacher's overrides win, so a recreated form needs no redeploy. Both
-  // must be overridable: a new form gets a new entry id as well as a new URL.
-  const formUrl = storage.get(KEY.formUrlOverride, null) || app.config.FORM_URL;
-  const entryId = storage.get(KEY.formEntryOverride, null) || app.config.FORM_ENTRY_ID;
-  const url = prefillUrl(formUrl, entryId, code);
-
-  const copied = el('span', { class: 'muted' });
-  const qrHolder = el('div', { style: 'text-align:center' });
-
-  return el('div', { class: 'card' },
-    el('h3', { text: t('check.sendTitle') }),
-    el('p', { class: 'muted', text: t('check.sendBody') }),
-    el('p', { class: 'code', id: 'progress-code', text: pretty }),
-    el('div', { class: 'row' },
-      el('button', {
-        class: 'btn btn--ghost btn--small',
-        onClick: async () => {
-          try {
-            await navigator.clipboard.writeText(code);
-            copied.textContent = t('check.copied');
-          } catch {
-            // Clipboard is blocked in some Android WebViews; selecting the text
-            // is the fallback that always works.
-            const range = document.createRange();
-            range.selectNodeContents(document.getElementById('progress-code'));
-            const sel = getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
-          }
-        },
-      }, t('check.copyCode')),
-      el('button', {
-        class: 'btn btn--ghost btn--small',
-        onClick: () => mount(qrHolder, qrSvg(code, { size: 180 })),
-      }, t('check.showQr')),
-    ),
-    qrHolder,
-    // Hidden rather than dead: a button that goes nowhere is worse than no
-    // button, and FORM_URL is blank until the Apps Script has been run.
-    url
-      ? el('a', { class: 'btn btn--block', href: url, target: '_blank', rel: 'noopener' },
-          t('check.sendButton'))
-      : el('p', { class: 'muted', text: t('check.yourCode') }),
+function showTeacherCard(app, skill, r) {
+  return el('div', { class: 'card teachercard' },
+    el('h3', { class: 'flush', text: t('check.showTeacher') }),
+    el('p', { class: 'teachercard__skill', text: skill.title[app.lang] || skill.title.en }),
+    el('p', { class: 'teachercard__score', text: `${r.correct}/${r.total}` }),
+    el('p', { class: 'muted', text: new Date().toLocaleDateString() }),
+    el('p', { class: 'muted', text: t('check.showTeacherHint') }),
   );
 }
