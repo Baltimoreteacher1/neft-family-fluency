@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Family Math Fluency">
+  <rect width="512" height="512" rx="112" fill="#1f5f4b"/>
+  <g fill="#fdfbf7" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="256" y="232" font-size="190">&#215;</text>
+    <text x="256" y="420" font-size="190">&#247;</text>
+  </g>
+</svg>
