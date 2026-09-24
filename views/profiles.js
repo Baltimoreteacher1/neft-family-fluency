@@ -74,8 +74,17 @@ function creator(app) {
     placeholder: t('profiles.nicknamePlaceholder'),
   });
 
+  // The flyer links carry ?class=6A, so a family that scanned their own
+  // teacher's flyer arrives with the right class already chosen.
+  const fromFlyer = new URLSearchParams(location.search).get('class');
   const classCode = el('select', { id: 'f-class' },
-    app.config.CLASS_CODES.map((c) => el('option', { value: c, text: c })),
+    app.config.CLASS_CODES.map((c) =>
+      el('option', {
+        value: c,
+        text: c,
+        selected: fromFlyer && c.toUpperCase() === fromFlyer.toUpperCase(),
+      }),
+    ),
   );
 
   const studentNumber = el('input', {

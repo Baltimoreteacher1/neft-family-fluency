@@ -8,7 +8,7 @@
   "scripts": {
     "test": "node --test tests/unit/",
     "test:e2e": "playwright test",
-    "serve": "node tests/tools/serve.js"
+    "serve": "PORT=8127 node tests/tools/serve.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

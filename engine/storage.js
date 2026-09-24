@@ -35,8 +35,13 @@ export const KEY = {
   progress: (profileId) => `ewl_progress_${profileId}`,
   /** Teacher view: codes pasted on this device. */
   teacherCodes: 'ewl_teacher_codes',
-  /** Teacher view: a FORM_URL override, so a form change needs no redeploy. */
+  /**
+   * Teacher view: overrides for the Google Form, so a form recreated mid-year
+   * needs no redeploy. Both are needed -- a new form gets a new entry id, so
+   * overriding the URL alone would point at the right form and the wrong field.
+   */
   formUrlOverride: 'ewl_form_url_override',
+  formEntryOverride: 'ewl_form_entry_override',
   /** Best game scores, per profile + game. */
   bestScore: (profileId, gameId) => `ewl_best_${profileId}_${gameId}`,
 };

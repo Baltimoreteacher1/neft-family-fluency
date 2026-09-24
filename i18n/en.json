@@ -156,9 +156,12 @@
     "clearAll": "Clear all codes",
     "clearConfirm": "Remove every code stored on this device?",
     "formOverride": "Google Form URL override",
-    "formOverrideHint": "Set this if the form changed and you do not want to redeploy.",
+    "formOverrideHint": "Paste the “Get pre-filled link” from your form — it carries both the address and the field id. A plain form address works too.",
     "rejected": "{n} code(s) could not be read",
-    "noNames": "Students appear as class code + list number. This tool never sees a name."
+    "noNames": "Students appear as class code + list number. This tool never sees a name.",
+    "formOverrideOk": "Saved. Sending to field {entry}.",
+    "formOverrideNoEntry": "Saved the address, but no field id yet. Paste a pre-filled link so the code fills in by itself.",
+    "formOverrideBad": "That does not look like a form link."
   },
   "days": {
     "mon": "Mon",

@@ -157,9 +157,12 @@
     "clearAll": "Borrar todos los codigos",
     "clearConfirm": "¿Quitar todos los codigos guardados en este dispositivo?",
     "formOverride": "URL del formulario de Google",
-    "formOverrideHint": "Cambiela si el formulario cambio y no quiere volver a publicar el sitio.",
+    "formOverrideHint": "Pegue el “enlace pre-llenado” de su formulario: lleva la direccion y el identificador del campo. Tambien sirve la direccion normal del formulario.",
     "rejected": "No se pudieron leer {n} codigo(s)",
-    "noNames": "Los estudiantes aparecen como codigo de clase y numero de lista. Esta herramienta nunca ve un nombre."
+    "noNames": "Los estudiantes aparecen como codigo de clase y numero de lista. Esta herramienta nunca ve un nombre.",
+    "formOverrideOk": "Guardado. Se enviara al campo {entry}.",
+    "formOverrideNoEntry": "Se guardo la direccion, pero todavia no hay identificador de campo. Pegue un enlace pre-llenado para que el codigo se escriba solo.",
+    "formOverrideBad": "Eso no parece un enlace de formulario."
   },
   "days": {
     "mon": "Lun",

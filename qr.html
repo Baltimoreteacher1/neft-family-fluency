@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Printable flyer with a QR code to the family math practice site." />
+    <title>Family Math Fluency — flyer</title>
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="app.css" />
+    <style>
+      /* Flyer-only layout. Two identical halves per sheet in English and
+         Spanish, so one print run covers both and a family gets the half they
+         can read. */
+      .flyer {
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        padding: 22px;
+        margin-bottom: 20px;
+        text-align: center;
+        background: var(--card);
+      }
+      .flyer h2 {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+      }
+      .flyer__qr {
+        margin: 16px auto 8px;
+        width: 210px;
+        max-width: 60vw;
+      }
+      .flyer__qr svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .flyer__url {
+        font-family: var(--font-num);
+        font-weight: 700;
+        word-break: break-all;
+        font-size: 0.95rem;
+      }
+      .flyer__class {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 8px 18px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--accent-ink);
+        background: var(--accent-soft);
+        border-radius: 10px;
+      }
+      .flyer__steps {
+        text-align: left;
+        max-width: 24em;
+        margin: 12px auto 0;
+        padding-left: 1.2em;
+      }
+      .flyer__steps li {
+        margin-bottom: 6px;
+      }
+      @media print {
+        /* Force the light palette: a dark-mode print is a wasted cartridge. */
+        :root {
+          --paper: #fff;
+          --card: #fff;
+          --ink: #000;
+          --ink-soft: #444;
+          --line: #999;
+          --accent-soft: #eee;
+          --accent-ink: #000;
+        }
+        .flyer {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar no-print">
+        <a class="btn btn--ghost btn--small" href="./">Back</a>
+        <h1>Printable flyer</h1>
+      </header>
+
+      <div class="card no-print">
+        <div class="field">
+          <label for="class-code">Class code on the flyer</label>
+          <select id="class-code"></select>
+        </div>
+        <div class="field">
+          <label for="site-url">Site address</label>
+          <input type="url" id="site-url" />
+          <p class="muted">
+            Defaults to wherever this page is served from. Change it only if you
+            are printing before the site is live.
+          </p>
+        </div>
+        <button class="btn" id="print">Print</button>
+      </div>
+
+      <main id="main" tabindex="-1"></main>
+    </div>
+    <script type="module" src="qr.js"></script>
+  </body>
+</html>

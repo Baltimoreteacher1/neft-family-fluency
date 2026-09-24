@@ -94,9 +94,11 @@ function showResult(container, app, weekNumber, week, result) {
 
 function sendCard(app, code) {
   const pretty = formatCode(code);
-  // The teacher's override wins, so a recreated form needs no redeploy.
+  // The teacher's overrides win, so a recreated form needs no redeploy. Both
+  // must be overridable: a new form gets a new entry id as well as a new URL.
   const formUrl = storage.get(KEY.formUrlOverride, null) || app.config.FORM_URL;
-  const url = prefillUrl(formUrl, app.config.FORM_ENTRY_ID, code);
+  const entryId = storage.get(KEY.formEntryOverride, null) || app.config.FORM_ENTRY_ID;
+  const url = prefillUrl(formUrl, entryId, code);
 
   const copied = el('span', { class: 'muted' });
   const qrHolder = el('div', { style: 'text-align:center' });

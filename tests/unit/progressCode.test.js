@@ -13,6 +13,7 @@ import {
   formatCode,
   normalizeClassCode,
   prefillUrl,
+  parseFormLink,
 } from '../../engine/progressCode.js';
 
 const vectors = JSON.parse(
@@ -168,4 +169,45 @@ test('shared vectors decode back to their payloads', () => {
     assert.equal(out.value.badge, v.payload.badge, v.name);
     assert.deepEqual(out.value.missed, v.payload.missed, v.name);
   }
+});
+
+// --- the teacher's form override ----------------------------------------
+
+test('parseFormLink pulls the address and the field id out of a pre-filled link', () => {
+  const out = parseFormLink(
+    'https://docs.google.com/forms/d/e/ABC123/viewform?usp=pp_url&entry.987654=MYCODE',
+  );
+  assert.equal(out.formUrl, 'https://docs.google.com/forms/d/e/ABC123/viewform');
+  assert.equal(out.entryId, 'entry.987654');
+});
+
+test('parseFormLink accepts a plain form address, with no field id', () => {
+  const out = parseFormLink('https://docs.google.com/forms/d/e/ABC123/viewform');
+  assert.equal(out.formUrl, 'https://docs.google.com/forms/d/e/ABC123/viewform');
+  assert.equal(out.entryId, null);
+});
+
+test('parseFormLink drops the sample code from the pasted link', () => {
+  // Google's pre-filled link contains whatever was typed to generate it. That
+  // value must not survive into a real child's submission.
+  const out = parseFormLink(
+    'https://docs.google.com/forms/d/e/ABC/viewform?usp=pp_url&entry.1=SAMPLE',
+  );
+  assert.ok(!out.formUrl.includes('SAMPLE'));
+  assert.ok(!out.formUrl.includes('?'));
+});
+
+test('parseFormLink refuses anything that is not an http(s) URL', () => {
+  for (const bad of ['', null, undefined, 'not a url', 'javascript:alert(1)', 'data:text/html,x']) {
+    assert.equal(parseFormLink(bad), null, `"${String(bad)}" should be refused`);
+  }
+});
+
+test('a parsed link rebuilds into a working prefill URL', () => {
+  const parsed = parseFormLink(
+    'https://docs.google.com/forms/d/e/ABC/viewform?usp=pp_url&entry.55=OLD',
+  );
+  const url = prefillUrl(parsed.formUrl, parsed.entryId, '535000W3JW0RW0072102M381EG4DS');
+  assert.ok(url.includes('entry.55=535000W3JW0RW0072102M381EG4DS'));
+  assert.ok(!url.includes('OLD'));
 });

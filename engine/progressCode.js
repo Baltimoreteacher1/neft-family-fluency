@@ -275,3 +275,41 @@ export function prefillUrl(formUrl, entryId, code) {
   const sep = formUrl.indexOf('?') >= 0 ? '&' : '?';
   return `${formUrl}${sep}usp=pp_url&${encodeURIComponent(entryId)}=${encodeURIComponent(code)}`;
 }
+
+/**
+ * Pull the form URL and the prefill field id out of a Google "Get pre-filled
+ * link" URL.
+ *
+ * This exists because a teacher who recreates their form gets a new entry id
+ * as well as a new URL, so being able to override only the URL would not
+ * actually save the redeploy it was meant to save. Google's own UI hands over
+ * a link containing both, so that link is the thing worth accepting.
+ *
+ * Also accepts a plain form URL, in which case entryId comes back null.
+ *
+ * @returns {{formUrl:string, entryId:string|null} | null}
+ */
+export function parseFormLink(input) {
+  const raw = String(input || '').trim();
+  if (!raw) return null;
+
+  let url;
+  try {
+    url = new URL(raw);
+  } catch {
+    return null;
+  }
+  if (!/^https?:$/.test(url.protocol)) return null;
+
+  let entryId = null;
+  for (const [key] of url.searchParams) {
+    if (/^entry\.\d+$/.test(key)) {
+      entryId = key;
+      break;
+    }
+  }
+
+  // Everything before the query is the form itself; the prefill parameters are
+  // this one code's, and must not be carried over to the next child's link.
+  return { formUrl: `${url.origin}${url.pathname}`, entryId };
+}

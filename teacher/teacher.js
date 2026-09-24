@@ -8,7 +8,7 @@
 import { loadLang, t } from '../engine/i18n.js';
 import { el, mount, announce } from '../engine/dom.js';
 import { storage, KEY } from '../engine/storage.js';
-import { decodeProgress, formatCode } from '../engine/progressCode.js';
+import { decodeProgress, formatCode, parseFormLink } from '../engine/progressCode.js';
 import config from '../config.js';
 
 const main = () => document.getElementById('main');
@@ -142,8 +142,12 @@ function render() {
     type: 'url',
     id: 'form-url',
     value: storage.get(KEY.formUrlOverride, '') || '',
-    placeholder: config.FORM_URL || 'https://docs.google.com/forms/d/e/…/viewform',
+    placeholder:
+      config.FORM_URL ||
+      'https://docs.google.com/forms/d/e/…/viewform?usp=pp_url&entry.123456=CODE',
   });
+
+  const overrideStatus = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite' });
 
   mount(main(),
     el('p', { class: 'muted', text: t('teacher.subtitle') }),
@@ -196,13 +200,39 @@ function render() {
       el('h2', { text: t('teacher.formOverride') }),
       el('p', { class: 'muted', text: t('teacher.formOverrideHint') }),
       override,
+      overrideStatus,
       el('div', { class: 'row', style: 'margin-top:12px' },
         el('button', {
           class: 'btn',
+          id: 'save-form-url',
           onClick: () => {
             const value = override.value.trim();
-            storage.set(KEY.formUrlOverride, value || null);
-            announce(t('app.save'));
+            if (!value) {
+              storage.set(KEY.formUrlOverride, null);
+              storage.set(KEY.formEntryOverride, null);
+              overrideStatus.textContent = '';
+              announce(t('app.save'));
+              return;
+            }
+
+            const parsed = parseFormLink(value);
+            if (!parsed) {
+              overrideStatus.textContent = t('teacher.formOverrideBad');
+              announce(overrideStatus.textContent);
+              return;
+            }
+
+            storage.set(KEY.formUrlOverride, parsed.formUrl);
+            // Only replace the entry id when the pasted link actually carried
+            // one. Clearing it on a plain URL would silently break the Send
+            // button for a teacher who pasted the address bar instead.
+            if (parsed.entryId) storage.set(KEY.formEntryOverride, parsed.entryId);
+
+            const entry = parsed.entryId || storage.get(KEY.formEntryOverride, null) || config.FORM_ENTRY_ID;
+            overrideStatus.textContent = entry
+              ? t('teacher.formOverrideOk', { entry })
+              : t('teacher.formOverrideNoEntry');
+            announce(overrideStatus.textContent);
           },
         }, t('app.save')),
       ),

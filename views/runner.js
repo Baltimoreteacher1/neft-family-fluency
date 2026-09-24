@@ -53,15 +53,22 @@ export function runSet(container, app, opts) {
     settled = false;
     shownAt = performance.now();
 
-    if (item().kind === 'procedure') {
-      mount(body, renderProcedure(item(), {
-        onComplete: (ok) => finishItem(ok),
-        onStepFeedback: (msg, good) => {
-          feedback.textContent = msg;
-          feedback.dataset.state = good ? 'yes' : 'no';
-          announce(msg);
-        },
-      }));
+    const procedure = item().kind === 'procedure';
+    if (procedure) {
+      mount(body,
+        renderProcedure(item(), {
+          onComplete: (ok) => finishItem(ok),
+          onStepFeedback: (msg, good) => {
+            feedback.textContent = msg;
+            feedback.dataset.state = good ? 'yes' : 'no';
+            announce(msg);
+          },
+        }),
+        // Procedure mode has no answer box to hang the feedback off, so the
+        // shared element is mounted here. Leaving it out left every "check
+        // that step again" writing to a node that was not on the page.
+        feedback,
+      );
     } else {
       mount(body, factQuestion());
     }
@@ -70,6 +77,7 @@ export function runSet(container, app, opts) {
   }
 
   function factQuestion() {
+    // `feedback` is shared with procedure mode, so it is placed, not created.
     const input = answerBox({ onSubmit: () => judge(input.value) });
     const pad = keypad({
       onInput: (v) => {
