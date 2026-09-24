@@ -32,7 +32,11 @@ test.describe('offline', () => {
     // The profile is on the device, so the app comes straight back to that
     // child's dashboard rather than the browser's offline page.
     await expect(page.locator('.today')).toBeVisible({ timeout: 15_000 });
-    await expect(page.locator('.skillcard')).toHaveCount(5);
+    const expected = await page.evaluate(async () => {
+      const r = await fetch('curriculum/grade-3.json');
+      return (await r.json()).skills.length;
+    });
+    await expect(page.locator('.skillcard')).toHaveCount(expected);
 
     // Questions are generated on the phone, so practice must work offline too.
     await page.locator('.skillcard').first().click();

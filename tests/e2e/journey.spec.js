@@ -46,15 +46,26 @@ test.describe('navigation', () => {
   test('skills are recommended, never locked', async ({ page }) => {
     await createProfile(page);
     const cards = page.locator('.skillcard');
-    await expect(cards).toHaveCount(5);
+    // Read the expected count from the curriculum rather than pinning a number
+    // that changes whenever a skill is added.
+    const expected = await page.evaluate(async () => {
+      const r = await fetch('curriculum/grade-3.json');
+      return (await r.json()).skills.length;
+    });
+    await expect(cards).toHaveCount(expected);
 
     // No padlocks and nothing disabled: a child may pick any skill.
     await expect(page.locator('.skillcard[disabled]')).toHaveCount(0);
     await expect(page.locator('.skillcard__next')).toHaveCount(1);
 
-    // The last skill opens just as readily as the first.
+    // The last skill opens just as readily as the first -- whichever it is.
+    const lastId = await page.evaluate(async () => {
+      const r = await fetch('curriculum/grade-3.json');
+      const skills = (await r.json()).skills;
+      return skills[skills.length - 1].id;
+    });
     await cards.last().click();
-    expect(page.url()).toContain('g3-div-facts');
+    expect(page.url()).toContain(lastId);
   });
 
   test('old URLs still land somewhere sensible', async ({ page }) => {
