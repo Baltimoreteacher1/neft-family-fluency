@@ -1,0 +1,5 @@
+# Cloudflare Pages -- the repo root IS the site. There is no build step and
+# adding one would violate the no-build-step constraint in CLAUDE.md.
+name = "neft-family-fluency"
+pages_build_output_dir = "."
+compatibility_date = "2026-09-24"

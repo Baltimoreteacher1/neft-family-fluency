@@ -1,0 +1,34 @@
+MIT License (code)
+
+Copyright (c) 2026 Joel Neft
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+INSTRUCTIONAL CONTENT LICENSE
+
+The instructional content in this repository -- the curriculum in
+`curriculum/`, the family guidance in `family/`, the translated strings in
+`i18n/`, and all lesson text, strategy explanations and problem wording --
+is Copyright (c) 2026 Mr. Neft. All rights reserved.
+
+Teachers and families may use it freely with their own students and children.
+Redistribution, resale, or republication of the instructional content requires
+written permission.

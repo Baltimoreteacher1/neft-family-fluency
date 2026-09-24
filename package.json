@@ -1,0 +1,19 @@
+{
+  "name": "neft-family-fluency",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Week-by-week math fluency portal for families. Static, offline-first, no accounts.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/unit/",
+    "test:e2e": "playwright test",
+    "serve": "node tests/tools/serve.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
