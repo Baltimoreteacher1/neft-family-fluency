@@ -1,0 +1,198 @@
+{
+  "$comment": "Scope & sequence. This file is the curriculum. Adding a week means adding an entry here plus family/week-XX.json -- never a new HTML page. Generator ids map to engine/generators/<id>.js.",
+  "schemaVersion": 1,
+  "strand": {
+    "id": "mult-div",
+    "title": { "en": "Multiplication & Division", "es": "Multiplicacion y division" },
+    "levels": 8
+  },
+  "defaults": {
+    "practice": { "items": 16, "minutes": 6 },
+    "check": { "items": 20 },
+    "spiral": { "currentWeight": 0.7, "pastWeight": 0.3, "missedFactBoost": 3 },
+    "mastery": {
+      "fact": { "minAccuracy": 0.9, "maxMedianMs": 3000 },
+      "procedure": { "minAccuracy": 0.85, "maxMedianMs": null }
+    },
+    "goal": { "daysPerWeek": 3, "ofDays": 5 }
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "level": 1,
+      "mode": "fact",
+      "title": { "en": "x2, x5, x10", "es": "x2, x5, x10" },
+      "strategy": {
+        "id": "skip-count-double",
+        "en": "Skip counting and doubles",
+        "es": "Contar salteado y dobles"
+      },
+      "skills": [
+        {
+          "id": "w1-mult-2-5-10",
+          "generator": "multFact",
+          "params": { "factors": [2, 5, 10], "others": [0,1,2,3,4,5,6,7,8,9,10], "commute": true },
+          "strategyTag": "skip-count-double"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 60 } }
+    },
+    {
+      "week": 2,
+      "level": 2,
+      "mode": "fact",
+      "title": { "en": "x4, x8", "es": "x4, x8" },
+      "strategy": {
+        "id": "double-double",
+        "en": "Double, then double again",
+        "es": "Duplica y vuelve a duplicar"
+      },
+      "skills": [
+        {
+          "id": "w2-mult-4-8",
+          "generator": "multFact",
+          "params": { "factors": [4, 8], "others": [0,1,2,3,4,5,6,7,8,9,10], "commute": true },
+          "strategyTag": "double-double"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 60 } }
+    },
+    {
+      "week": 3,
+      "level": 3,
+      "mode": "fact",
+      "title": { "en": "x3, x6", "es": "x3, x6" },
+      "strategy": {
+        "id": "three-then-double",
+        "en": "Times 3, then double it",
+        "es": "Por 3, luego duplica"
+      },
+      "skills": [
+        {
+          "id": "w3-mult-3-6",
+          "generator": "multFact",
+          "params": { "factors": [3, 6], "others": [0,1,2,3,4,5,6,7,8,9,10], "commute": true },
+          "strategyTag": "three-then-double"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 60 } }
+    },
+    {
+      "week": 4,
+      "level": 4,
+      "mode": "fact",
+      "title": { "en": "x9, x7", "es": "x9, x7" },
+      "strategy": {
+        "id": "ten-minus-one-break-apart",
+        "en": "Ten groups minus one group; break 7 into 5 + 2",
+        "es": "Diez grupos menos un grupo; separa el 7 en 5 + 2"
+      },
+      "skills": [
+        {
+          "id": "w4-mult-9-7",
+          "generator": "multFact",
+          "params": { "factors": [9, 7], "others": [0,1,2,3,4,5,6,7,8,9,10], "commute": true },
+          "strategyTag": "ten-minus-one-break-apart"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 60 } }
+    },
+    {
+      "week": 5,
+      "level": 5,
+      "mode": "fact",
+      "title": { "en": "Division facts", "es": "Divisiones basicas" },
+      "strategy": {
+        "id": "missing-factor",
+        "en": "What times 6 is 42?",
+        "es": "Cuanto por 6 es 42?"
+      },
+      "skills": [
+        {
+          "id": "w5-div-facts",
+          "generator": "divFact",
+          "params": { "divisors": [2,3,4,5,6,7,8,9,10], "quotients": [1,2,3,4,5,6,7,8,9,10] },
+          "strategyTag": "missing-factor"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 60 } }
+    },
+    {
+      "week": 6,
+      "level": 6,
+      "mode": "fact",
+      "title": { "en": "Extended facts", "es": "Operaciones extendidas" },
+      "strategy": {
+        "id": "place-value-pattern",
+        "en": "Use the basic fact, then the place-value pattern",
+        "es": "Usa la operacion basica y luego el patron de valor posicional"
+      },
+      "skills": [
+        {
+          "id": "w6-extended-mult",
+          "generator": "extendedMult",
+          "params": { "factors": [2,3,4,5,6,7,8,9], "others": [2,3,4,5,6,7,8,9], "scales": [10, 100] },
+          "strategyTag": "place-value-pattern"
+        },
+        {
+          "id": "w6-extended-div",
+          "generator": "extendedDiv",
+          "params": { "divisors": [2,3,4,5,6,7,8,9], "quotients": [2,3,4,5,6,7,8,9], "scales": [10, 100] },
+          "strategyTag": "place-value-pattern"
+        }
+      ],
+      "game": { "id": "raceTrack", "params": { "seconds": 75 } }
+    },
+    {
+      "week": 7,
+      "level": 7,
+      "mode": "procedure",
+      "title": { "en": "Dividing by 1 digit", "es": "Dividir entre 1 digito" },
+      "strategy": {
+        "id": "partial-quotients",
+        "en": "Partial quotients, then the standard algorithm",
+        "es": "Cocientes parciales y luego el algoritmo estandar"
+      },
+      "skills": [
+        {
+          "id": "w7-long-div-1digit",
+          "generator": "longDivision",
+          "params": {
+            "dividendDigits": [3, 4],
+            "divisorRange": [2, 9],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          },
+          "strategyTag": "partial-quotients"
+        }
+      ],
+      "game": { "id": "stepSort", "params": {} }
+    },
+    {
+      "week": 8,
+      "level": 8,
+      "mode": "procedure",
+      "title": { "en": "Dividing by 2 digits", "es": "Dividir entre 2 digitos" },
+      "standard": "6.NS.B.2",
+      "strategy": {
+        "id": "estimate-then-divide",
+        "en": "Estimate first, then divide",
+        "es": "Estima primero y luego divide"
+      },
+      "skills": [
+        {
+          "id": "w8-long-div-2digit",
+          "generator": "longDivision",
+          "params": {
+            "dividendDigits": [3, 4],
+            "divisorRange": [11, 49],
+            "allowRemainder": true,
+            "remainderRate": 0.4
+          },
+          "strategyTag": "estimate-then-divide"
+        }
+      ],
+      "game": { "id": "stepSort", "params": {} }
+    }
+  ]
+}
