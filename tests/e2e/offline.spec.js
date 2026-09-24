@@ -105,3 +105,21 @@ test.describe('page weight', () => {
     expect(foreign, `third-party requests: ${foreign.join(', ')}`).toHaveLength(0);
   });
 });
+
+test.describe('service worker redirect handling', () => {
+  test('a bookmarked /index.html still loads once the worker is installed', async ({ page }) => {
+    // Cloudflare Pages 308-redirects "/index.html" to "/". A service worker
+    // that stores and replays that redirected response fails the navigation
+    // outright, so anyone who bookmarked the .html form gets a dead link --
+    // and only AFTER their first successful visit, which makes it look random.
+    await page.goto('/');
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    await page.waitForTimeout(2_000);
+
+    for (const path of ['/index.html', '/', '/family/', '/teacher/']) {
+      const response = await page.goto(path);
+      expect(response, `${path} did not load at all`).not.toBeNull();
+      await expect(page.locator('#main'), `${path} rendered nothing`).toBeVisible();
+    }
+  });
+});

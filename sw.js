@@ -10,15 +10,18 @@
 // that nobody receives.
 // ---------------------------------------------------------------------------
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE = `ewl-fluency-${CACHE_VERSION}`;
 
 // Everything needed to run offline from a cold start. The curriculum and both
 // language files are included deliberately: a family that installs the app on
 // school wifi and opens it at home must find its questions already here.
+// Canonical paths only. Cloudflare Pages 308-redirects "/index.html" to "/",
+// and a service worker may not hand a redirected response to a navigation --
+// doing so fails the navigation outright. So the directory form is what gets
+// cached, and requests for the .html form are normalised in the fetch handler.
 const SHELL = [
   './',
-  'index.html',
   'app.css',
   'app.js',
   'config.js',
@@ -52,14 +55,12 @@ const SHELL = [
   'views/runner.js',
   'views/keypad.js',
   'family/',
-  'family/index.html',
   'family/family.js',
   // The week cards are NOT listed here -- they are derived from the curriculum
   // at install time, so adding week 9 stays a JSON-only change.
   'teacher/',
-  'teacher/index.html',
   'teacher/teacher.js',
-  'qr.html',
+  'qr',
   'qr.js',
   'icons/icon.svg',
   'icons/icon-192.png',
@@ -100,7 +101,10 @@ self.addEventListener('install', (event) => {
       await Promise.all(
         shell.map(async (url) => {
           try {
-            await cache.add(new Request(url, { cache: 'reload' }));
+            const request = new Request(url, { cache: 'reload' });
+            const response = await fetch(request);
+            if (!response.ok) throw new Error(`${response.status} for ${url}`);
+            await putClean(cache, new Request(url), response);
           } catch (err) {
             console.warn(`[sw] could not cache ${url}`, err);
           }
@@ -110,6 +114,41 @@ self.addEventListener('install', (event) => {
     })(),
   );
 });
+
+/**
+ * Store a response with no redirect flag on it.
+ *
+ * A response that arrived via a redirect is tainted for navigations: returning
+ * one from a service worker throws and the page fails to load. Rebuilding it
+ * from its own body and headers produces an identical response that is safe to
+ * serve. This is not paranoia -- Pages redirects every "/x.html" to "/x".
+ */
+async function putClean(cache, request, response) {
+  if (!response || !response.ok) return;
+  if (!response.redirected) {
+    await cache.put(request, response.clone());
+    return;
+  }
+  const body = await response.clone().blob();
+  await cache.put(
+    request,
+    new Response(body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    }),
+  );
+}
+
+/** Map "/index.html" onto "/", which is what is actually cached. */
+function canonical(request) {
+  const url = new URL(request.url);
+  if (url.pathname.endsWith('/index.html')) {
+    url.pathname = url.pathname.slice(0, -'index.html'.length);
+    return new Request(url, { headers: request.headers });
+  }
+  return request;
+}
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
@@ -130,13 +169,15 @@ self.addEventListener('fetch', (event) => {
   // all, and if something appears, it must not be served from our cache.
   if (url.origin !== self.location.origin) return;
 
+  const lookup = canonical(request);
+
   event.respondWith(
     (async () => {
-      const cached = await caches.match(request, { ignoreSearch: true });
+      const cached = await caches.match(lookup, { ignoreSearch: true });
       if (cached) {
         // Refresh in the background so the next open is current, but never
         // make the family wait for the network to see a page they already have.
-        event.waitUntil(refresh(request));
+        event.waitUntil(refresh(lookup));
         return cached;
       }
 
@@ -144,14 +185,16 @@ self.addEventListener('fetch', (event) => {
         const response = await fetch(request);
         if (response.ok) {
           const cache = await caches.open(CACHE);
-          cache.put(request, response.clone());
+          await putClean(cache, lookup, response);
         }
+        // A redirected response is fine to RETURN to the browser -- it is only
+        // storing and replaying one that breaks. Hand back the original.
         return response;
       } catch (err) {
         // Offline and not cached: fall back to the app shell for navigations
         // so the family sees the app rather than the browser's error page.
         if (request.mode === 'navigate') {
-          const shell = await caches.match('index.html');
+          const shell = await caches.match('./');
           if (shell) return shell;
         }
         throw err;
@@ -165,7 +208,7 @@ async function refresh(request) {
     const response = await fetch(request);
     if (response.ok) {
       const cache = await caches.open(CACHE);
-      await cache.put(request, response);
+      await putClean(cache, request, response);
     }
   } catch {
     // Offline is the normal case here, not an error worth surfacing.
