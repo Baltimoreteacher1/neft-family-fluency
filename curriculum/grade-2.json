@@ -19,7 +19,7 @@
       "stages": [
         {
           "label": {
-            "en": "To 12",
+            "en": "Up to 12",
             "es": "Hasta 12"
           },
           "params": {
@@ -30,7 +30,7 @@
         },
         {
           "label": {
-            "en": "To 20",
+            "en": "Up to 20",
             "es": "Hasta 20"
           },
           "params": {
@@ -41,16 +41,72 @@
         },
         {
           "label": {
-            "en": "From memory",
-            "es": "De memoria"
+            "en": "Crossing ten",
+            "es": "Pasando el diez"
           },
           "params": {
             "op": "add",
-            "min": 0,
+            "min": 5,
             "max": 20
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding within 10, and knowing the pairs that make ten by heart.",
+          "es": "Sumar hasta 10 y saberse de memoria las parejas que forman diez."
+        },
+        "why": {
+          "en": "Crossing ten is the hard part, and it is where the make-ten pairs pay off. For 8 + 5, a fluent child takes 2 from the 5 to fill the ten, then adds the 3 that is left. The standard expects these facts from memory by the end of the year, but memory comes after the strategy, not instead of it.",
+          "es": "Pasar el diez es la parte dificil, y es donde dan fruto las parejas del diez. Para 8 + 5, un nino con soltura le quita 2 al 5 para completar el diez y luego suma el 3 que queda. El estandar espera que se sepan de memoria al final del ano, pero la memoria viene despues de la estrategia, no en su lugar."
+        },
+        "readyWhen": {
+          "en": "your child answers most of them without a pause, and can explain one",
+          "es": "su hijo contesta casi todas sin pausa y puede explicar una"
+        },
+        "leadsTo": {
+          "en": "Two-digit addition, where the same crossing happens inside a column.",
+          "es": "Sumas de dos digitos, donde ese mismo cruce ocurre dentro de una columna."
+        },
+        "say": {
+          "en": [
+            "“How many more would fill the ten?”",
+            "“Split the 5. How much do you need first?”",
+            "“You knew that one without thinking. Which ones still make you stop?”",
+            "“Show me the ten you made.”"
+          ],
+          "es": [
+            "“¿Cuantos mas completarian el diez?”",
+            "“Separa el 5. ¿Cuanto necesitas primero?”",
+            "“Esa la supiste sin pensar. ¿Cuales te hacen parar todavia?”",
+            "“Muestrame el diez que formaste.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Make Ten, Then Some",
+            "es": "Forma diez y sigue"
+          },
+          "needs": {
+            "en": "Two dice and ten small things",
+            "es": "Dos dados y diez cosas pequenas"
+          },
+          "how": {
+            "en": [
+              "Roll both dice and add them.",
+              "If the total goes past ten, say how you got there: “8 and 2 makes ten, and 3 more is 13.”",
+              "Use the ten objects to check if you disagree.",
+              "Play to five rounds. Explaining the ten counts for as much as the answer."
+            ],
+            "es": [
+              "Tiren los dos dados y sumenlos.",
+              "Si el total pasa de diez, digan como llegaron: “8 y 2 forman diez, y 3 mas son 13.”",
+              "Usen las diez cosas para comprobar si no estan de acuerdo.",
+              "Jueguen cinco rondas. Explicar el diez vale tanto como la respuesta."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g2-sub-within-20",
@@ -68,7 +124,7 @@
       "stages": [
         {
           "label": {
-            "en": "To 12",
+            "en": "Up to 12",
             "es": "Hasta 12"
           },
           "params": {
@@ -79,7 +135,7 @@
         },
         {
           "label": {
-            "en": "To 20",
+            "en": "Up to 20",
             "es": "Hasta 20"
           },
           "params": {
@@ -90,16 +146,72 @@
         },
         {
           "label": {
-            "en": "From memory",
-            "es": "De memoria"
+            "en": "Crossing ten",
+            "es": "Pasando el diez"
           },
           "params": {
             "op": "sub",
-            "min": 0,
+            "min": 5,
             "max": 20
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Subtraction within 10, and the addition facts within 20.",
+          "es": "Restar hasta 10 y las sumas hasta 20."
+        },
+        "why": {
+          "en": "13 − 8 is hard to count backwards and easy to think forwards: 8 and what makes 13? Children who count back on their fingers get there, but slowly and with mistakes near ten. Turning it into an addition is the move that makes it quick, and it is the same move that makes division make sense two years later.",
+          "es": "13 − 8 es dificil de contar hacia atras y facil de pensar hacia adelante: ¿8 y cuanto dan 13? Los ninos que cuentan hacia atras con los dedos llegan, pero despacio y con errores cerca del diez. Convertirla en suma es lo que la hace rapida, y es el mismo movimiento que hara que la division tenga sentido dos anos despues."
+        },
+        "readyWhen": {
+          "en": "your child thinks “what plus 8?” instead of counting down",
+          "es": "su hijo piensa “¿cuanto mas 8?” en vez de contar hacia abajo"
+        },
+        "leadsTo": {
+          "en": "Two-digit subtraction, and the fact families behind division.",
+          "es": "Restas de dos digitos y las familias de operaciones detras de la division."
+        },
+        "say": {
+          "en": [
+            "“What plus 8 makes 13?”",
+            "“Count up, not down. It is fewer steps.”",
+            "“Which addition fact goes with this one?”",
+            "“Say the whole family: 8, 5 and 13.”"
+          ],
+          "es": [
+            "“¿Cuanto mas 8 da 13?”",
+            "“Cuenta hacia arriba, no hacia abajo. Son menos pasos.”",
+            "“¿Que suma va con esta resta?”",
+            "“Di toda la familia: 8, 5 y 13.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Count Up, Not Down",
+            "es": "Cuenta hacia arriba"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Turn over two cards and make a subtraction from them, using the bigger number first. Add ten to it if you want harder numbers.",
+              "Solve it by counting UP from the smaller number.",
+              "Say how many jumps you made. That is the answer.",
+              "Take turns. If you both agree, keep the cards."
+            ],
+            "es": [
+              "Volteen dos cartas y formen una resta con ellas, poniendo primero el numero mayor. Sumenle diez si quieren numeros mas dificiles.",
+              "Resuelvanla contando HACIA ARRIBA desde el numero menor.",
+              "Digan cuantos saltos dieron. Esa es la respuesta.",
+              "Tomen turnos. Si los dos coinciden, se quedan con las cartas."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g2-add-sub-10-100",
@@ -167,7 +279,63 @@
             "max": 800
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Ten more and ten less from Grade 1, and counting past 100.",
+          "es": "Diez mas y diez menos de primer grado, y contar mas alla de 100."
+        },
+        "why": {
+          "en": "This is the same idea as last year, one place to the left. Adding 100 to 347 changes only the 3. A child who sees that is reading a number as hundreds, tens and ones rather than as three separate digits, and that reading is what makes the standard algorithms possible rather than magic.",
+          "es": "Es la misma idea del ano pasado, un lugar a la izquierda. Sumar 100 a 347 solo cambia el 3. Un nino que ve eso esta leyendo el numero como centenas, decenas y unidades, y no como tres digitos sueltos; esa lectura es lo que hace posibles los algoritmos, en vez de magia."
+        },
+        "readyWhen": {
+          "en": "your child answers instantly and can say which digit changed",
+          "es": "su hijo contesta al instante y puede decir cual digito cambio"
+        },
+        "leadsTo": {
+          "en": "Two- and three-digit addition, and mental estimation for the rest of school.",
+          "es": "Sumas de dos y tres digitos, y la estimacion mental para el resto de la escuela."
+        },
+        "say": {
+          "en": [
+            "“Which digit changes? Which ones do not?”",
+            "“Do not count. Look at it.”",
+            "“A hundred more than 347. What is it?”",
+            "“Now go backwards. A hundred less.”"
+          ],
+          "es": [
+            "“¿Cual digito cambia? ¿Cuales no?”",
+            "“No cuentes. Mirelo.”",
+            "“Cien mas que 347. ¿Cuanto es?”",
+            "“Ahora al reves. Cien menos.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Jump by Tens and Hundreds",
+            "es": "Salta de diez y de cien"
+          },
+          "needs": {
+            "en": "Three dice and paper",
+            "es": "Tres dados y papel"
+          },
+          "how": {
+            "en": [
+              "Roll three dice to make a three-digit number.",
+              "The other player calls out “ten more”, “a hundred less”, and so on.",
+              "Say the new number as fast as you can, then say which digit moved.",
+              "Five calls each, then swap. Getting the digit right is worth as much as the number."
+            ],
+            "es": [
+              "Tiren tres dados para formar un numero de tres digitos.",
+              "El otro jugador dice “diez mas”, “cien menos”, y asi.",
+              "Digan el numero nuevo lo mas rapido que puedan y luego cual digito se movio.",
+              "Cinco veces cada uno y cambien. Acertar el digito vale tanto como el numero."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g2-two-digit-add",
@@ -197,13 +365,14 @@
         },
         {
           "label": {
-            "en": "With carrying",
-            "es": "Llevando"
+            "en": "Every one carries",
+            "es": "Todas llevan"
           },
           "params": {
             "op": "add",
             "min": 10,
-            "max": 99
+            "max": 99,
+            "regroup": true
           }
         },
         {
@@ -217,7 +386,63 @@
             "max": 99
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding within 20, and knowing what the tens digit means.",
+          "es": "Sumar hasta 20 y saber que significa el digito de las decenas."
+        },
+        "why": {
+          "en": "Carrying is not an extra rule to remember. When the ones column makes more than nine, those ten ones ARE one ten, and they move. Children who are told to “carry the one” without that picture make the same mistakes for years. The middle stage of this skill gives every problem a carry on purpose, so the idea gets practised rather than avoided.",
+          "es": "Llevar no es una regla extra que memorizar. Cuando la columna de las unidades pasa de nueve, esas diez unidades SON una decena, y se mueven. Los ninos a los que solo se les dice “llevas una” sin esa imagen cometen los mismos errores durante anos. La etapa del medio de esta destreza pone a proposito una llevada en cada problema, para que la idea se practique en vez de evitarse."
+        },
+        "readyWhen": {
+          "en": "your child carries without being reminded, and can say what the carried digit is",
+          "es": "su hijo lleva sin que se lo recuerden y puede decir que es el digito que llevo"
+        },
+        "leadsTo": {
+          "en": "Three-digit addition, and then the standard algorithm for everything.",
+          "es": "Sumas de tres digitos y luego el algoritmo estandar para todo."
+        },
+        "say": {
+          "en": [
+            "“The ones made more than ten. Where do the extra ten go?”",
+            "“What is that little 1 actually worth?”",
+            "“Add the tens first if you like. Does it come out the same?”",
+            "“Estimate first: is it near 70 or near 90?”"
+          ],
+          "es": [
+            "“Las unidades pasaron de diez. ¿A donde van esas diez de mas?”",
+            "“¿Cuanto vale de verdad ese 1 pequeno?”",
+            "“Suma primero las decenas si quieres. ¿Da lo mismo?”",
+            "“Estima primero: ¿esta cerca de 70 o de 90?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Race to 100",
+            "es": "Carrera a 100"
+          },
+          "needs": {
+            "en": "Two dice, paper and a pencil",
+            "es": "Dos dados, papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "Each player starts at 0.",
+              "Roll both dice and make a two-digit number from them. Add it to your total.",
+              "Say your new total out loud, and say when you had to carry.",
+              "First past 100 wins. Check each other's adding — catching a mistake is worth a turn."
+            ],
+            "es": [
+              "Cada jugador empieza en 0.",
+              "Tiren los dos dados y formen un numero de dos digitos. Sumenlo a su total.",
+              "Digan su nuevo total en voz alta y digan cuando tuvieron que llevar.",
+              "Gana quien pase de 100 primero. Revisen las sumas del otro: atrapar un error vale un turno."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g2-two-digit-sub",
@@ -247,13 +472,14 @@
         },
         {
           "label": {
-            "en": "With borrowing",
-            "es": "Prestando"
+            "en": "Every one borrows",
+            "es": "Todas prestan"
           },
           "params": {
             "op": "sub",
             "min": 10,
-            "max": 99
+            "max": 99,
+            "regroup": true
           }
         },
         {
@@ -267,7 +493,63 @@
             "max": 99
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Subtraction within 20, and two-digit addition.",
+          "es": "Restar hasta 20 y sumar de dos digitos."
+        },
+        "why": {
+          "en": "Borrowing is the same idea as carrying, running the other way: one ten becomes ten ones so the ones column has enough. The classic error is taking the smaller digit from the larger whichever way round they are — 43 − 28 giving 25. A child who knows WHY they are borrowing does not make that error, which is why the middle stage borrows every time.",
+          "es": "Prestar es la misma idea que llevar, en sentido contrario: una decena se vuelve diez unidades para que la columna de las unidades alcance. El error clasico es restar el digito menor del mayor sin importar el orden: 43 − 28 dando 25. Un nino que sabe POR QUE esta prestando no comete ese error, y por eso la etapa del medio presta siempre."
+        },
+        "readyWhen": {
+          "en": "your child borrows correctly without being told to, and never flips a column",
+          "es": "su hijo presta bien sin que se lo digan y nunca voltea una columna"
+        },
+        "leadsTo": {
+          "en": "Three-digit subtraction, and the standard algorithm in Grade 4.",
+          "es": "Restas de tres digitos y el algoritmo estandar en cuarto grado."
+        },
+        "say": {
+          "en": [
+            "“Can you take 8 from 3? So what do we do?”",
+            "“Where did the ten come from?”",
+            "“Check it by adding your answer back.”",
+            "“Does that answer look about right?”"
+          ],
+          "es": [
+            "“¿Puedes quitarle 8 al 3? ¿Entonces que hacemos?”",
+            "“¿De donde salio la decena?”",
+            "“Compruebalo sumando tu respuesta otra vez.”",
+            "“¿Esa respuesta se ve mas o menos bien?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Down from 100",
+            "es": "Bajar desde 100"
+          },
+          "needs": {
+            "en": "Two dice, paper and a pencil",
+            "es": "Dos dados, papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "Both players start at 100.",
+              "Roll two dice, make a two-digit number, and take it away from your total.",
+              "Say whether you had to borrow, and where the ten came from.",
+              "First to reach exactly 0 or below wins. Landing on 0 exactly is worth a cheer."
+            ],
+            "es": [
+              "Los dos jugadores empiezan en 100.",
+              "Tiren dos dados, formen un numero de dos digitos y restenlo de su total.",
+              "Digan si tuvieron que prestar y de donde salio la decena.",
+              "Gana quien llegue exactamente a 0 o menos. Caer justo en 0 merece un aplauso."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g2-skip-count",
@@ -285,8 +567,22 @@
       "stages": [
         {
           "label": {
-            "en": "2s, 5s, 10s",
-            "es": "De 2, 5 y 10"
+            "en": "From zero",
+            "es": "Desde cero"
+          },
+          "params": {
+            "steps": [
+              2,
+              5,
+              10
+            ],
+            "shown": 3
+          }
+        },
+        {
+          "label": {
+            "en": "Start anywhere",
+            "es": "Empieza donde sea"
           },
           "params": {
             "steps": [
@@ -300,37 +596,77 @@
         },
         {
           "label": {
-            "en": "Add 100s",
-            "es": "Agrega de 100"
+            "en": "Harder steps",
+            "es": "Saltos dificiles"
           },
           "params": {
             "steps": [
-              2,
-              5,
-              10,
+              3,
+              4,
+              25,
               100
             ],
-            "shown": 3,
-            "fromZero": false
-          }
-        },
-        {
-          "label": {
-            "en": "Start anywhere",
-            "es": "Empieza donde sea"
-          },
-          "params": {
-            "steps": [
-              2,
-              5,
-              10,
-              100
-            ],
-            "shown": 3,
+            "shown": 4,
             "fromZero": false
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Counting to 100, and adding the same number again and again.",
+          "es": "Contar hasta 100 y sumar el mismo numero una y otra vez."
+        },
+        "why": {
+          "en": "Skip counting is multiplication before it has a name. A child counting 5, 10, 15, 20 is finding 5 × 4 and does not know it yet. Starting from somewhere other than zero — “35, 40, 45” — is the harder and more useful version, because it stops being a memorised chant and becomes real counting.",
+          "es": "Contar salteado es la multiplicacion antes de tener nombre. Un nino que cuenta 5, 10, 15, 20 esta hallando 5 × 4 y todavia no lo sabe. Empezar en un lugar que no sea cero, “35, 40, 45”, es la version mas dificil y mas util, porque deja de ser un canto memorizado y se vuelve contar de verdad."
+        },
+        "readyWhen": {
+          "en": "your child can start from any number, not just from the beginning",
+          "es": "su hijo puede empezar desde cualquier numero, no solo desde el principio"
+        },
+        "leadsTo": {
+          "en": "Multiplication facts in Grade 3. Every times table is a skip count that has been sped up.",
+          "es": "Las tablas de multiplicar en tercer grado. Cada tabla es un conteo salteado acelerado."
+        },
+        "say": {
+          "en": [
+            "“Keep going. What comes next?”",
+            "“Start at 35 this time, not at zero.”",
+            "“How many jumps did that take?”",
+            "“What are we adding each time?”"
+          ],
+          "es": [
+            "“Sigue. ¿Que va despues?”",
+            "“Esta vez empieza en 35, no en cero.”",
+            "“¿Cuantos saltos hicimos?”",
+            "“¿Que estamos sumando cada vez?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Count and Clap",
+            "es": "Cuenta y aplaude"
+          },
+          "needs": {
+            "en": "Nothing at all",
+            "es": "Nada"
+          },
+          "how": {
+            "en": [
+              "Pick a number to count by, and a number to start from.",
+              "Take turns saying the next number in the sequence.",
+              "Clap instead of speaking every fourth number — you still have to know it.",
+              "See how far you get before someone loses the thread. Beat it tomorrow."
+            ],
+            "es": [
+              "Escojan un numero para contar y uno para empezar.",
+              "Tomen turnos diciendo el siguiente numero de la secuencia.",
+              "Aplaudan en vez de hablar cada cuarto numero: igual hay que saberlo.",
+              "Vean hasta donde llegan antes de que alguien pierda el hilo. Superenlo manana."
+            ]
+          }
+        }
+      }
     }
   ]
 }

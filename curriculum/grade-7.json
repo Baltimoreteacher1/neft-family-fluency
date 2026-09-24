@@ -48,7 +48,63 @@
             "max": 100
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding and taking away whole numbers, and reading a number line both ways.",
+          "es": "Sumar y restar numeros enteros y leer la recta numerica en los dos sentidos."
+        },
+        "why": {
+          "en": "This is the first time an answer can be less than nothing, and it genuinely is a new idea rather than harder arithmetic. Same signs combine and keep the sign; different signs find the difference and take the sign of the bigger one. A thermometer or a bank balance makes it concrete faster than any rule does.",
+          "es": "Es la primera vez que una respuesta puede ser menos que nada, y de verdad es una idea nueva, no aritmetica mas dificil. Los signos iguales se combinan y conservan el signo; los distintos se restan y toman el signo del mayor. Un termometro o el saldo de una cuenta lo hacen concreto mas rapido que cualquier regla."
+        },
+        "readyWhen": {
+          "en": "your child predicts the SIGN of the answer before working out the number",
+          "es": "su hijo predice el SIGNO de la respuesta antes de calcular el numero"
+        },
+        "leadsTo": {
+          "en": "Multiplying and dividing integers, and every equation with a negative in it.",
+          "es": "Multiplicar y dividir enteros y toda ecuacion que lleve un negativo."
+        },
+        "say": {
+          "en": [
+            "“Will the answer be positive or negative? Decide before you work it out.”",
+            "“Think of a thermometer. You start at −5 and it warms 8 degrees.”",
+            "“Same signs or different? What does that tell you?”",
+            "“Taking away a negative — what happens to the total?”"
+          ],
+          "es": [
+            "“¿La respuesta sera positiva o negativa? Decide antes de calcular.”",
+            "“Piensa en un termometro. Empiezas en −5 y sube 8 grados.”",
+            "“¿Signos iguales o distintos? ¿Que te dice eso?”",
+            "“Restar un negativo: ¿que le pasa al total?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Above and Below",
+            "es": "Arriba y abajo"
+          },
+          "needs": {
+            "en": "A deck of cards — red cards are negative, black are positive",
+            "es": "Una baraja: las rojas son negativas, las negras positivas"
+          },
+          "how": {
+            "en": [
+              "Both players start at 0.",
+              "Turn over a card and add it to your total. Red 7 means take away 7.",
+              "Say your new total out loud, and say whether you are above or below zero.",
+              "After ten cards, whoever is closest to zero wins — which makes negatives worth having."
+            ],
+            "es": [
+              "Los dos jugadores empiezan en 0.",
+              "Volteen una carta y sumenla a su total. Un 7 rojo es restar 7.",
+              "Digan su nuevo total en voz alta y si estan arriba o abajo de cero.",
+              "Despues de diez cartas, gana quien este mas cerca de cero: asi los negativos valen la pena."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g7-integer-mul-div",
@@ -94,7 +150,63 @@
             "max": 12
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding and taking away integers, and the multiplication facts.",
+          "es": "Sumar y restar enteros y las tablas de multiplicar."
+        },
+        "why": {
+          "en": "The rule is short — two negatives make a positive — and the reason is worth one sentence: taking away a debt four times leaves you better off. Children who only have the rule apply it to addition too, and get −3 + −5 = 8. Keeping the two sets of rules apart is most of the work in this skill.",
+          "es": "La regla es corta, dos negativos dan un positivo, y la razon vale una frase: quitar una deuda cuatro veces te deja mejor. Los ninos que solo tienen la regla la aplican tambien a la suma y sacan −3 + −5 = 8. Mantener separados los dos juegos de reglas es casi todo el trabajo de esta destreza."
+        },
+        "readyWhen": {
+          "en": "your child applies the sign rule to multiplying but NOT to adding",
+          "es": "su hijo aplica la regla de los signos al multiplicar pero NO al sumar"
+        },
+        "leadsTo": {
+          "en": "Solving equations with negatives, and slope in Grade 8.",
+          "es": "Resolver ecuaciones con negativos y la pendiente en octavo grado."
+        },
+        "say": {
+          "en": [
+            "“Count the negative signs. Odd or even?”",
+            "“Is this a times or an add? The rules are different.”",
+            "“Why does taking away a debt make you richer?”",
+            "“Predict the sign first, then do the number.”"
+          ],
+          "es": [
+            "“Cuenta los signos negativos. ¿Impar o par?”",
+            "“¿Esto es por o mas? Las reglas son distintas.”",
+            "“¿Por que quitar una deuda te deja con mas?”",
+            "“Predice el signo primero y luego saca el numero.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Sign Race",
+            "es": "Carrera de signos"
+          },
+          "needs": {
+            "en": "A deck of cards — red negative, black positive",
+            "es": "Una baraja: rojas negativas, negras positivas"
+          },
+          "how": {
+            "en": [
+              "Turn over two cards.",
+              "Both players race to call the SIGN of the product before working out the number.",
+              "Then say the product. Getting the sign first is worth the point.",
+              "Every few rounds, add them instead — and notice the rule is not the same."
+            ],
+            "es": [
+              "Volteen dos cartas.",
+              "Los dos jugadores compiten por decir el SIGNO del producto antes de sacar el numero.",
+              "Luego digan el producto. Acertar el signo primero vale el punto.",
+              "Cada pocas rondas, sumenlas en vez de multiplicar, y fijense en que la regla no es la misma."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g7-rational-ops",
@@ -144,7 +256,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Integer arithmetic, and fraction and decimal operations from Grades 5 and 6.",
+          "es": "La aritmetica de enteros y las operaciones con fracciones y decimales de quinto y sexto."
+        },
+        "why": {
+          "en": "Nothing new happens here: the sign rules and the fraction rules both apply, at the same time. That is exactly why it is hard — your child has to hold two sets of rules at once. If they slip, it is usually one or the other, not both, so finding which one is the fastest way to fix it.",
+          "es": "Aqui no pasa nada nuevo: se aplican a la vez las reglas de los signos y las de las fracciones. Justo por eso es dificil: su hijo tiene que sostener dos juegos de reglas al mismo tiempo. Si falla, suele ser uno o el otro, no los dos, asi que averiguar cual es la forma mas rapida de arreglarlo."
+        },
+        "readyWhen": {
+          "en": "your child handles the sign and the fraction separately, without dropping either",
+          "es": "su hijo maneja el signo y la fraccion por separado, sin soltar ninguno"
+        },
+        "leadsTo": {
+          "en": "All of algebra, where the numbers are rarely friendly.",
+          "es": "Todo el algebra, donde los numeros rara vez son amables."
+        },
+        "say": {
+          "en": [
+            "“Do the sign first, then the fraction. One thing at a time.”",
+            "“Which part went wrong — the sign or the arithmetic?”",
+            "“Would it be easier as a decimal, or as a fraction?”",
+            "“Estimate: roughly where on a number line?”"
+          ],
+          "es": [
+            "“Haz el signo primero y luego la fraccion. Una cosa a la vez.”",
+            "“¿Que parte salio mal, el signo o la cuenta?”",
+            "“¿Seria mas facil como decimal o como fraccion?”",
+            "“Estima: ¿mas o menos donde en la recta numerica?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Number Line Walk",
+            "es": "Paseo por la recta"
+          },
+          "needs": {
+            "en": "Paper and a pencil",
+            "es": "Papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "Draw a number line from −10 to 10 with halves marked.",
+              "One player calls a start point and a move: “start at −2.5, take away 1.5”.",
+              "The other points to where they land and says the answer.",
+              "Swap. Landing exactly on a marked point is worth a bonus."
+            ],
+            "es": [
+              "Dibujen una recta numerica de −10 a 10 con las mitades marcadas.",
+              "Un jugador dice un punto de partida y un movimiento: “empieza en −2.5, resta 1.5”.",
+              "El otro senala donde cae y dice la respuesta.",
+              "Cambien. Caer justo en un punto marcado vale un extra."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g7-percent",
@@ -199,7 +367,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Fractions of whole numbers from Grade 5, and decimal operations.",
+          "es": "Las fracciones de numeros enteros de quinto grado y las operaciones con decimales."
+        },
+        "why": {
+          "en": "Percent just means “out of 100”, so 25% of something is a quarter of it. The part children find genuinely hard is percent CHANGE: a 20% rise then a 20% fall does not get you back where you started, because the second 20% is of a bigger number. That surprise is worth having at the kitchen table rather than in an exam.",
+          "es": "Por ciento solo significa “de cada 100”, asi que el 25% de algo es su cuarta parte. Lo que de verdad les cuesta a los ninos es el CAMBIO porcentual: subir 20% y luego bajar 20% no te devuelve al principio, porque el segundo 20% es de un numero mayor. Esa sorpresa conviene tenerla en la mesa de la cocina y no en un examen."
+        },
+        "readyWhen": {
+          "en": "your child finds 10% instantly and builds other percents from it",
+          "es": "su hijo saca el 10% al instante y construye los demas porcentajes a partir de el"
+        },
+        "leadsTo": {
+          "en": "Proportional reasoning, interest, and most of the maths adults actually use.",
+          "es": "El razonamiento proporcional, los intereses y casi todas las matematicas que usan los adultos."
+        },
+        "say": {
+          "en": [
+            "“What is 10% of it? Now build from there.”",
+            "“25% is a quarter. Does that make it easier?”",
+            "“Up 20% then down 20% — are we back where we started? Try it.”",
+            "“Estimate the tip before I get the phone out.”"
+          ],
+          "es": [
+            "“¿Cuanto es el 10%? Ahora construye desde ahi.”",
+            "“El 25% es un cuarto. ¿Asi es mas facil?”",
+            "“Sube 20% y luego baja 20%: ¿volvimos al principio? Pruebalo.”",
+            "“Estima la propina antes de que saque el telefono.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Tip and Total",
+            "es": "Propina y total"
+          },
+          "needs": {
+            "en": "A restaurant bill or any receipt",
+            "es": "Una cuenta de restaurante o cualquier recibo"
+          },
+          "how": {
+            "en": [
+              "Look at the total. Both of you work out 10% in your heads.",
+              "Now work out 15% and 20% by building from the 10%.",
+              "Compare your answers before checking with a phone.",
+              "Harder round: what was the bill BEFORE tax? That one is genuinely tricky."
+            ],
+            "es": [
+              "Miren el total. Los dos saquen el 10% de memoria.",
+              "Ahora saquen el 15% y el 20% construyendo desde el 10%.",
+              "Comparen sus respuestas antes de comprobar con el telefono.",
+              "Ronda dificil: ¿cuanto era la cuenta ANTES del impuesto? Esa si cuesta."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g7-two-step-eq",
@@ -243,7 +467,63 @@
             "allowNegative": true
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "One-step equations from Grade 6, and integer arithmetic.",
+          "es": "Las ecuaciones de un paso de sexto grado y la aritmetica de enteros."
+        },
+        "why": {
+          "en": "Two steps means undoing in the right order: take away before you divide, because that is the reverse of the order the expression was built in. Children who divide first can still get there, but it is messier and they usually lose a sign. Writing each line down is what makes the mistake findable.",
+          "es": "Dos pasos significa deshacer en el orden correcto: restar antes de dividir, porque es el reves del orden en que se construyo la expresion. Los ninos que dividen primero pueden llegar, pero es mas enredado y suelen perder un signo. Escribir cada linea es lo que hace que el error se pueda encontrar."
+        },
+        "readyWhen": {
+          "en": "your child undoes in the right order and writes every line",
+          "es": "su hijo deshace en el orden correcto y escribe cada linea"
+        },
+        "leadsTo": {
+          "en": "Equations with x on both sides in Grade 8, and every formula rearrangement after.",
+          "es": "Las ecuaciones con x en los dos lados en octavo grado y todo despeje de formulas despues."
+        },
+        "say": {
+          "en": [
+            "“What is happening to x, in what order? Now undo it backwards.”",
+            "“Write the next line. Do not do two steps at once.”",
+            "“Check it: put your answer back into the original.”",
+            "“Where did the sign go?”"
+          ],
+          "es": [
+            "“¿Que le pasa a la x, y en que orden? Ahora deshazlo al reves.”",
+            "“Escribe la siguiente linea. No hagas dos pasos a la vez.”",
+            "“Compruebalo: vuelve a poner tu respuesta en la original.”",
+            "“¿A donde se fue el signo?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Think of a Number",
+            "es": "Piensa un numero"
+          },
+          "needs": {
+            "en": "Nothing at all",
+            "es": "Nada"
+          },
+          "how": {
+            "en": [
+              "One player thinks of a number, does two things to it, and says the result: “I tripled it, added 4, and got 19.”",
+              "The other undoes it out loud, in order, and names the number.",
+              "Write it as an equation afterwards: 3x + 4 = 19.",
+              "Swap. Try one with a negative in it once you are both confident."
+            ],
+            "es": [
+              "Un jugador piensa un numero, le hace dos cosas y dice el resultado: “Lo tripliqué, sumé 4 y me dio 19.”",
+              "El otro lo deshace en voz alta, en orden, y dice el numero.",
+              "Escribanlo despues como ecuacion: 3x + 4 = 19.",
+              "Cambien. Prueben uno con un negativo cuando los dos vayan seguros."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g7-proportionality",
@@ -286,7 +566,63 @@
             "maxK": 15
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Unit rates from Grade 6, and dividing decimals.",
+          "es": "Las tasas unitarias de sexto grado y dividir decimales."
+        },
+        "why": {
+          "en": "A proportional relationship is one where y is always the same multiple of x, and that multiple is k. The useful test is division: divide y by x on every row, and if you get the same number every time it is proportional. If not, it is not — and knowing that is as valuable as finding k.",
+          "es": "Una relacion proporcional es aquella en la que y siempre es el mismo multiplo de x, y ese multiplo es k. La prueba util es dividir: divide y entre x en cada fila, y si sale el mismo numero siempre, es proporcional. Si no, no lo es, y saber eso vale tanto como hallar k."
+        },
+        "readyWhen": {
+          "en": "your child checks more than one row before deciding",
+          "es": "su hijo revisa mas de una fila antes de decidir"
+        },
+        "leadsTo": {
+          "en": "Slope in Grade 8. k and slope are the same number wearing different names.",
+          "es": "La pendiente en octavo grado. k y la pendiente son el mismo numero con distinto nombre."
+        },
+        "say": {
+          "en": [
+            "“Divide y by x. Now do the next row. Same answer?”",
+            "“If x doubles, does y double?”",
+            "“What would y be when x is 1? That is k.”",
+            "“Is this one proportional at all? How can you tell?”"
+          ],
+          "es": [
+            "“Divide y entre x. Ahora la siguiente fila. ¿La misma respuesta?”",
+            "“Si x se duplica, ¿y se duplica?”",
+            "“¿Cuanto seria y cuando x es 1? Eso es k.”",
+            "“¿Esta es proporcional siquiera? ¿Como lo sabes?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Is It Proportional?",
+            "es": "¿Es proporcional?"
+          },
+          "needs": {
+            "en": "Paper, or any real table of numbers",
+            "es": "Papel o cualquier tabla real de numeros"
+          },
+          "how": {
+            "en": [
+              "One player writes a small table of x and y values — sometimes proportional, sometimes not.",
+              "The other divides y by x on every row and says which it is.",
+              "If it is proportional, name k. If not, say which row breaks it.",
+              "Real tables work well: distance and time on a journey, or price and quantity."
+            ],
+            "es": [
+              "Un jugador escribe una tabla pequena de x e y, a veces proporcional y a veces no.",
+              "El otro divide y entre x en cada fila y dice cual es.",
+              "Si es proporcional, dice k. Si no, dice que fila la rompe.",
+              "Las tablas reales funcionan bien: distancia y tiempo de un viaje, o precio y cantidad."
+            ]
+          }
+        }
+      }
     }
   ]
 }

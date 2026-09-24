@@ -142,7 +142,13 @@
     "howToPlay": "How to play",
     "print": "Print this page",
     "backToPractice": "Back to practice",
-    "noContent": "Guidance for this skill is being written."
+    "noContent": "Guidance for this skill is being written.",
+    "buildsOn": "What this builds on",
+    "howItGrows": "How it grows",
+    "hereNow": "Here now",
+    "readyWhen": "Ready for the next stage when",
+    "leadsTo": "What it leads to",
+    "skillN": "Skill {n} of {total}"
   },
   "settings": {
     "title": "Settings",

@@ -72,7 +72,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Exponents as repeated multiplication, from Grade 6.",
+          "es": "Los exponentes como multiplicacion repetida, de sexto grado."
+        },
+        "why": {
+          "en": "The rules look arbitrary until you write one out: 2³ × 2⁴ is three 2s times four 2s, which is seven 2s. You add the exponents because you are counting how many factors there are. A child who has expanded it once will never again multiply the exponents by mistake, which is the most common error here.",
+          "es": "Las reglas parecen arbitrarias hasta que se escribe una: 2³ × 2⁴ son tres 2 por cuatro 2, o sea siete 2. Se suman los exponentes porque se cuenta cuantos factores hay. Un nino que lo ha desarrollado una vez ya nunca multiplica los exponentes por error, que es el fallo mas comun aqui."
+        },
+        "readyWhen": {
+          "en": "your child can explain WHY the exponents add, not just that they do",
+          "es": "su hijo puede explicar POR QUE se suman los exponentes, no solo que se suman"
+        },
+        "leadsTo": {
+          "en": "Scientific notation, and every polynomial in high school algebra.",
+          "es": "La notacion cientifica y todos los polinomios del algebra de preparatoria."
+        },
+        "say": {
+          "en": [
+            "“Write it out long. How many 2s altogether?”",
+            "“Are we multiplying or dividing? Which rule is that?”",
+            "“A power of a power — why do those multiply?”",
+            "“Check with small numbers: does 2² × 2³ really equal 32?”"
+          ],
+          "es": [
+            "“Escribelo largo. ¿Cuantos 2 hay en total?”",
+            "“¿Estamos multiplicando o dividiendo? ¿Que regla es esa?”",
+            "“Una potencia de potencia: ¿por que esos se multiplican?”",
+            "“Comprueba con numeros pequenos: ¿de verdad 2² × 2³ da 32?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Double It Again",
+            "es": "Duplica otra vez"
+          },
+          "needs": {
+            "en": "A piece of paper",
+            "es": "Una hoja de papel"
+          },
+          "how": {
+            "en": [
+              "Fold the paper in half. How many layers? Fold again. And again.",
+              "Write the layers as a power of 2 each time: 2, 4, 8, 16 is 2¹, 2², 2³, 2⁴.",
+              "Ask: how many layers after 10 folds? After 20?",
+              "Try to fold past seven times. You cannot — and that is the point about how fast powers grow."
+            ],
+            "es": [
+              "Doblen el papel a la mitad. ¿Cuantas capas? Doblen otra vez. Y otra.",
+              "Escriban las capas como potencia de 2 cada vez: 2, 4, 8, 16 son 2¹, 2², 2³, 2⁴.",
+              "Pregunten: ¿cuantas capas despues de 10 dobleces? ¿Y de 20?",
+              "Intenten doblar mas de siete veces. No se puede, y ese es justo el punto sobre lo rapido que crecen las potencias."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g8-roots",
@@ -117,7 +173,63 @@
             "maxCubeRoot": 8
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Exponents, and the multiplication facts up to 15 × 15.",
+          "es": "Los exponentes y las tablas hasta 15 × 15."
+        },
+        "why": {
+          "en": "A square root asks the multiplication question backwards: what times itself gives this? Knowing the perfect squares to 225 by sight is what makes the rest of Grade 8 quick — the Pythagorean theorem, quadratics later, and estimating irrationals next week. It is a small memorisation job with a large payoff.",
+          "es": "Una raiz cuadrada hace la pregunta de la multiplicacion al reves: ¿que por si mismo da esto? Saberse de vista los cuadrados perfectos hasta 225 es lo que hace rapido el resto de octavo grado: el teorema de Pitagoras, las cuadraticas despues y estimar irracionales la proxima semana. Es poco que memorizar y rinde mucho."
+        },
+        "readyWhen": {
+          "en": "your child recognises the perfect squares on sight, without working them out",
+          "es": "su hijo reconoce los cuadrados perfectos de vista, sin calcularlos"
+        },
+        "leadsTo": {
+          "en": "Estimating irrational numbers, and the Pythagorean theorem.",
+          "es": "Estimar numeros irracionales y el teorema de Pitagoras."
+        },
+        "say": {
+          "en": [
+            "“What times itself gives 144?”",
+            "“Is 90 a perfect square? How do you know without trying?”",
+            "“Count up the squares with me: 1, 4, 9, 16...”",
+            "“Cube roots now — what times itself three times?”"
+          ],
+          "es": [
+            "“¿Que por si mismo da 144?”",
+            "“¿Es 90 un cuadrado perfecto? ¿Como lo sabes sin probar?”",
+            "“Cuenta los cuadrados conmigo: 1, 4, 9, 16...”",
+            "“Ahora raices cubicas: ¿que por si mismo tres veces?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Square Spotting",
+            "es": "Caza de cuadrados"
+          },
+          "needs": {
+            "en": "Nothing at all",
+            "es": "Nada"
+          },
+          "how": {
+            "en": [
+              "One player calls out a number under 250.",
+              "The other says whether it is a perfect square, and its root if it is.",
+              "Score a point for each correct call. Wrong calls give the point away.",
+              "Once that gets easy, add cubes: 8, 27, 64, 125, 216."
+            ],
+            "es": [
+              "Un jugador dice un numero menor que 250.",
+              "El otro dice si es un cuadrado perfecto, y su raiz si lo es.",
+              "Un punto por cada acierto. Los errores le dan el punto al otro.",
+              "Cuando se vuelva facil, agreguen cubos: 8, 27, 64, 125, 216."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g8-sci-notation",
@@ -168,7 +280,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Powers of ten from Grade 5, and the exponent rules.",
+          "es": "Las potencias de diez de quinto grado y las reglas de los exponentes."
+        },
+        "why": {
+          "en": "Scientific notation exists because writing 0.000000003 is error-prone and unreadable. The rule is that the first number sits between 1 and 10 — 3 × 10⁹, never 30 × 10⁸, even though both are the same value. Science class will use this constantly, so getting the normalising habit now saves a lot of red pen later.",
+          "es": "La notacion cientifica existe porque escribir 0.000000003 es facil de equivocar e imposible de leer. La regla es que el primer numero va entre 1 y 10: 3 × 10⁹, nunca 30 × 10⁸, aunque los dos valgan lo mismo. En ciencias se usa todo el tiempo, asi que agarrar ahora la costumbre de normalizar ahorra mucha tinta roja despues."
+        },
+        "readyWhen": {
+          "en": "your child normalises without being told, so the first number is always between 1 and 10",
+          "es": "su hijo normaliza sin que se lo digan, y el primer numero siempre queda entre 1 y 10"
+        },
+        "leadsTo": {
+          "en": "All of science, and comparing very large and very small quantities.",
+          "es": "Todas las ciencias y comparar cantidades muy grandes y muy pequenas."
+        },
+        "say": {
+          "en": [
+            "“Is the first number between 1 and 10? Fix it if not.”",
+            "“Bigger or smaller than one? So is the exponent positive or negative?”",
+            "“Which is bigger: 3 × 10⁸ or 9 × 10⁷? How do you know?”",
+            "“Say it as an ordinary number. Now say why nobody writes it that way.”"
+          ],
+          "es": [
+            "“¿El primer numero esta entre 1 y 10? Arreglalo si no.”",
+            "“¿Mayor o menor que uno? ¿Entonces el exponente es positivo o negativo?”",
+            "“¿Cual es mayor: 3 × 10⁸ o 9 × 10⁷? ¿Como lo sabes?”",
+            "“Dilo como numero normal. Ahora di por que nadie lo escribe asi.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "How Big, How Small",
+            "es": "Que tan grande, que tan pequeno"
+          },
+          "needs": {
+            "en": "A phone or a book with facts in it",
+            "es": "Un telefono o un libro con datos"
+          },
+          "how": {
+            "en": [
+              "Find some very large and very small numbers: the distance to the sun, the size of a virus, a country's population.",
+              "Write each one in scientific notation.",
+              "Put them in order from smallest to largest by looking at the exponents first.",
+              "Ask: how many times bigger is one than another? Subtract the exponents."
+            ],
+            "es": [
+              "Busquen numeros muy grandes y muy pequenos: la distancia al sol, el tamano de un virus, la poblacion de un pais.",
+              "Escriban cada uno en notacion cientifica.",
+              "Ordenenlos de menor a mayor mirando primero los exponentes.",
+              "Pregunten: ¿cuantas veces mayor es uno que otro? Resten los exponentes."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g8-multi-step-eq",
@@ -212,7 +380,63 @@
             "allowNegative": true
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Two-step equations from Grade 7, and integer arithmetic.",
+          "es": "Las ecuaciones de dos pasos de septimo grado y la aritmetica de enteros."
+        },
+        "why": {
+          "en": "With x on both sides there is one extra move at the start: collect all the x on whichever side keeps the coefficient positive. After that it is a two-step equation your child has already met. Most errors here are sign errors when moving a term, not misunderstandings — which is why writing every line matters more than ever.",
+          "es": "Con x en los dos lados hay un movimiento extra al principio: juntar todas las x en el lado que deje el coeficiente positivo. Despues de eso es una ecuacion de dos pasos que su hijo ya conoce. Casi todos los errores aqui son de signo al mover un termino, no de comprension, y por eso escribir cada linea importa mas que nunca."
+        },
+        "readyWhen": {
+          "en": "your child collects the x on one side first and keeps the signs straight",
+          "es": "su hijo junta primero las x en un lado y no se enreda con los signos"
+        },
+        "leadsTo": {
+          "en": "Systems of equations, and rearranging any formula in science.",
+          "es": "Los sistemas de ecuaciones y despejar cualquier formula en ciencias."
+        },
+        "say": {
+          "en": [
+            "“Which side should the x go to? Which keeps it positive?”",
+            "“Write the line. Do not move two things at once.”",
+            "“Check it: put your answer into BOTH sides.”",
+            "“A sign got lost. Find the line where.”"
+          ],
+          "es": [
+            "“¿A que lado deben ir las x? ¿Cual las deja positivas?”",
+            "“Escribe la linea. No muevas dos cosas a la vez.”",
+            "“Compruebalo: mete tu respuesta en LOS DOS lados.”",
+            "“Se perdio un signo. Busca en que linea.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Both Sides",
+            "es": "Los dos lados"
+          },
+          "needs": {
+            "en": "Paper and a pencil",
+            "es": "Papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "One player picks a secret number and builds an equation around it with x on both sides.",
+              "Start from x = 5, then do the same thing to both sides a few times: add 3x, subtract 2, multiply by 2.",
+              "Give the final equation to the other player to solve.",
+              "Building them backwards is the best way to understand solving them forwards."
+            ],
+            "es": [
+              "Un jugador escoge un numero secreto y arma una ecuacion con x en los dos lados.",
+              "Empiecen en x = 5 y hagan lo mismo a los dos lados varias veces: sumar 3x, restar 2, multiplicar por 2.",
+              "Denle la ecuacion final al otro jugador para que la resuelva.",
+              "Construirlas al reves es la mejor manera de entender como resolverlas."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g8-slope",
@@ -257,7 +481,63 @@
             "allowNegative": true
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Constant of proportionality from Grade 7, and integer subtraction.",
+          "es": "La constante de proporcionalidad de septimo grado y la resta de enteros."
+        },
+        "why": {
+          "en": "Slope is a unit rate with a picture attached: how much y changes for every one step of x. Your child already found k in a table last year — this is the same number, now with a name and a graph. The common error is dividing run by rise instead of rise by run, and the fix is saying the words in order: rise OVER run.",
+          "es": "La pendiente es una tasa unitaria con dibujo: cuanto cambia y por cada paso de x. Su hijo ya hallo k en una tabla el ano pasado; es el mismo numero, ahora con nombre y grafica. El error comun es dividir el avance entre la subida en vez de al reves, y se arregla diciendo las palabras en orden: subida SOBRE avance."
+        },
+        "readyWhen": {
+          "en": "your child divides rise by run the right way round every time",
+          "es": "su hijo divide subida entre avance en el sentido correcto siempre"
+        },
+        "leadsTo": {
+          "en": "Linear functions, and reading any graph in science or the news.",
+          "es": "Las funciones lineales y leer cualquier grafica en ciencias o en las noticias."
+        },
+        "say": {
+          "en": [
+            "“How much up for each one across?”",
+            "“Rise over run. Say it in that order.”",
+            "“Is it going up or down? So is the slope positive or negative?”",
+            "“This is last year's k. Same number, new name.”"
+          ],
+          "es": [
+            "“¿Cuanto sube por cada uno que avanza?”",
+            "“Subida sobre avance. Dilo en ese orden.”",
+            "“¿Va subiendo o bajando? ¿Entonces la pendiente es positiva o negativa?”",
+            "“Esta es la k del ano pasado. El mismo numero con nombre nuevo.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Stairs and Ramps",
+            "es": "Escaleras y rampas"
+          },
+          "needs": {
+            "en": "A tape measure, and some stairs or a ramp",
+            "es": "Una cinta metrica y unas escaleras o una rampa"
+          },
+          "how": {
+            "en": [
+              "Measure the height and the depth of one step.",
+              "Work out the slope: height divided by depth.",
+              "Compare with a ramp, a hill, or a different staircase.",
+              "Ask which is steeper and check whether the number agrees with how it felt to walk up."
+            ],
+            "es": [
+              "Midan la altura y el fondo de un escalon.",
+              "Calculen la pendiente: altura entre fondo.",
+              "Comparen con una rampa, una cuesta u otra escalera.",
+              "Pregunten cual es mas empinada y comprueben si el numero coincide con lo que se sintio al subir."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g8-irrational",
@@ -303,7 +583,63 @@
             "max": 150
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Perfect squares, and comparing numbers on a number line.",
+          "es": "Los cuadrados perfectos y comparar numeros en la recta numerica."
+        },
+        "why": {
+          "en": "√30 is not a number you can write down exactly, and that is worth saying plainly — it goes on forever without repeating. But you can pin it between 5 and 6, because 25 and 36 sit either side. That is usually all anyone needs, and it turns an intimidating symbol into something a child can reason about.",
+          "es": "√30 no es un numero que se pueda escribir exacto, y vale la pena decirlo claro: sigue para siempre sin repetirse. Pero se puede atrapar entre 5 y 6, porque 25 y 36 quedan a cada lado. Eso suele ser todo lo que hace falta, y convierte un simbolo intimidante en algo sobre lo que un nino puede razonar."
+        },
+        "readyWhen": {
+          "en": "your child names the two nearest perfect squares before answering",
+          "es": "su hijo nombra los dos cuadrados perfectos mas cercanos antes de contestar"
+        },
+        "leadsTo": {
+          "en": "The Pythagorean theorem, and the real number line in high school.",
+          "es": "El teorema de Pitagoras y la recta de los numeros reales en preparatoria."
+        },
+        "say": {
+          "en": [
+            "“Which perfect squares sit either side of 30?”",
+            "“So √30 is between which two whole numbers?”",
+            "“Is it nearer 5 or nearer 6? How can you tell?”",
+            "“This number never ends. That is allowed.”"
+          ],
+          "es": [
+            "“¿Que cuadrados perfectos quedan a cada lado de 30?”",
+            "“¿Entonces √30 esta entre que dos numeros enteros?”",
+            "“¿ Esta mas cerca de 5 o de 6? ¿Como lo sabes?”",
+            "“Este numero no se acaba nunca. Eso se vale.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Trap the Root",
+            "es": "Atrapa la raiz"
+          },
+          "needs": {
+            "en": "Paper and a pencil",
+            "es": "Papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "One player says a number under 200 that is not a perfect square.",
+              "The other traps it between two whole numbers and says which it is nearer.",
+              "Check with a calculator only after both of you have guessed.",
+              "A point for the trap, a bonus point for guessing the nearer one correctly."
+            ],
+            "es": [
+              "Un jugador dice un numero menor que 200 que no sea cuadrado perfecto.",
+              "El otro lo atrapa entre dos enteros y dice a cual esta mas cerca.",
+              "Comprueben con calculadora solo despues de que los dos hayan adivinado.",
+              "Un punto por atraparlo y uno extra por acertar a cual esta mas cerca."
+            ]
+          }
+        }
+      }
     }
   ]
 }

@@ -68,8 +68,13 @@ function subtraction(rng, params, meta) {
   }
 
   if (!regroupOk(a, b, '-', params)) {
-    const adjusted = noRegroupSubtraction(rng, params);
-    if (adjusted) return finishSub(adjusted.a, adjusted.b, meta);
+    if (params.regroup === false) {
+      const adjusted = noRegroupSubtraction(rng, params);
+      if (adjusted) return finishSub(adjusted.a, adjusted.b, meta);
+    } else {
+      const borrowed = borrowingSubtraction(rng, params);
+      if (borrowed) return finishSub(borrowed.a, borrowed.b, meta);
+    }
   }
 
   return finishSub(a, b, meta);
@@ -92,6 +97,19 @@ function finishSub(a, b, meta) {
   };
 }
 
+/** Build a subtraction that definitely needs a borrow in the ones column. */
+function borrowingSubtraction(rng, params) {
+  const digits = String(params.max).length;
+  if (digits < 2) return null;
+  const topOnes = rng.int(0, 8);
+  const bottomOnes = rng.int(topOnes + 1, 9); // forces the borrow
+  const topTens = rng.int(1, 9);
+  const bottomTens = rng.int(0, topTens - 1);
+  const a = topTens * 10 + topOnes;
+  const b = bottomTens * 10 + bottomOnes;
+  return a <= params.max && a > b ? { a, b } : null;
+}
+
 /** Build a subtraction where no column needs to borrow. */
 function noRegroupSubtraction(rng, params) {
   const digits = String(params.max).length;
@@ -112,18 +130,27 @@ function noRegroupSubtraction(rng, params) {
  * an early two-digit stage genuinely easier rather than just smaller.
  */
 function regroupOk(a, b, sign, params) {
-  if (params.regroup !== false) return true;
+  if (params.regroup === undefined) return true; // mixed: anything goes
+  const needs = needsRegrouping(a, b, sign);
+  // `regroup: false` is the easier first stage; `regroup: true` is the stage
+  // that is ABOUT carrying, so a problem with no carrying does not belong in
+  // it. Without the second case a "with carrying" stage quietly served the
+  // same problems as the stage before it.
+  return params.regroup ? needs : !needs;
+}
+
+function needsRegrouping(a, b, sign) {
   let x = a;
   let y = b;
   while (x > 0 || y > 0) {
     const dx = x % 10;
     const dy = y % 10;
-    if (sign === '+' && dx + dy > 9) return false;
-    if (sign === '-' && dx < dy) return false;
+    if (sign === '+' && dx + dy > 9) return true;
+    if (sign === '-' && dx < dy) return true;
     x = Math.floor(x / 10);
     y = Math.floor(y / 10);
   }
-  return true;
+  return false;
 }
 
 function nearMisses(answer, candidates) {
@@ -142,11 +169,29 @@ function nearMisses(answer, candidates) {
 
 /** "7 + _ = 10". The pair that completes a ten, which everything else leans on. */
 export function makeTen(rng, params, meta = {}) {
-  const total = params.total || 10;
+  const total = params.totals ? rng.pick(params.totals) : params.total || 10;
   const a = rng.int(0, total);
   const answer = total - a;
+  // Asking the pair from the other side ("? + 6 = 10") is a genuine step up:
+  // the same fact, but the child can no longer just count on from the left.
+  const reversed = params.reverse && rng.chance(0.5);
+  if (reversed) {
+    return {
+      id: `maketen-r:${total}:${answer}`,
+      kind: 'fact',
+      op: 'add',
+      a: answer,
+      b: a,
+      prompt: `? + ${answer} = ${total}`,
+      answer: a,
+      answerType: 'integer',
+      accept: [String(a)],
+      strategyHint: meta.strategyTag || null,
+      distractors: nearMisses(a, [a + 1, a - 1, total]),
+    };
+  }
   return {
-    id: `maketen:${a}`,
+    id: `maketen:${total}:${a}`,
     kind: 'fact',
     op: 'add',
     a,
@@ -189,7 +234,11 @@ export function missingAddend(rng, params, meta = {}) {
 export function doubles(rng, params, meta = {}) {
   const max = params.max || 10;
   const a = rng.int(params.min || 1, max);
-  const offset = params.near ? rng.pick([0, 0, 1, -1]) : 0;
+  // `offsets` lets a stage widen from doubles only, to doubles plus one more,
+  // to doubles either side -- so each stage is a real step rather than the
+  // same problems with a new label.
+  const offsets = params.offsets || (params.near ? [0, 0, 1, -1] : [0]);
+  const offset = rng.pick(offsets);
   const b = Math.max(0, a + offset);
   const answer = a + b;
   return {
@@ -240,7 +289,10 @@ export function addSubRound(rng, params, meta = {}) {
 /** "5, 10, 15, ?" -- the sequence that becomes multiplication. */
 export function skipCount(rng, params, meta = {}) {
   const step = rng.pick(params.steps || [2, 5, 10]);
-  const start = params.fromZero === false ? step * rng.int(1, 4) : step;
+  // Counting on from somewhere other than the first multiple is the harder
+  // stage; even the easy stage varies the start, or three steps would mean
+  // three problems and nothing to practise.
+  const start = params.fromZero === false ? step * rng.int(2, 9) : step * rng.int(1, 3);
   const shown = params.shown || 3;
   const terms = [];
   for (let i = 0; i < shown; i++) terms.push(start + step * i);

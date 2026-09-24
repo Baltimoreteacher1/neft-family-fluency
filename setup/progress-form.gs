@@ -643,7 +643,7 @@ var SKILL_NAMES = {
   1: ["Make 10", "Adding to 10", "Taking away to 10", "Doubles and near doubles", "Ten more, ten less", "Find the missing number"],
   2: ["Adding to 20", "Taking away to 20", "Add and take away 10 and 100", "Two-digit adding", "Two-digit taking away", "Skip counting"],
   3: ["×2, ×5, ×10", "×4, ×8", "×3, ×6", "×9, ×7", "Division facts", "Adding and taking away to 1000", "Multiply by tens"],
-  4: ["Big adding and taking away", "Extended facts", "Divide by 1 digit", "Big multiplying", "Equal fractions", "Factors and multiples"],
+  4: ["Big adding and taking away", "Extended facts", "Big multiplying", "Divide by 1 digit", "Equal fractions", "Factors and multiples"],
   5: ["Multiplying big numbers", "Divide by 2 digits", "Decimal adding and taking away", "Times and divide by 10, 100, 1000", "Adding fractions", "Fractions of whole numbers"],
   6: ["Long division", "All four with decimals", "GCF and LCM", "Dividing fractions", "Order of operations", "One-step equations", "Unit rates"],
   7: ["Adding and taking away integers", "Multiplying and dividing integers", "Signed decimals and fractions", "Percents", "Two-step equations", "Constant of proportionality"],

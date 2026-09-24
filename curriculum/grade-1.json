@@ -19,8 +19,8 @@
       "stages": [
         {
           "label": {
-            "en": "To 5",
-            "es": "Hasta 5"
+            "en": "Pairs to 5",
+            "es": "Parejas del 5"
           },
           "params": {
             "total": 5
@@ -28,8 +28,8 @@
         },
         {
           "label": {
-            "en": "To 10",
-            "es": "Hasta 10"
+            "en": "Pairs to 10",
+            "es": "Parejas del 10"
           },
           "params": {
             "total": 10
@@ -37,14 +37,74 @@
         },
         {
           "label": {
-            "en": "Mixed",
-            "es": "Mezclado"
+            "en": "Either way round",
+            "es": "En los dos sentidos"
           },
           "params": {
-            "total": 10
+            "totals": [
+              5,
+              10
+            ],
+            "reverse": true
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Counting to ten, and knowing that ten fingers are always ten however you hold them.",
+          "es": "Contar hasta diez y saber que diez dedos son siempre diez, sin importar como se pongan."
+        },
+        "readyWhen": {
+          "en": "your child answers most pairs without counting on their fingers",
+          "es": "su hijo contesta casi todas las parejas sin contar con los dedos"
+        },
+        "leadsTo": {
+          "en": "Adding past ten. A child who knows 6 and 4 make ten can do 6 + 7 by filling the ten first, which is the strategy the whole of Grade 2 rests on.",
+          "es": "Sumar pasando el diez. Un nino que sabe que 6 y 4 forman diez puede hacer 6 + 7 completando primero el diez, que es la estrategia en la que se apoya todo el segundo grado."
+        },
+        "why": {
+          "en": "Ten is the number everything else leans on. A child who instantly knows that 6 and 4 make ten can later do 6 + 7 by taking 4 from the 7 to fill the ten, then adding the 3 that is left. That is not a trick — it is how fluent adults add, and it starts here. Knowing the pairs to ten by heart is worth more than any single addition fact.",
+          "es": "El diez es el numero en el que se apoya todo lo demas. Un nino que sabe al instante que 6 y 4 forman diez puede hacer despues 6 + 7 quitandole 4 al 7 para completar el diez y sumando el 3 que queda. Eso no es un truco: asi suman los adultos con soltura, y empieza aqui. Saberse de memoria las parejas del diez vale mas que cualquier suma suelta."
+        },
+        "say": {
+          "en": [
+            "“How many more to get to ten?”",
+            "“Show me on your fingers. How many are hiding?”",
+            "“We have 7. What would fill up the ten?”",
+            "“You knew that one fast! Which pair is your favourite?”"
+          ],
+          "es": [
+            "“¿Cuantos mas para llegar a diez?”",
+            "“Muestrame con los dedos. ¿Cuantos estan escondidos?”",
+            "“Tenemos 7. ¿Que completaria el diez?”",
+            "“¡Esa la supiste rapido! ¿Cual pareja es tu favorita?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Ten in the Hand",
+            "es": "Diez en la mano"
+          },
+          "needs": {
+            "en": "Ten small things: beans, buttons, coins, cereal",
+            "es": "Diez cosas pequenas: frijoles, botones, monedas, cereal"
+          },
+          "how": {
+            "en": [
+              "Count out ten things together and check there are ten.",
+              "One player hides some in a closed hand. The other counts what is left.",
+              "Ask: “How many are hiding?” Then open the hand and check.",
+              "Swap over. Say the pair out loud each time: “6 and 4 make ten.”"
+            ],
+            "es": [
+              "Cuenten diez cosas juntos y comprueben que son diez.",
+              "Un jugador esconde algunas en la mano cerrada. El otro cuenta las que quedan.",
+              "Pregunte: “¿Cuantas estan escondidas?” Luego abra la mano y comprueben.",
+              "Cambien de turno. Digan la pareja en voz alta: “6 y 4 forman diez.”"
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g1-add-within-10",
@@ -62,7 +122,7 @@
       "stages": [
         {
           "label": {
-            "en": "To 5",
+            "en": "Up to 5",
             "es": "Hasta 5"
           },
           "params": {
@@ -73,7 +133,7 @@
         },
         {
           "label": {
-            "en": "To 10",
+            "en": "Up to 10",
             "es": "Hasta 10"
           },
           "params": {
@@ -84,16 +144,72 @@
         },
         {
           "label": {
-            "en": "All of them",
-            "es": "Todas"
+            "en": "No easy ones",
+            "es": "Sin las faciles"
           },
           "params": {
             "op": "add",
-            "min": 0,
+            "min": 3,
             "max": 10
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Counting objects one at a time, and the pairs that make ten.",
+          "es": "Contar objetos de uno en uno y las parejas que forman diez."
+        },
+        "readyWhen": {
+          "en": "your child starts from the bigger number instead of counting them all",
+          "es": "su hijo empieza por el numero mayor en vez de contarlos todos"
+        },
+        "leadsTo": {
+          "en": "Adding within 20, and eventually knowing these by heart so the thinking can go to harder things.",
+          "es": "Sumar hasta 20 y, con el tiempo, saberselas de memoria para poder pensar en cosas mas dificiles."
+        },
+        "why": {
+          "en": "Counting every object from one is where every child starts, and it is not wrong — but it is slow, and it runs out. The next step is counting on: start at the bigger number and count up the smaller one. A child who does 2 + 7 by starting at 7 and saying “8, 9” has made a real leap, even though the answer is the same.",
+          "es": "Contar todos los objetos desde uno es donde empiezan todos los ninos, y no esta mal, pero es lento y se queda corto. El siguiente paso es contar hacia adelante: empezar por el numero mayor y seguir contando el menor. Un nino que hace 2 + 7 empezando en 7 y diciendo “8, 9” ha dado un salto de verdad, aunque la respuesta sea la misma."
+        },
+        "say": {
+          "en": [
+            "“Start with the bigger number. Now count on.”",
+            "“Which number is easier to start from?”",
+            "“You do not have to count them all. What if you start at 7?”",
+            "“Tell me how you worked it out.”"
+          ],
+          "es": [
+            "“Empieza con el numero mayor. Ahora sigue contando.”",
+            "“¿Por cual numero es mas facil empezar?”",
+            "“No tienes que contarlos todos. ¿Y si empiezas en 7?”",
+            "“Cuentame como lo resolviste.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Roll and Count On",
+            "es": "Tira y sigue contando"
+          },
+          "needs": {
+            "en": "Two dice",
+            "es": "Dos dados"
+          },
+          "how": {
+            "en": [
+              "Roll both dice.",
+              "Say the bigger number out loud, then count on the smaller one.",
+              "“Six... seven, eight. Six plus two is eight.”",
+              "Take turns. If someone counts from one, that is fine — just show the quicker way after."
+            ],
+            "es": [
+              "Tiren los dos dados.",
+              "Digan el numero mayor en voz alta y luego sigan contando el menor.",
+              "“Seis... siete, ocho. Seis mas dos es ocho.”",
+              "Tomen turnos. Si alguien cuenta desde uno, esta bien: muestrele despues la manera mas rapida."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g1-sub-within-10",
@@ -111,7 +227,7 @@
       "stages": [
         {
           "label": {
-            "en": "To 5",
+            "en": "Up to 5",
             "es": "Hasta 5"
           },
           "params": {
@@ -122,7 +238,7 @@
         },
         {
           "label": {
-            "en": "To 10",
+            "en": "Up to 10",
             "es": "Hasta 10"
           },
           "params": {
@@ -133,16 +249,72 @@
         },
         {
           "label": {
-            "en": "All of them",
-            "es": "Todas"
+            "en": "No easy ones",
+            "es": "Sin las faciles"
           },
           "params": {
             "op": "sub",
-            "min": 0,
+            "min": 3,
             "max": 10
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding within 10. Every subtraction here is an addition your child already knows, asked backwards.",
+          "es": "Sumar hasta 10. Cada resta de aqui es una suma que su hijo ya sabe, preguntada al reves."
+        },
+        "readyWhen": {
+          "en": "your child reaches for the addition fact instead of counting backwards",
+          "es": "su hijo busca la suma en vez de contar hacia atras"
+        },
+        "leadsTo": {
+          "en": "Subtraction within 20, and the fact families that make division make sense in Grade 3.",
+          "es": "Restar hasta 20 y las familias de operaciones que haran que la division tenga sentido en tercer grado."
+        },
+        "why": {
+          "en": "Taking away and adding are the same fact looked at from two sides. “9 minus 4” and “4 plus what makes 9” have the same answer, and the second one is usually easier for a young child. Encouraging your child to think of the addition is not avoiding subtraction — it is the strategy that makes subtraction fast later on.",
+          "es": "Restar y sumar son la misma operacion vista desde dos lados. “9 menos 4” y “4 mas cuanto da 9” tienen la misma respuesta, y la segunda suele ser mas facil para un nino pequeno. Animar a su hijo a pensar en la suma no es evitar la resta: es la estrategia que hace que la resta salga rapido mas adelante."
+        },
+        "say": {
+          "en": [
+            "“What plus 4 makes 9?”",
+            "“Count up from the smaller number.”",
+            "“If you know 4 + 5, do you know 9 − 4?”",
+            "“Show me with your fingers what is left.”"
+          ],
+          "es": [
+            "“¿Cuanto mas 4 da 9?”",
+            "“Cuenta hacia arriba desde el numero menor.”",
+            "“Si sabes 4 + 5, ¿sabes 9 − 4?”",
+            "“Muestrame con los dedos lo que queda.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "What Is Missing?",
+            "es": "¿Que falta?"
+          },
+          "needs": {
+            "en": "Ten small things and a cup",
+            "es": "Diez cosas pequenas y un vaso"
+          },
+          "how": {
+            "en": [
+              "Count out a number of things together, up to ten.",
+              "One player covers some with the cup while the other looks away.",
+              "Look again: “We had 9. Now I can see 5. How many are under the cup?”",
+              "Lift the cup and check. Say both facts: “5 and 4 make 9, so 9 take away 5 is 4.”"
+            ],
+            "es": [
+              "Cuenten juntos una cantidad de cosas, hasta diez.",
+              "Un jugador tapa algunas con el vaso mientras el otro mira para otro lado.",
+              "Miren otra vez: “Teniamos 9. Ahora veo 5. ¿Cuantas hay debajo del vaso?”",
+              "Levanten el vaso y comprueben. Digan las dos operaciones: “5 y 4 dan 9, asi que 9 menos 5 es 4.”"
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g1-doubles",
@@ -160,38 +332,103 @@
       "stages": [
         {
           "label": {
-            "en": "Doubles to 10",
-            "es": "Dobles hasta 10"
-          },
-          "params": {
-            "min": 1,
-            "max": 5,
-            "near": false
-          }
-        },
-        {
-          "label": {
-            "en": "Doubles to 20",
-            "es": "Dobles hasta 20"
+            "en": "Doubles",
+            "es": "Dobles"
           },
           "params": {
             "min": 1,
             "max": 10,
-            "near": false
+            "offsets": [
+              0
+            ]
           }
         },
         {
           "label": {
-            "en": "Near doubles",
-            "es": "Casi dobles"
+            "en": "One more",
+            "es": "Uno mas"
           },
           "params": {
             "min": 1,
             "max": 10,
-            "near": true
+            "offsets": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "One more or less",
+            "es": "Uno mas o menos"
+          },
+          "params": {
+            "min": 1,
+            "max": 10,
+            "offsets": [
+              0,
+              1,
+              -1
+            ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding within 10, and noticing pairs of things in the world.",
+          "es": "Sumar hasta 10 y fijarse en los pares de cosas del mundo."
+        },
+        "readyWhen": {
+          "en": "your child says a double instantly, then uses it for the near double",
+          "es": "su hijo dice un doble al instante y luego lo usa para el casi doble"
+        },
+        "leadsTo": {
+          "en": "Using a fact you know to get one you do not. That move is the whole of mental maths, and this is where it starts.",
+          "es": "Usar una operacion que se sabe para sacar otra que no. Ese movimiento es todo el calculo mental, y empieza aqui."
+        },
+        "why": {
+          "en": "Children remember doubles long before they remember anything else — two hands, two shoes, a pair of anything. That makes doubles a free anchor. Once 7 + 7 is automatic, 7 + 8 costs one extra step instead of a fresh effort. Near doubles are where a child first uses something they know to get something they do not.",
+          "es": "Los ninos se aprenden los dobles mucho antes que cualquier otra cosa: dos manos, dos zapatos, un par de lo que sea. Eso hace que los dobles sean un apoyo gratis. En cuanto 7 + 7 sale solo, 7 + 8 cuesta un paso mas en vez de un esfuerzo nuevo. Los casi dobles son donde un nino usa por primera vez algo que sabe para sacar algo que no sabe."
+        },
+        "say": {
+          "en": [
+            "“What is double 6?”",
+            "“This one is almost a double. Which double is it near?”",
+            "“7 plus 8 — that is double 7 and one more.”",
+            "“Where do you see doubles around the house?”"
+          ],
+          "es": [
+            "“¿Cuanto es el doble de 6?”",
+            "“Esta es casi un doble. ¿A que doble se parece?”",
+            "“7 mas 8: eso es el doble de 7 y uno mas.”",
+            "“¿Donde ves dobles por la casa?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Double Snap",
+            "es": "Dobles a la vista"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Turn over one card.",
+              "Both players race to say the double: a 6 means “twelve!”",
+              "Turn the next card. Now say the near double: “6 and 7 is 13, because double 6 is 12 and one more.”",
+              "Keep the cards you win. Most cards at the end takes it."
+            ],
+            "es": [
+              "Volteen una carta.",
+              "Los dos jugadores compiten por decir el doble: un 6 es “¡doce!”",
+              "Volteen la siguiente carta. Ahora digan el casi doble: “6 y 7 es 13, porque el doble de 6 es 12 y uno mas.”",
+              "Guarden las cartas que ganen. Gana quien tenga mas al final."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g1-add-sub-ten",
@@ -256,7 +493,63 @@
             "max": 89
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Counting to 100, and seeing that a two-digit number is some tens and some ones.",
+          "es": "Contar hasta 100 y ver que un numero de dos digitos son unas decenas y unas unidades."
+        },
+        "readyWhen": {
+          "en": "your child answers without counting, because they can see which digit moves",
+          "es": "su hijo contesta sin contar, porque ve cual digito se mueve"
+        },
+        "leadsTo": {
+          "en": "Adding and taking away 100, then two-digit addition, then every algorithm after that. This is place value beginning to do the work.",
+          "es": "Sumar y restar 100, luego sumas de dos digitos y despues todos los algoritmos. Aqui el valor posicional empieza a hacer el trabajo."
+        },
+        "why": {
+          "en": "Adding ten does not change the ones digit at all — 47 becomes 57, and the 7 just sits there. Noticing that is a child's first real encounter with place value, and it is the idea the whole number system rests on. If your child counts on ten by ones, that is normal. The goal this week is that they stop needing to.",
+          "es": "Sumar diez no cambia nada el digito de las unidades: 47 se vuelve 57, y el 7 se queda ahi. Notar eso es el primer encuentro de verdad de un nino con el valor posicional, y es la idea en la que se apoya todo el sistema numerico. Si su hijo cuenta de uno en uno para sumar diez, es normal. La meta de esta semana es que deje de necesitarlo."
+        },
+        "say": {
+          "en": [
+            "“What changed? What stayed the same?”",
+            "“Ten more than 34. Do not count — look at it.”",
+            "“Which digit moved?”",
+            "“Now ten less. What happens now?”"
+          ],
+          "es": [
+            "“¿Que cambio? ¿Que se quedo igual?”",
+            "“Diez mas que 34. No cuentes: mirelo.”",
+            "“¿Cual digito se movio?”",
+            "“Ahora diez menos. ¿Que pasa ahora?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Ten Up, Ten Down",
+            "es": "Diez arriba, diez abajo"
+          },
+          "needs": {
+            "en": "Two dice and a coin",
+            "es": "Dos dados y una moneda"
+          },
+          "how": {
+            "en": [
+              "Roll two dice to make a two-digit number: a 4 and a 7 can be 47 or 74. The roller chooses.",
+              "Flip the coin: heads is ten more, tails is ten less.",
+              "Say the new number as fast as you can, then say which digit changed.",
+              "Play ten rounds. Saying “the tens digit went up by one” wins a bonus point."
+            ],
+            "es": [
+              "Tiren dos dados para formar un numero de dos digitos: un 4 y un 7 pueden ser 47 o 74. Escoge quien tira.",
+              "Tiren la moneda: cara es diez mas, cruz es diez menos.",
+              "Digan el numero nuevo lo mas rapido que puedan y luego digan cual digito cambio.",
+              "Jueguen diez rondas. Decir “el digito de las decenas subio uno” gana un punto extra."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g1-missing-addend",
@@ -302,7 +595,63 @@
             "max": 20
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding within 20, and being comfortable that the answer is not always on the right.",
+          "es": "Sumar hasta 20 y estar comodo con que la respuesta no siempre esta a la derecha."
+        },
+        "readyWhen": {
+          "en": "your child counts up from the number given rather than guessing",
+          "es": "su hijo cuenta hacia arriba desde el numero dado en vez de adivinar"
+        },
+        "leadsTo": {
+          "en": "Subtraction as a missing addend, then one-step equations in Grade 6. The box becomes an x, and nothing else changes.",
+          "es": "La resta como sumando que falta y, en sexto grado, las ecuaciones de un paso. La casilla se vuelve una x y no cambia nada mas."
+        },
+        "why": {
+          "en": "“8 + ? = 13” is the first time a child meets an unknown, and it is the same idea that becomes algebra years later. It also quietly teaches that the equals sign means “is the same as”, not “here comes the answer” — a misunderstanding that causes real trouble in middle school if it is never corrected.",
+          "es": "“8 + ? = 13” es la primera vez que un nino se encuentra con una incognita, y es la misma idea que anos despues se vuelve algebra. Tambien ensena en silencio que el signo igual significa “es lo mismo que” y no “aqui viene la respuesta”, un malentendido que causa problemas de verdad en secundaria si nunca se corrige."
+        },
+        "say": {
+          "en": [
+            "“How many more do we need?”",
+            "“Count up from 8 until you reach 13. How many jumps?”",
+            "“The equals sign means both sides are the same.”",
+            "“Could you check it by adding?”"
+          ],
+          "es": [
+            "“¿Cuantos mas necesitamos?”",
+            "“Cuenta desde 8 hasta llegar a 13. ¿Cuantos saltos?”",
+            "“El signo igual quiere decir que los dos lados son lo mismo.”",
+            "“¿Lo puedes comprobar sumando?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Fill the Gap",
+            "es": "Llena el hueco"
+          },
+          "needs": {
+            "en": "Paper, a pencil, and up to 20 small things",
+            "es": "Papel, lapiz y hasta 20 cosas pequenas"
+          },
+          "how": {
+            "en": [
+              "One player writes a number sentence with a gap: 8 + ___ = 13.",
+              "The other builds it: count out 8 things, then add until there are 13.",
+              "Say how many were added. Write it in the gap.",
+              "Swap roles. Let your child write the puzzles too — making them is harder than solving them."
+            ],
+            "es": [
+              "Un jugador escribe una operacion con un hueco: 8 + ___ = 13.",
+              "El otro la construye: cuenta 8 cosas y agrega hasta que haya 13.",
+              "Digan cuantas se agregaron. Escribanlo en el hueco.",
+              "Cambien de papel. Deje que su hijo tambien escriba los problemas: inventarlos es mas dificil que resolverlos."
+            ]
+          }
+        }
+      }
     }
   ]
 }

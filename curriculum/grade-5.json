@@ -59,7 +59,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Multi-digit multiplication in Grade 4, and the facts under it.",
+          "es": "La multiplicacion de varios digitos de cuarto grado y las operaciones que la sostienen."
+        },
+        "why": {
+          "en": "Grade 5 expects the standard algorithm to be fluent, which means the method is no longer the thing being learned — it is the tool. A child still working out 7 × 8 in the middle of a long multiplication has no attention left for the procedure. If that is happening, the fix is the facts, not more multiplication practice.",
+          "es": "En quinto grado se espera fluidez con el algoritmo estandar, lo que significa que el metodo ya no es lo que se aprende: es la herramienta. Un nino que todavia esta sacando 7 × 8 en medio de una multiplicacion larga no le queda atencion para el procedimiento. Si eso pasa, lo que hay que arreglar son las tablas, no mas multiplicaciones."
+        },
+        "readyWhen": {
+          "en": "your child gets through a 3-by-2 problem without stopping to work out a fact",
+          "es": "su hijo termina un problema de 3 por 2 sin detenerse a sacar una operacion basica"
+        },
+        "leadsTo": {
+          "en": "Dividing by two digits, where you multiply at every single step.",
+          "es": "Dividir entre dos digitos, donde se multiplica en cada paso."
+        },
+        "say": {
+          "en": [
+            "“Estimate first. About how big will it be?”",
+            "“Which fact slowed you down? Let us practise that one.”",
+            "“Why is that row shifted?”",
+            "“Check the size of your answer against your estimate.”"
+          ],
+          "es": [
+            "“Estima primero. ¿Como de grande va a ser?”",
+            "“¿Que operacion te hizo mas lento? Practiquemos esa.”",
+            "“¿Por que esa fila esta corrida?”",
+            "“Compara el tamano de tu respuesta con tu estimacion.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Closest to 5000",
+            "es": "Lo mas cerca de 5000"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Each player draws five cards and makes a three-digit number times a two-digit number.",
+              "Estimate out loud before multiplying.",
+              "Work it out. Closest to 5000 wins the round.",
+              "A correct estimate within 500 is worth a bonus point, even if you lose."
+            ],
+            "es": [
+              "Cada jugador saca cinco cartas y forma un numero de tres digitos por uno de dos.",
+              "Estimen en voz alta antes de multiplicar.",
+              "Resuelvanlo. Gana la ronda quien quede mas cerca de 5000.",
+              "Una estimacion correcta dentro de 500 vale un punto extra, aunque pierda."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g5-divide-2digits",
@@ -131,6 +187,18 @@
       "checkLength": 10,
       "targetSeconds": null,
       "family": {
+        "buildsOn": {
+          "en": "Dividing by one digit in Grade 4, and extended facts for estimating.",
+          "es": "Dividir entre un digito en cuarto grado y las operaciones extendidas para estimar."
+        },
+        "readyWhen": {
+          "en": "your child estimates before each step instead of guessing and rubbing out",
+          "es": "su hijo estima antes de cada paso en vez de adivinar y borrar"
+        },
+        "leadsTo": {
+          "en": "Long division in Grade 6, which is this with harder numbers and no new method.",
+          "es": "La division larga de sexto grado, que es esto con numeros mas dificiles y ningun metodo nuevo."
+        },
         "why": {
           "en": "Dividing by a two-digit number is where children most often give up, because the first guess is genuinely hard. Estimating first is what makes it possible: round 23 to 20, and 851 ÷ 23 is clearly near 40, not near 4 or 400. The estimate is not a shortcut to the answer — it is the safety rail that tells you when an answer is nonsense. This is Grade 6 standard 6.NS.B.2.",
           "es": "Dividir entre un numero de dos digitos es donde mas seguido se rinden los ninos, porque la primera suposicion es de verdad dificil. Estimar primero es lo que lo hace posible: redondee 23 a 20, y 851 ÷ 23 claramente esta cerca de 40, no cerca de 4 ni de 400. La estimacion no es un atajo a la respuesta: es la barandilla que avisa cuando una respuesta no tiene sentido. Este es el estandar 6.NS.B.2 de sexto grado."
@@ -233,7 +301,63 @@
             "max": 50
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Multi-digit addition and subtraction, and place value past the decimal point.",
+          "es": "Sumar y restar de varios digitos y el valor posicional despues del punto decimal."
+        },
+        "why": {
+          "en": "Lining up the decimal points is the whole skill, and the reason is place value: tenths must sit under tenths. Children who line up the right-hand ends instead get 3.5 + 0.25 = 0.60, and the mistake is invisible to them because the digits look tidy. Writing in the missing zero — 3.50 — makes it obvious.",
+          "es": "Alinear los puntos decimales es toda la destreza, y la razon es el valor posicional: los decimos van debajo de los decimos. Los ninos que alinean por la derecha sacan 3.5 + 0.25 = 0.60, y el error les resulta invisible porque los digitos se ven ordenados. Escribir el cero que falta, 3.50, lo hace evidente."
+        },
+        "readyWhen": {
+          "en": "your child lines up the points without being told, and fills in missing zeros",
+          "es": "su hijo alinea los puntos sin que se lo digan y rellena los ceros que faltan"
+        },
+        "leadsTo": {
+          "en": "All four decimal operations in Grade 6, and money and measurement everywhere after that.",
+          "es": "Las cuatro operaciones con decimales en sexto grado y el dinero y las medidas de ahi en adelante."
+        },
+        "say": {
+          "en": [
+            "“Line up the points. What goes under what?”",
+            "“Write in the missing zero. Does it look different now?”",
+            "“Is 3.5 bigger or smaller than 3.25? How do you know?”",
+            "“Estimate to the nearest whole number first.”"
+          ],
+          "es": [
+            "“Alinea los puntos. ¿Que va debajo de que?”",
+            "“Escribe el cero que falta. ¿Se ve distinto ahora?”",
+            "“¿Es 3.5 mayor o menor que 3.25? ¿Como lo sabes?”",
+            "“Estima primero al numero entero mas cercano.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Shopping Totals",
+            "es": "Cuentas de la compra"
+          },
+          "needs": {
+            "en": "A shop receipt, or any list of prices",
+            "es": "Un recibo de la tienda o cualquier lista de precios"
+          },
+          "how": {
+            "en": [
+              "Pick three items from the receipt.",
+              "Both of you add them in your heads, then check on paper.",
+              "Take one away: how much would you save without it?",
+              "Round to the nearest dollar first and see how close your estimate was."
+            ],
+            "es": [
+              "Escojan tres cosas del recibo.",
+              "Los dos sumenlas de memoria y luego comprueben en papel.",
+              "Quiten una: ¿cuanto se ahorrarian sin ella?",
+              "Redondeen al dolar mas cercano primero y vean que tan cerca quedo la estimacion."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g5-powers-of-ten",
@@ -300,7 +424,63 @@
             "places": 2
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Multiplying by tens in Grade 3, and decimal place value.",
+          "es": "Multiplicar por decenas en tercer grado y el valor posicional decimal."
+        },
+        "why": {
+          "en": "It is worth saying out loud that the decimal point does not move — the digits do. Multiplying by ten makes every digit worth ten times more, so they all shift one place left. Children taught “move the point” cope until they meet 0.4 × 100 and cannot say why the answer is 40 rather than 0.400.",
+          "es": "Vale la pena decir en voz alta que el punto decimal no se mueve: se mueven los digitos. Multiplicar por diez hace que cada digito valga diez veces mas, asi que todos se corren un lugar a la izquierda. A los ninos a los que se les ensena “mueve el punto” les alcanza hasta que se topan con 0.4 × 100 y no saben decir por que da 40 y no 0.400."
+        },
+        "readyWhen": {
+          "en": "your child answers instantly and says which way the digits went",
+          "es": "su hijo contesta al instante y dice hacia donde se fueron los digitos"
+        },
+        "leadsTo": {
+          "en": "Scientific notation in Grade 8, and metric conversions in science.",
+          "es": "La notacion cientifica en octavo grado y las conversiones metricas en ciencias."
+        },
+        "say": {
+          "en": [
+            "“Which way did the digits go? How far?”",
+            "“The point stays put. What moved?”",
+            "“Did it get bigger or smaller? Does that make sense?”",
+            "“Now divide it back. Do you get where you started?”"
+          ],
+          "es": [
+            "“¿Hacia donde se fueron los digitos? ¿Cuanto?”",
+            "“El punto se queda. ¿Que se movio?”",
+            "“¿Se hizo mayor o menor? ¿Tiene sentido?”",
+            "“Ahora divide al reves. ¿Llegas a donde empezaste?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Ten Times Bigger",
+            "es": "Diez veces mas"
+          },
+          "needs": {
+            "en": "A coin and a ruler or tape measure",
+            "es": "Una moneda y una regla o cinta metrica"
+          },
+          "how": {
+            "en": [
+              "Measure something small in centimetres.",
+              "Flip the coin: heads means ten times bigger, tails means ten times smaller.",
+              "Say the new measurement and what it would be in real life. Ten times a pencil is a person.",
+              "Keep going: ten times again. Stop when it stops being believable."
+            ],
+            "es": [
+              "Midan algo pequeno en centimetros.",
+              "Tiren la moneda: cara es diez veces mas grande, cruz es diez veces mas pequeno.",
+              "Digan la nueva medida y a que se pareceria en la vida real. Diez veces un lapiz es una persona.",
+              "Sigan: diez veces mas. Paren cuando deje de ser creible."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g5-fraction-add-sub",
@@ -362,7 +542,63 @@
             "op": "both"
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Equivalent fractions in Grade 4, and finding common multiples.",
+          "es": "Las fracciones equivalentes de cuarto grado y hallar multiplos comunes."
+        },
+        "why": {
+          "en": "You cannot add thirds to quarters any more than you can add shoes to hours — the pieces are different sizes. Making the denominators match is not a rule, it is the act of cutting both into the same size piece so they can be counted together. The classic error, adding the tops and the bottoms, disappears once a child has that picture.",
+          "es": "No se pueden sumar tercios con cuartos, igual que no se pueden sumar zapatos con horas: los pedazos son de distinto tamano. Igualar los denominadores no es una regla, es cortar los dos en pedazos del mismo tamano para poder contarlos juntos. El error clasico, sumar arriba y abajo, desaparece en cuanto el nino tiene esa imagen."
+        },
+        "readyWhen": {
+          "en": "your child finds a common denominator without being prompted, and never adds the bottoms",
+          "es": "su hijo halla un denominador comun sin que se lo pidan y nunca suma los denominadores"
+        },
+        "leadsTo": {
+          "en": "Multiplying and dividing fractions, and all of algebra with fractions in it.",
+          "es": "Multiplicar y dividir fracciones, y todo el algebra que lleva fracciones."
+        },
+        "say": {
+          "en": [
+            "“Are the pieces the same size? What do we do first?”",
+            "“What number do both bottoms go into?”",
+            "“Why do we not add the bottoms?”",
+            "“Can that answer be simplified?”"
+          ],
+          "es": [
+            "“¿Los pedazos son del mismo tamano? ¿Que hacemos primero?”",
+            "“¿En que numero caben los dos denominadores?”",
+            "“¿Por que no sumamos los denominadores?”",
+            "“¿Se puede simplificar esa respuesta?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Fair Shares",
+            "es": "Partes justas"
+          },
+          "needs": {
+            "en": "Any food that can be cut up, or paper circles",
+            "es": "Cualquier comida que se pueda cortar o circulos de papel"
+          },
+          "how": {
+            "en": [
+              "Cut one thing into quarters and another into thirds.",
+              "Take some of each. Ask: how much do we have altogether?",
+              "Cut both into twelfths to find out. Count them up.",
+              "Say the number sentence out loud: “1/4 and 1/3 is 3/12 and 4/12, which is 7/12.”"
+            ],
+            "es": [
+              "Corten una cosa en cuartos y otra en tercios.",
+              "Tomen un poco de cada una. Pregunten: ¿cuanto tenemos en total?",
+              "Corten las dos en doceavos para averiguarlo. Cuentenlos.",
+              "Digan la operacion en voz alta: “1/4 y 1/3 son 3/12 y 4/12, o sea 7/12.”"
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g5-fraction-times-whole",
@@ -425,7 +661,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Equivalent fractions, and knowing that multiplying is repeated adding.",
+          "es": "Las fracciones equivalentes y saber que multiplicar es sumar repetidas veces."
+        },
+        "why": {
+          "en": "“Of” means multiply: two thirds OF twelve is 2/3 × 12. The strange part for children is that multiplying can make something smaller, which contradicts everything they have learned so far. Saying it out loud — “we are taking a PART of it, so of course it shrinks” — heads off a misconception that otherwise lasts into high school.",
+          "es": "“De” significa multiplicar: dos tercios DE doce es 2/3 × 12. Lo raro para los ninos es que multiplicar puede hacer algo mas pequeno, lo que contradice todo lo que han aprendido. Decirlo en voz alta, “estamos tomando una PARTE, claro que se encoge”, evita un malentendido que si no dura hasta la preparatoria."
+        },
+        "readyWhen": {
+          "en": "your child is not surprised that the answer is smaller than what they started with",
+          "es": "su hijo ya no se sorprende de que la respuesta sea menor que con lo que empezo"
+        },
+        "leadsTo": {
+          "en": "Dividing fractions in Grade 6, percents in Grade 7, and every proportion problem after.",
+          "es": "Dividir fracciones en sexto grado, los porcentajes en septimo y todos los problemas de proporcion despues."
+        },
+        "say": {
+          "en": [
+            "“‘Of’ means times. What is two thirds of 12?”",
+            "“Why did it get smaller? Does that make sense?”",
+            "“Share it out first, then take that many.”",
+            "“Where would you use this at home?”"
+          ],
+          "es": [
+            "“‘De’ significa por. ¿Cuanto es dos tercios de 12?”",
+            "“¿Por que se hizo mas pequeno? ¿Tiene sentido?”",
+            "“Repartelo primero y luego toma esa cantidad.”",
+            "“¿Donde usarias esto en casa?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Half the Recipe",
+            "es": "La mitad de la receta"
+          },
+          "needs": {
+            "en": "Any recipe",
+            "es": "Cualquier receta"
+          },
+          "how": {
+            "en": [
+              "Pick a recipe and read the amounts out loud.",
+              "Halve every one of them. Then work out what a third would be.",
+              "Ask: which ones were easy, and which needed thinking?",
+              "If you cook it, you have just used the maths for real."
+            ],
+            "es": [
+              "Escojan una receta y lean las cantidades en voz alta.",
+              "Saquen la mitad de cada una. Luego calculen cuanto seria un tercio.",
+              "Pregunten: ¿cuales salieron faciles y cuales costaron?",
+              "Si la cocinan, acaban de usar las matematicas de verdad."
+            ]
+          }
+        }
+      }
     }
   ]
 }

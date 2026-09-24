@@ -69,7 +69,63 @@
             "remainderRate": 0.4
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Dividing by two digits in Grade 5, and extended facts for estimating.",
+          "es": "Dividir entre dos digitos en quinto grado y las operaciones extendidas para estimar."
+        },
+        "why": {
+          "en": "Grade 6 expects long division to be fluent, and it is the last arithmetic standard before everything turns algebraic. Where children give up is the first guess: how many 23s in 85? Rounding 23 to 20 turns an impossible guess into an easy one. The estimate is not a shortcut to the answer — it is the rail that tells you when an answer is nonsense.",
+          "es": "En sexto grado se espera fluidez con la division larga, y es el ultimo estandar de aritmetica antes de que todo se vuelva algebraico. Donde los ninos se rinden es en la primera suposicion: ¿cuantos 23 caben en 85? Redondear 23 a 20 convierte una suposicion imposible en una facil. La estimacion no es un atajo a la respuesta: es la barandilla que avisa cuando una respuesta no tiene sentido."
+        },
+        "readyWhen": {
+          "en": "your child estimates before each digit instead of guessing and rubbing out",
+          "es": "su hijo estima antes de cada digito en vez de adivinar y borrar"
+        },
+        "leadsTo": {
+          "en": "Dividing decimals, converting fractions to decimals, and unit rates — all of which are this.",
+          "es": "Dividir decimales, convertir fracciones a decimales y las tasas unitarias: todo eso es esto."
+        },
+        "say": {
+          "en": [
+            "“Round the divisor. About how many?”",
+            "“Is your answer near your estimate? If not, where did it go wrong?”",
+            "“Guessing and adjusting is allowed. Everyone does it.”",
+            "“Multiply your answer back. Does it get you close to where you started?”"
+          ],
+          "es": [
+            "“Redondea el divisor. ¿Mas o menos cuantos?”",
+            "“¿Tu respuesta esta cerca de tu estimacion? Si no, ¿donde se torcio?”",
+            "“Se vale probar y ajustar. Todo el mundo lo hace.”",
+            "“Multiplica tu respuesta al reves. ¿Te acerca a donde empezaste?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Closest Guess",
+            "es": "La estimacion mas cercana"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out, and paper",
+            "es": "Una baraja sin las figuras y papel"
+          },
+          "how": {
+            "en": [
+              "Turn over three cards for the dividend and two for the divisor.",
+              "Before anyone divides, both players write down an estimate. Show them at the same time.",
+              "Now work it out properly. Whoever estimated closer wins, even if they were slower.",
+              "This rewards the thing that actually matters here: knowing roughly where the answer lives."
+            ],
+            "es": [
+              "Volteen tres cartas para el dividendo y dos para el divisor.",
+              "Antes de que alguien divida, los dos escriben una estimacion. Muestrenlas al mismo tiempo.",
+              "Ahora resuelvanlo bien. Gana quien haya estimado mas cerca, aunque haya sido mas lento.",
+              "Esto premia lo que de verdad importa aqui: saber mas o menos donde vive la respuesta."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-decimal-ops",
@@ -132,7 +188,63 @@
             "divisorWhole": true
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Decimal adding and taking away in Grade 5, and long division.",
+          "es": "Sumar y restar decimales en quinto grado y la division larga."
+        },
+        "why": {
+          "en": "All four operations at once is the point: the rules for where the point goes are different for each, and children who learned them one at a time often apply the wrong one. Adding lines the points up; multiplying counts the decimal places; dividing moves both numbers until the divisor is whole. Knowing which is which is the skill.",
+          "es": "Las cuatro operaciones juntas son el punto: las reglas de donde va el punto son distintas en cada una, y los ninos que las aprendieron por separado suelen aplicar la equivocada. Al sumar se alinean los puntos; al multiplicar se cuentan los lugares decimales; al dividir se mueven los dos numeros hasta que el divisor sea entero. Saber cual es cual es la destreza."
+        },
+        "readyWhen": {
+          "en": "your child picks the right rule for the operation without being reminded",
+          "es": "su hijo escoge la regla correcta para cada operacion sin que se lo recuerden"
+        },
+        "leadsTo": {
+          "en": "Percents, rates and every science calculation in high school.",
+          "es": "Los porcentajes, las tasas y todos los calculos de ciencias en la preparatoria."
+        },
+        "say": {
+          "en": [
+            "“Which operation is it? So which rule for the point?”",
+            "“Estimate with whole numbers first.”",
+            "“Count the decimal places. How many should the answer have?”",
+            "“Does that answer look about the right size?”"
+          ],
+          "es": [
+            "“¿Que operacion es? ¿Entonces que regla para el punto?”",
+            "“Estima primero con numeros enteros.”",
+            "“Cuenta los lugares decimales. ¿Cuantos debe tener la respuesta?”",
+            "“¿Esa respuesta se ve del tamano correcto?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Receipt Check",
+            "es": "Revisa el recibo"
+          },
+          "needs": {
+            "en": "A shop receipt",
+            "es": "Un recibo de la tienda"
+          },
+          "how": {
+            "en": [
+              "Pick four items. Add them mentally, then check with the receipt.",
+              "Work out what three of the same item would cost.",
+              "Split the total between two people. Then between four.",
+              "Estimate every answer before working it out. Closest estimate wins the round."
+            ],
+            "es": [
+              "Escojan cuatro cosas. Sumenlas de memoria y comprueben con el recibo.",
+              "Calculen cuanto costarian tres de la misma cosa.",
+              "Dividan el total entre dos personas. Luego entre cuatro.",
+              "Estimen cada respuesta antes de calcularla. Gana la ronda la estimacion mas cercana."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-gcf-lcm",
@@ -178,7 +290,63 @@
             "max": 24
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Factors and multiples in Grade 4, and the multiplication facts.",
+          "es": "Los factores y multiplos de cuarto grado y las tablas de multiplicar."
+        },
+        "why": {
+          "en": "These two get confused because the names are similar and the answers are not. GCF is the biggest number that fits into both — it is always smaller than or equal to the numbers. LCM is the first number they both reach — it is always bigger than or equal to them. Checking the size of the answer against that catches most mistakes on its own.",
+          "es": "Estos dos se confunden porque los nombres se parecen y las respuestas no. El MCD es el numero mas grande que cabe en los dos: siempre es menor o igual que los numeros. El mcm es el primer numero al que llegan los dos: siempre es mayor o igual. Comprobar el tamano de la respuesta contra eso atrapa casi todos los errores."
+        },
+        "readyWhen": {
+          "en": "your child can say which answer should be bigger before working it out",
+          "es": "su hijo puede decir cual respuesta deberia ser mayor antes de calcularla"
+        },
+        "leadsTo": {
+          "en": "Simplifying fractions and finding common denominators, which is what these are for.",
+          "es": "Simplificar fracciones y hallar denominadores comunes, que es para lo que sirven."
+        },
+        "say": {
+          "en": [
+            "“Should the answer be bigger or smaller than both numbers?”",
+            "“List the factors of each. What do they share?”",
+            "“Count up in both. Where do they first meet?”",
+            "“Which one do you need for adding fractions?”"
+          ],
+          "es": [
+            "“¿La respuesta debe ser mayor o menor que los dos numeros?”",
+            "“Escribe los factores de cada uno. ¿Que comparten?”",
+            "“Cuenta en los dos. ¿Donde se encuentran primero?”",
+            "“¿Cual necesitas para sumar fracciones?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Meet in the Middle",
+            "es": "Encuentro en el medio"
+          },
+          "needs": {
+            "en": "Two dice and paper",
+            "es": "Dos dados y papel"
+          },
+          "how": {
+            "en": [
+              "Roll two dice and add 6 to each to make two numbers between 8 and 18.",
+              "One player races to find the GCF, the other the LCM.",
+              "Check each other. Say out loud which answer had to be bigger.",
+              "Swap jobs each round. Numbers like 12 and 18 make the best ones."
+            ],
+            "es": [
+              "Tiren dos dados y sumen 6 a cada uno para formar dos numeros entre 8 y 18.",
+              "Un jugador busca el MCD y el otro el mcm.",
+              "Revisen al otro. Digan en voz alta cual respuesta tenia que ser mayor.",
+              "Cambien de papel cada ronda. Numeros como 12 y 18 dan las mejores rondas."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-divide-fractions",
@@ -239,7 +407,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Multiplying fractions in Grade 5, and equivalent fractions.",
+          "es": "Multiplicar fracciones en quinto grado y las fracciones equivalentes."
+        },
+        "why": {
+          "en": "“Flip and multiply” works, but it is worth knowing why, because otherwise it is a spell. Dividing by 1/2 asks “how many halves fit in here?” — and there are twice as many halves as wholes, which is why the answer gets bigger. A child who has asked that question once is much less likely to flip the wrong fraction.",
+          "es": "“Voltea y multiplica” funciona, pero vale la pena saber por que, porque si no es un hechizo. Dividir entre 1/2 pregunta “¿cuantas mitades caben aqui?”, y hay el doble de mitades que de enteros, por eso la respuesta crece. Un nino que se ha hecho esa pregunta una vez es mucho menos probable que voltee la fraccion equivocada."
+        },
+        "readyWhen": {
+          "en": "your child flips the SECOND fraction every time, and is not surprised the answer grew",
+          "es": "su hijo voltea siempre la SEGUNDA fraccion y no le sorprende que la respuesta crezca"
+        },
+        "leadsTo": {
+          "en": "Rational expressions in algebra, and rates and ratios.",
+          "es": "Las expresiones racionales en algebra y las tasas y razones."
+        },
+        "say": {
+          "en": [
+            "“How many halves fit into 3?”",
+            "“Which one do you flip? Why that one?”",
+            "“Will the answer be bigger or smaller? Why?”",
+            "“Check it: multiply your answer back.”"
+          ],
+          "es": [
+            "“¿Cuantas mitades caben en 3?”",
+            "“¿Cual volteas? ¿Por que esa?”",
+            "“¿La respuesta sera mayor o menor? ¿Por que?”",
+            "“Compruebalo: multiplica tu respuesta al reves.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "How Many Fit?",
+            "es": "¿Cuantos caben?"
+          },
+          "needs": {
+            "en": "A measuring cup and water, or any container",
+            "es": "Una taza medidora y agua, o cualquier recipiente"
+          },
+          "how": {
+            "en": [
+              "Ask: how many quarter-cups fit in two cups?",
+              "Guess first, then pour and count.",
+              "Write it as a division: 2 ÷ 1/4 = 8.",
+              "Try thirds and halves. Notice the answer is always bigger than you started with."
+            ],
+            "es": [
+              "Pregunten: ¿cuantos cuartos de taza caben en dos tazas?",
+              "Adivinen primero, luego sirvan y cuenten.",
+              "Escribanlo como division: 2 ÷ 1/4 = 8.",
+              "Prueben con tercios y mitades. Fijense en que la respuesta siempre es mayor que con lo que empezaron."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-expressions",
@@ -293,7 +517,63 @@
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "All four operations, and exponents as repeated multiplication.",
+          "es": "Las cuatro operaciones y los exponentes como multiplicacion repetida."
+        },
+        "why": {
+          "en": "The order of operations is not a law of nature, it is an agreement so that everyone reading 2 + 3 × 4 gets the same answer. Saying that out loud helps: it is a convention, like driving on one side of the road. What matters is that your child applies it consistently, and shows enough working that a mistake can be found.",
+          "es": "El orden de las operaciones no es una ley de la naturaleza, es un acuerdo para que todos los que lean 2 + 3 × 4 saquen lo mismo. Decirlo en voz alta ayuda: es una convencion, como conducir por un lado de la calle. Lo que importa es que su hijo la aplique siempre igual y muestre suficiente trabajo para poder encontrar un error."
+        },
+        "readyWhen": {
+          "en": "your child works through one step at a time and writes each line down",
+          "es": "su hijo hace un paso a la vez y escribe cada linea"
+        },
+        "leadsTo": {
+          "en": "Solving equations, where every step is undoing this order backwards.",
+          "es": "Resolver ecuaciones, donde cada paso es deshacer este orden al reves."
+        },
+        "say": {
+          "en": [
+            "“What comes first? Why?”",
+            "“Write the next line rather than doing it in your head.”",
+            "“What would the answer be if we did it left to right? Which is right?”",
+            "“Show me where you are now.”"
+          ],
+          "es": [
+            "“¿Que va primero? ¿Por que?”",
+            "“Escribe la siguiente linea en vez de hacerlo de memoria.”",
+            "“¿Cuanto daria si lo hicieramos de izquierda a derecha? ¿Cual esta bien?”",
+            "“Muestrame donde vas.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Make 24",
+            "es": "Haz 24"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Deal four cards face up.",
+              "Use all four, with any operations and brackets, to make exactly 24.",
+              "Say your expression out loud with the brackets: “(6 − 2) × 3 × 2.”",
+              "If nobody can do it in two minutes, deal again. Some hands genuinely cannot."
+            ],
+            "es": [
+              "Repartan cuatro cartas boca arriba.",
+              "Usen las cuatro, con cualquier operacion y parentesis, para hacer exactamente 24.",
+              "Digan su expresion en voz alta con los parentesis: “(6 − 2) × 3 × 2.”",
+              "Si nadie puede en dos minutos, repartan otra vez. Algunas manos de verdad no se pueden."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-one-step-eq",
@@ -350,7 +630,63 @@
             "maxX": 20
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Missing addends from Grade 1, and the order of operations.",
+          "es": "Los sumandos que faltan de primer grado y el orden de las operaciones."
+        },
+        "why": {
+          "en": "This is the missing-number box from Grade 1 with a letter in it, and saying so removes most of the fear. The one idea to insist on is balance: whatever you do to one side you do to the other, because the equals sign means the two sides really are the same. Children who move numbers across and “change the sign” without that picture come unstuck at two steps.",
+          "es": "Esto es la casilla del numero que falta de primer grado con una letra dentro, y decirlo quita casi todo el miedo. La unica idea en la que hay que insistir es el equilibrio: lo que le haces a un lado se lo haces al otro, porque el signo igual quiere decir que los dos lados son de verdad lo mismo. Los ninos que pasan numeros al otro lado y “cambian el signo” sin esa imagen se atoran en dos pasos."
+        },
+        "readyWhen": {
+          "en": "your child does the same thing to both sides and writes both lines",
+          "es": "su hijo hace lo mismo en los dos lados y escribe las dos lineas"
+        },
+        "leadsTo": {
+          "en": "Two-step equations in Grade 7 and equations with x on both sides in Grade 8.",
+          "es": "Las ecuaciones de dos pasos en septimo grado y las de x en los dos lados en octavo."
+        },
+        "say": {
+          "en": [
+            "“What is being done to x? So what undoes it?”",
+            "“Do it to both sides. Write both lines.”",
+            "“Check it: put your answer back in.”",
+            "“This is the same as the missing number boxes. Just a letter now.”"
+          ],
+          "es": [
+            "“¿Que le estan haciendo a la x? ¿Entonces que lo deshace?”",
+            "“Hazlo en los dos lados. Escribe las dos lineas.”",
+            "“Compruebalo: vuelve a poner tu respuesta.”",
+            "“Esto es igual que las casillas del numero que falta. Ahora es una letra.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Guess My Number",
+            "es": "Adivina mi numero"
+          },
+          "needs": {
+            "en": "Nothing at all",
+            "es": "Nada"
+          },
+          "how": {
+            "en": [
+              "One player thinks of a number and does one thing to it: “I doubled it and got 18.”",
+              "The other works out the starting number and says how they undid it.",
+              "Write it as an equation afterwards: 2x = 18.",
+              "Swap. Making the puzzle is as useful as solving it."
+            ],
+            "es": [
+              "Un jugador piensa un numero y le hace una cosa: “Lo dupliqué y me dio 18.”",
+              "El otro saca el numero inicial y dice como lo deshizo.",
+              "Escribanlo despues como ecuacion: 2x = 18.",
+              "Cambien. Inventar el problema sirve tanto como resolverlo."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g6-unit-rates",
@@ -393,7 +729,63 @@
             "maxRate": 90
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Division, and dividing decimals.",
+          "es": "La division y dividir decimales."
+        },
+        "why": {
+          "en": "A unit rate is just a division with a purpose: how much for ONE. It is the maths behind comparing two packet sizes in a shop, and it is worth doing out loud in the aisle. Children often divide the wrong way round — asking “which number goes on top” misses the point; asking “one what?” answers it.",
+          "es": "Una tasa unitaria es solo una division con un proposito: cuanto por UNO. Son las matematicas de comparar dos tamanos de paquete en la tienda, y vale la pena hacerlo en voz alta en el pasillo. Los ninos suelen dividir al reves: preguntar “¿que numero va arriba?” no llega a nada; preguntar “¿uno de que?” si."
+        },
+        "readyWhen": {
+          "en": "your child divides the right way round because they asked “one what?” first",
+          "es": "su hijo divide en el sentido correcto porque pregunto primero “¿uno de que?”"
+        },
+        "leadsTo": {
+          "en": "Proportional relationships and slope, which are unit rates with a graph attached.",
+          "es": "Las relaciones proporcionales y la pendiente, que son tasas unitarias con una grafica."
+        },
+        "say": {
+          "en": [
+            "“One what? That tells you what to divide by.”",
+            "“Which is the better buy? Show me why.”",
+            "“How far in one hour? How much for one bottle?”",
+            "“Does that answer make sense for ONE of them?”"
+          ],
+          "es": [
+            "“¿Uno de que? Eso te dice entre que dividir.”",
+            "“¿Cual conviene mas? Muestrame por que.”",
+            "“¿Cuanto en una hora? ¿Cuanto por una botella?”",
+            "“¿Esa respuesta tiene sentido para UNO de ellos?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Best Buy",
+            "es": "La mejor compra"
+          },
+          "needs": {
+            "en": "Two packets of anything with prices on",
+            "es": "Dos paquetes de cualquier cosa con precio"
+          },
+          "how": {
+            "en": [
+              "Pick two different sizes of the same thing.",
+              "Work out the price for one unit of each: per ounce, per sheet, per bar.",
+              "Say which is better value and by how much.",
+              "Check the shelf label — many shops print the unit price, so you can mark your own work."
+            ],
+            "es": [
+              "Escojan dos tamanos distintos de la misma cosa.",
+              "Calculen el precio por unidad de cada uno: por onza, por hoja, por barra.",
+              "Digan cual conviene mas y por cuanto.",
+              "Revisen la etiqueta del estante: muchas tiendas imprimen el precio unitario, asi pueden calificarse solos."
+            ]
+          }
+        }
+      }
     }
   ]
 }

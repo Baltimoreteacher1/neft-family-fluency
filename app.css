@@ -1276,3 +1276,62 @@ td[data-flag="good"] {
   font-weight: 800;
   color: var(--grade-accent);
 }
+
+/* The stage ladder on the grown-ups page: the arc of the skill, and where the
+   child is on it right now. */
+.stagelist {
+  list-style: none;
+  counter-reset: stage;
+  padding: 0;
+  margin: 0 0 12px;
+}
+.stagelist__item {
+  counter-increment: stage;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 10px 34px;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.stagelist__item:last-child {
+  border-bottom: 0;
+}
+.stagelist__item::before {
+  content: counter(stage);
+  position: absolute;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  color: var(--ink-soft);
+}
+.stagelist__item[data-state="done"]::before {
+  color: #10201a;
+  background: var(--grade-accent);
+  border-color: var(--grade-accent);
+}
+.stagelist__item[data-state="now"]::before {
+  border-color: var(--grade-accent);
+  color: var(--grade-accent);
+}
+.stagelist__item[data-state="todo"] {
+  color: var(--ink-soft);
+}
+.stagelist__label {
+  flex: 1;
+  font-weight: 600;
+}
+.stagelist__tick {
+  color: var(--yes);
+}
+.gamename {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}

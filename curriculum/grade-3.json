@@ -19,8 +19,8 @@
       "stages": [
         {
           "label": {
-            "en": "Start",
-            "es": "Inicio"
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
           },
           "params": {
             "factors": [
@@ -41,34 +41,7 @@
         },
         {
           "label": {
-            "en": "Build",
-            "es": "Practica"
-          },
-          "params": {
-            "factors": [
-              2,
-              5,
-              10
-            ],
-            "others": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "commute": true
-          }
-        },
-        {
-          "label": {
-            "en": "All facts",
+            "en": "All of them",
             "es": "Todas"
           },
           "params": {
@@ -92,11 +65,45 @@
             ],
             "commute": true
           }
+        },
+        {
+          "label": {
+            "en": "The tricky ones",
+            "es": "Las dificiles"
+          },
+          "params": {
+            "factors": [
+              2,
+              5,
+              10
+            ],
+            "others": [
+              4,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
         }
       ],
       "checkLength": 12,
       "targetSeconds": 3,
       "family": {
+        "buildsOn": {
+          "en": "Skip counting by 2s, 5s and 10s from Grade 2.",
+          "es": "Contar salteado de 2, 5 y 10 de segundo grado."
+        },
+        "readyWhen": {
+          "en": "your child answers without skip counting out loud",
+          "es": "su hijo contesta sin contar salteado en voz alta"
+        },
+        "leadsTo": {
+          "en": "Every other times table. These three are the anchors the rest are built from: ×4 is ×2 twice, ×9 is ×10 minus one group.",
+          "es": "Todas las demas tablas. Estas tres son los anclajes de las otras: ×4 es ×2 dos veces, ×9 es ×10 menos un grupo."
+        },
         "why": {
           "en": "Skip counting is the first way most children meet multiplication, and it is not a crutch — it is the number line doing the work. A child who can count 5, 10, 15, 20 already knows 5 × 4; what they are learning this week is that those are the same thing. Doubles (× 2) come first because children hear them everywhere — two hands, two shoes, a pair of anything.",
           "es": "Contar salteado es la primera manera en que casi todos los ninos conocen la multiplicacion, y no es una muleta: es la recta numerica haciendo el trabajo. Un nino que puede contar 5, 10, 15, 20 ya sabe 5 × 4; lo que aprende esta semana es que son la misma cosa. Los dobles (× 2) van primero porque los ninos los oyen en todas partes: dos manos, dos zapatos, un par de cualquier cosa."
@@ -157,8 +164,8 @@
       "stages": [
         {
           "label": {
-            "en": "Start",
-            "es": "Inicio"
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
           },
           "params": {
             "factors": [
@@ -178,33 +185,7 @@
         },
         {
           "label": {
-            "en": "Build",
-            "es": "Practica"
-          },
-          "params": {
-            "factors": [
-              4,
-              8
-            ],
-            "others": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "commute": true
-          }
-        },
-        {
-          "label": {
-            "en": "All facts",
+            "en": "All of them",
             "es": "Todas"
           },
           "params": {
@@ -227,11 +208,44 @@
             ],
             "commute": true
           }
+        },
+        {
+          "label": {
+            "en": "The tricky ones",
+            "es": "Las dificiles"
+          },
+          "params": {
+            "factors": [
+              4,
+              8
+            ],
+            "others": [
+              4,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
         }
       ],
       "checkLength": 12,
       "targetSeconds": 3,
       "family": {
+        "buildsOn": {
+          "en": "×2 from the previous skill, known well enough to use twice in a row.",
+          "es": "El ×2 de la destreza anterior, sabido lo bastante bien como para usarlo dos veces seguidas."
+        },
+        "readyWhen": {
+          "en": "your child doubles twice without writing the middle step down",
+          "es": "su hijo duplica dos veces sin escribir el paso del medio"
+        },
+        "leadsTo": {
+          "en": "×6 and ×3, which use the same doubling move from a different starting point.",
+          "es": "El ×6 y el ×3, que usan el mismo movimiento de duplicar desde otro punto de partida."
+        },
         "why": {
           "en": "Four is two twos, and eight is two fours. That means every × 4 fact is a doubling your child already knows, done twice — and every × 8 fact is that same doubling done once more. This is worth more than memorising: it turns eighteen separate facts into one move repeated. A child who forgets 8 × 6 can still get there in three seconds by doubling 6 three times.",
           "es": "Cuatro son dos doses, y ocho son dos cuatros. Eso quiere decir que cada operacion de × 4 es un doble que su hijo ya sabe, hecho dos veces, y cada operacion de × 8 es ese mismo doble una vez mas. Esto vale mas que memorizar: convierte dieciocho operaciones sueltas en un solo movimiento repetido. Un nino que olvida 8 × 6 todavia puede llegar en tres segundos duplicando 6 tres veces."
@@ -292,8 +306,8 @@
       "stages": [
         {
           "label": {
-            "en": "Start",
-            "es": "Inicio"
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
           },
           "params": {
             "factors": [
@@ -313,33 +327,7 @@
         },
         {
           "label": {
-            "en": "Build",
-            "es": "Practica"
-          },
-          "params": {
-            "factors": [
-              3,
-              6
-            ],
-            "others": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "commute": true
-          }
-        },
-        {
-          "label": {
-            "en": "All facts",
+            "en": "All of them",
             "es": "Todas"
           },
           "params": {
@@ -362,11 +350,44 @@
             ],
             "commute": true
           }
+        },
+        {
+          "label": {
+            "en": "The tricky ones",
+            "es": "Las dificiles"
+          },
+          "params": {
+            "factors": [
+              3,
+              6
+            ],
+            "others": [
+              4,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
         }
       ],
       "checkLength": 12,
       "targetSeconds": 3,
       "family": {
+        "buildsOn": {
+          "en": "×2 and the doubling habit from ×4 and ×8.",
+          "es": "El ×2 y la costumbre de duplicar de ×4 y ×8."
+        },
+        "readyWhen": {
+          "en": "your child finds ×6 from ×3 rather than counting up",
+          "es": "su hijo saca el ×6 del ×3 en vez de contar"
+        },
+        "leadsTo": {
+          "en": "×9 and ×7, the last and hardest facts, which need a different move again.",
+          "es": "El ×9 y el ×7, las ultimas y mas dificiles, que necesitan otro movimiento distinto."
+        },
         "why": {
           "en": "Six is three doubled, so every × 6 fact sits one short step from a × 3 fact. Threes themselves are worth slowing down for: they are the first table where skip counting stops being automatic, and where children start genuinely reasoning instead of reciting. If your child pauses on 3 × 7, that pause is thinking, not failing.",
           "es": "Seis es tres duplicado, asi que cada operacion de × 6 esta a un paso corto de una operacion de × 3. Los tres merecen calma: son la primera tabla donde contar salteado deja de salir solo, y donde los ninos empiezan a razonar de verdad en vez de recitar. Si su hijo se detiene en 3 × 7, esa pausa es pensamiento, no fracaso."
@@ -427,8 +448,8 @@
       "stages": [
         {
           "label": {
-            "en": "Start",
-            "es": "Inicio"
+            "en": "Small numbers",
+            "es": "Numeros pequenos"
           },
           "params": {
             "factors": [
@@ -448,33 +469,7 @@
         },
         {
           "label": {
-            "en": "Build",
-            "es": "Practica"
-          },
-          "params": {
-            "factors": [
-              9,
-              7
-            ],
-            "others": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "commute": true
-          }
-        },
-        {
-          "label": {
-            "en": "All facts",
+            "en": "All of them",
             "es": "Todas"
           },
           "params": {
@@ -497,11 +492,44 @@
             ],
             "commute": true
           }
+        },
+        {
+          "label": {
+            "en": "The tricky ones",
+            "es": "Las dificiles"
+          },
+          "params": {
+            "factors": [
+              9,
+              7
+            ],
+            "others": [
+              4,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "commute": true
+          }
         }
       ],
       "checkLength": 12,
       "targetSeconds": 3,
       "family": {
+        "buildsOn": {
+          "en": "×10 and ×5, which are the facts these two are built out of.",
+          "es": "El ×10 y el ×5, con los que se construyen estas dos."
+        },
+        "readyWhen": {
+          "en": "your child reaches for a strategy rather than going blank on 7 × 8",
+          "es": "su hijo busca una estrategia en vez de quedarse en blanco con 7 × 8"
+        },
+        "leadsTo": {
+          "en": "Division facts, which are these same facts asked backwards.",
+          "es": "Las divisiones basicas, que son estas mismas operaciones preguntadas al reves."
+        },
         "why": {
           "en": "Nines and sevens are the last facts most children learn, and the two hardest — but for different reasons. Nines have a pattern hiding in them: 9 × 6 is ten sixes minus one six. Sevens have no pattern, so we break them apart instead: 7 × 8 becomes 5 × 8 plus 2 × 8. Both moves say the same thing — a hard fact is two easy facts standing close together.",
           "es": "Los nueves y los sietes son las ultimas operaciones que aprenden casi todos los ninos, y las dos mas dificiles, pero por razones distintas. Los nueves esconden un patron: 9 × 6 es diez seises menos un seis. Los sietes no tienen patron, asi que los separamos: 7 × 8 se vuelve 5 × 8 mas 2 × 8. Los dos movimientos dicen lo mismo: una operacion dificil son dos operaciones faciles juntas."
@@ -648,6 +676,18 @@
       "checkLength": 12,
       "targetSeconds": 3,
       "family": {
+        "buildsOn": {
+          "en": "All the multiplication facts. Division is not new information, it is the same facts read the other way.",
+          "es": "Todas las tablas de multiplicar. La division no es informacion nueva: son las mismas operaciones leidas al reves."
+        },
+        "readyWhen": {
+          "en": "your child answers a division by naming the multiplication",
+          "es": "su hijo contesta una division nombrando la multiplicacion"
+        },
+        "leadsTo": {
+          "en": "Long division in Grade 4, where every step is one of these facts.",
+          "es": "La division larga en cuarto grado, donde cada paso es una de estas operaciones."
+        },
         "why": {
           "en": "Division is not a new operation to memorise — it is multiplication with a piece missing. “42 ÷ 6” and “what times 6 is 42?” are the same question, and the second one your child can already answer. This week is mostly about hearing division that way. If they reach for the multiplication fact instead of a division fact, that is exactly right.",
           "es": "La division no es una operacion nueva que memorizar: es una multiplicacion a la que le falta una pieza. “42 ÷ 6” y “¿cuanto por 6 es 42?” son la misma pregunta, y la segunda su hijo ya la sabe contestar. Esta semana se trata sobre todo de oir la division asi. Si busca la multiplicacion en vez de una division, eso es justo lo correcto."
@@ -720,13 +760,14 @@
         },
         {
           "label": {
-            "en": "With regrouping",
-            "es": "Reagrupando"
+            "en": "Every one regroups",
+            "es": "Todas reagrupan"
           },
           "params": {
             "op": "both",
             "min": 100,
-            "max": 999
+            "max": 999,
+            "regroup": true
           }
         },
         {
@@ -740,7 +781,63 @@
             "max": 999
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Two-digit adding and taking away from Grade 2, including carrying and borrowing.",
+          "es": "Sumar y restar de dos digitos de segundo grado, con llevadas y prestadas."
+        },
+        "why": {
+          "en": "Nothing new happens in the hundreds column — it works exactly like the tens did. That is the point worth making to your child: they are not learning a new method, they are using the same one on a bigger number. Children who believe each size is a fresh rule end up memorising four procedures instead of one.",
+          "es": "En la columna de las centenas no pasa nada nuevo: funciona igual que la de las decenas. Ese es el punto que vale la pena decirle a su hijo: no esta aprendiendo un metodo nuevo, esta usando el mismo con un numero mas grande. Los ninos que creen que cada tamano es una regla nueva acaban memorizando cuatro procedimientos en vez de uno."
+        },
+        "readyWhen": {
+          "en": "your child works right to left without being reminded, and estimates before starting",
+          "es": "su hijo trabaja de derecha a izquierda sin que se lo recuerden y estima antes de empezar"
+        },
+        "leadsTo": {
+          "en": "Multi-digit addition and subtraction in Grade 4, which is this with more columns.",
+          "es": "Sumas y restas de varios digitos en cuarto grado, que es esto con mas columnas."
+        },
+        "say": {
+          "en": [
+            "“Round them first. About what should the answer be?”",
+            "“This column works the same as the last one. What do you do?”",
+            "“Where did that borrowed hundred come from?”",
+            "“Is your answer close to your estimate?”"
+          ],
+          "es": [
+            "“Redondea primero. ¿Como de grande deberia ser la respuesta?”",
+            "“Esta columna funciona igual que la anterior. ¿Que haces?”",
+            "“¿De donde salio esa centena prestada?”",
+            "“¿Tu respuesta se parece a tu estimacion?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Closest to 1000",
+            "es": "Lo mas cerca de 1000"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Each player draws six cards and arranges them into two three-digit numbers.",
+              "Add your two numbers together.",
+              "Whoever lands closest to 1000 without going over wins the round.",
+              "Say your estimate before you add. Being closest to your own estimate wins a bonus point."
+            ],
+            "es": [
+              "Cada jugador saca seis cartas y las acomoda en dos numeros de tres digitos.",
+              "Sumen sus dos numeros.",
+              "Gana la ronda quien quede mas cerca de 1000 sin pasarse.",
+              "Digan su estimacion antes de sumar. Quedar mas cerca de la propia estimacion gana un punto extra."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g3-mult-multiples-10",
@@ -782,7 +879,7 @@
         {
           "label": {
             "en": "All facts",
-            "es": "Todas"
+            "es": "Todas las operaciones"
           },
           "params": {
             "factors": [
@@ -812,8 +909,8 @@
         },
         {
           "label": {
-            "en": "Mixed",
-            "es": "Mezclado"
+            "en": "Hundreds too",
+            "es": "Tambien centenas"
           },
           "params": {
             "factors": [
@@ -837,11 +934,68 @@
               9
             ],
             "scales": [
-              10
+              10,
+              100
             ]
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "The multiplication facts, and knowing that 40 is four tens.",
+          "es": "Las tablas de multiplicar y saber que 40 son cuatro decenas."
+        },
+        "why": {
+          "en": "4 × 60 is 4 × 6 wearing a zero. Children who see that are using a fact they already own; children who do not will try to work it out from scratch every time. This is also where estimation becomes possible — knowing 4 × 60 is about 240 is what lets a child notice later that an answer of 24 or 2400 must be wrong.",
+          "es": "4 × 60 es 4 × 6 con un cero puesto. Los ninos que ven eso usan una operacion que ya dominan; los que no, intentan sacarla desde cero cada vez. Aqui tambien se vuelve posible la estimacion: saber que 4 × 60 es como 240 es lo que permite despues notar que una respuesta de 24 o de 2400 tiene que estar mal."
+        },
+        "readyWhen": {
+          "en": "your child says the basic fact first, then adds the zero, without writing it out",
+          "es": "su hijo dice primero la operacion basica y luego agrega el cero, sin escribirlo"
+        },
+        "leadsTo": {
+          "en": "Extended facts and multi-digit multiplication in Grade 4, and estimating for long division.",
+          "es": "Las operaciones extendidas y la multiplicacion de varios digitos en cuarto grado, y estimar para la division larga."
+        },
+        "say": {
+          "en": [
+            "“What is the basic fact inside this one?”",
+            "“How many zeros should the answer have?”",
+            "“You know 4 × 6. So what is 4 × 60?”",
+            "“Does that answer look about the right size?”"
+          ],
+          "es": [
+            "“¿Cual es la operacion basica que hay dentro?”",
+            "“¿Cuantos ceros debe tener la respuesta?”",
+            "“Sabes 4 × 6. ¿Entonces cuanto es 4 × 60?”",
+            "“¿Esa respuesta se ve del tamano correcto?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Add the Zero",
+            "es": "Ponle el cero"
+          },
+          "needs": {
+            "en": "Two dice",
+            "es": "Dos dados"
+          },
+          "how": {
+            "en": [
+              "Roll both dice. Say the basic fact out loud: “4 × 6 is 24.”",
+              "Now one player turns one of the numbers into a ten: 4 × 60.",
+              "Say the new answer and where the zero went.",
+              "Harder round: go backwards. “240 ÷ 6 — what is the basic fact?”"
+            ],
+            "es": [
+              "Tiren los dos dados. Digan la operacion basica en voz alta: “4 × 6 es 24.”",
+              "Ahora un jugador convierte uno de los numeros en decena: 4 × 60.",
+              "Digan la nueva respuesta y a donde fue el cero.",
+              "Ronda dificil: al reves. “240 ÷ 6, ¿cual es la operacion basica?”"
+            ]
+          }
+        }
+      }
     }
   ]
 }

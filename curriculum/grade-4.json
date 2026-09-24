@@ -54,7 +54,63 @@
             "op": "both"
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Adding and taking away to 1000 in Grade 3.",
+          "es": "Sumar y restar hasta 1000 en tercer grado."
+        },
+        "why": {
+          "en": "By Grade 4 the standard algorithm is expected to be automatic, so the thinking can go elsewhere. The value now is not the method but the checking: a child who estimates first notices when an answer is ten times too big. That habit matters far more than speed, and it is the one that survives into every later topic.",
+          "es": "En cuarto grado se espera que el algoritmo estandar salga solo, para que el pensamiento pueda ir a otra parte. Lo valioso ahora no es el metodo sino la comprobacion: un nino que estima primero nota cuando una respuesta es diez veces mas grande de lo que deberia. Esa costumbre importa mucho mas que la rapidez, y es la que sobrevive a todos los temas posteriores."
+        },
+        "readyWhen": {
+          "en": "your child estimates before working, and catches their own slips",
+          "es": "su hijo estima antes de trabajar y atrapa sus propios errores"
+        },
+        "leadsTo": {
+          "en": "Every later algorithm. Multiplication and division both end in addition and subtraction.",
+          "es": "Todos los algoritmos posteriores. La multiplicacion y la division terminan en sumas y restas."
+        },
+        "say": {
+          "en": [
+            "“Round first. What should the answer be near?”",
+            "“Check it backwards: does your answer plus that one give the first number?”",
+            "“Which column went wrong? Show me just that one.”",
+            "“You do not have to rush. Getting it right is the whole job.”"
+          ],
+          "es": [
+            "“Redondea primero. ¿Cerca de cuanto deberia estar la respuesta?”",
+            "“Compruebalo al reves: ¿tu respuesta mas ese numero da el primero?”",
+            "“¿Que columna salio mal? Muestrame solo esa.”",
+            "“No hace falta correr. Lo importante es que salga bien.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Build the Biggest",
+            "es": "Arma el mayor"
+          },
+          "needs": {
+            "en": "A deck of cards with the picture cards taken out",
+            "es": "Una baraja sin las figuras"
+          },
+          "how": {
+            "en": [
+              "Each player draws eight cards.",
+              "Arrange them into two four-digit numbers to make the biggest total you can.",
+              "Add them. Compare totals: highest wins, but only if the adding is right.",
+              "Next round, aim for the SMALLEST difference instead."
+            ],
+            "es": [
+              "Cada jugador saca ocho cartas.",
+              "Acomodenlas en dos numeros de cuatro digitos para lograr el total mas grande posible.",
+              "Sumenlos. Comparen: gana el mayor, pero solo si la suma esta bien.",
+              "En la siguiente ronda, busquen la diferencia MAS PEQUENA."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g4-extended-facts",
@@ -128,13 +184,13 @@
               10,
               100
             ],
-            "include": "both"
+            "include": "mult"
           }
         },
         {
           "label": {
-            "en": "Mixed",
-            "es": "Mezclado"
+            "en": "Dividing too",
+            "es": "Tambien dividir"
           },
           "params": {
             "factors": [
@@ -168,6 +224,18 @@
       "checkLength": 12,
       "targetSeconds": 4,
       "family": {
+        "buildsOn": {
+          "en": "Multiplying by tens in Grade 3, and the basic facts underneath.",
+          "es": "Multiplicar por decenas en tercer grado y las operaciones basicas de abajo."
+        },
+        "readyWhen": {
+          "en": "your child answers without writing anything down",
+          "es": "su hijo contesta sin escribir nada"
+        },
+        "leadsTo": {
+          "en": "Estimating for long division, which is the whole reason this skill is here.",
+          "es": "Estimar para la division larga, que es la razon por la que existe esta destreza."
+        },
         "why": {
           "en": "Once a child knows 4 × 7 = 28, they also know 40 × 7 and 400 × 7 — they just have not been told yet. The zeros follow a pattern, they are not extra work. This is the week that makes long division possible next week, because estimating “about how many” depends entirely on seeing 3600 ÷ 9 as 36 ÷ 9 wearing two extra zeros.",
           "es": "En cuanto un nino sabe 4 × 7 = 28, tambien sabe 40 × 7 y 400 × 7: solo que todavia nadie se lo ha dicho. Los ceros siguen un patron, no son trabajo extra. Esta es la semana que hace posible la division larga la semana que viene, porque estimar “mas o menos cuantos” depende por completo de ver 3600 ÷ 9 como 36 ÷ 9 con dos ceros puestos."
@@ -207,6 +275,120 @@
               "Tiren la moneda: cara pone un cero, cruz pone dos.",
               "Digan la operacion extendida: “40 × 7 = 280.” Digan a donde fue el cero y por que.",
               "Ronda dificil: empiecen por la respuesta y vayan al reves. “280 ÷ 7: ¿cual es la operacion basica?”"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "g4-multi-digit-mul",
+      "ccss": "4.NBT.B.5",
+      "generator": "multiDigitMul",
+      "strategyTag": "partial-products",
+      "title": {
+        "en": "Big multiplying",
+        "es": "Multiplicaciones grandes"
+      },
+      "strategy": {
+        "en": "Break one factor apart, multiply each piece, then add",
+        "es": "Separa un factor, multiplica cada parte y suma"
+      },
+      "stages": [
+        {
+          "label": {
+            "en": "2 by 1",
+            "es": "2 por 1"
+          },
+          "params": {
+            "aDigits": [
+              2
+            ],
+            "bDigits": [
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "3 by 1",
+            "es": "3 por 1"
+          },
+          "params": {
+            "aDigits": [
+              3
+            ],
+            "bDigits": [
+              1
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": "2 by 2",
+            "es": "2 por 2"
+          },
+          "params": {
+            "aDigits": [
+              2
+            ],
+            "bDigits": [
+              2
+            ]
+          }
+        }
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "The multiplication facts, and extended facts like 30 × 7.",
+          "es": "Las tablas de multiplicar y las operaciones extendidas como 30 × 7."
+        },
+        "why": {
+          "en": "23 × 45 is four smaller multiplications added together, and the standard method is just a compact way of writing them down. Children who have seen the partial products first understand why the second row is shifted over; children who have not think it is a rule about moving a zero, and they misplace it for years.",
+          "es": "23 × 45 son cuatro multiplicaciones pequenas sumadas, y el metodo estandar es solo una forma corta de escribirlas. Los ninos que han visto primero los productos parciales entienden por que la segunda fila se corre; los que no, creen que es una regla sobre mover un cero, y lo colocan mal durante anos."
+        },
+        "readyWhen": {
+          "en": "your child can explain what each row of the working means",
+          "es": "su hijo puede explicar que significa cada fila del procedimiento"
+        },
+        "leadsTo": {
+          "en": "Multi-digit multiplication in Grade 5, and long division, where you multiply at every step.",
+          "es": "La multiplicacion de varios digitos en quinto grado y la division larga, donde se multiplica en cada paso."
+        },
+        "say": {
+          "en": [
+            "“What are the four smaller multiplications in there?”",
+            "“Why is that row shifted over?”",
+            "“Estimate first: 23 is about 20, 45 is about 45. So roughly what?”",
+            "“Show me the piece you are doing now.”"
+          ],
+          "es": [
+            "“¿Cuales son las cuatro multiplicaciones pequenas que hay ahi?”",
+            "“¿Por que esa fila esta corrida?”",
+            "“Estima primero: 23 es como 20, 45 es como 45. ¿Mas o menos cuanto?”",
+            "“Muestrame el pedazo que estas haciendo ahora.”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Four Pieces",
+            "es": "Cuatro pedazos"
+          },
+          "needs": {
+            "en": "A deck of cards and paper",
+            "es": "Una baraja y papel"
+          },
+          "how": {
+            "en": [
+              "Turn over four cards and make two two-digit numbers.",
+              "Both players work it out — one using four partial products, one using the short method.",
+              "Compare. If you disagree, find the step where you parted ways.",
+              "Same answer by two routes is the win. Swap methods next round."
+            ],
+            "es": [
+              "Volteen cuatro cartas y formen dos numeros de dos digitos.",
+              "Los dos jugadores lo resuelven: uno con cuatro productos parciales, otro con el metodo corto.",
+              "Comparen. Si no coinciden, busquen el paso donde se separaron.",
+              "La misma respuesta por dos caminos es el triunfo. Cambien de metodo en la siguiente ronda."
             ]
           }
         }
@@ -282,6 +464,18 @@
       "checkLength": 10,
       "targetSeconds": null,
       "family": {
+        "buildsOn": {
+          "en": "The division facts, extended facts, and multi-digit multiplication.",
+          "es": "Las divisiones basicas, las operaciones extendidas y la multiplicacion de varios digitos."
+        },
+        "readyWhen": {
+          "en": "your child works through a whole problem without losing track of the place",
+          "es": "su hijo hace un problema completo sin perder el lugar"
+        },
+        "leadsTo": {
+          "en": "Dividing by two digits in Grade 5, where the same procedure needs an estimate at every step.",
+          "es": "Dividir entre dos digitos en quinto grado, donde el mismo procedimiento necesita una estimacion en cada paso."
+        },
         "why": {
           "en": "This is the week the facts become a procedure. Partial quotients comes first because it is honest about what division is — pulling out chunks you recognise until nothing is left. “372 ÷ 4: I know 90 fours is 360, that leaves 12, which is 3 more fours.” The standard algorithm is the same reasoning written more compactly, and a child who sees that connection will not panic when a step goes wrong.",
           "es": "Esta es la semana en que las operaciones se vuelven un procedimiento. Los cocientes parciales van primero porque son honestos sobre lo que es dividir: sacar pedazos que uno reconoce hasta que no queda nada. “372 ÷ 4: se que noventa cuatros son 360, quedan 12, que son 3 cuatros mas.” El algoritmo estandar es el mismo razonamiento escrito mas corto, y un nino que ve esa conexion no se asusta cuando un paso sale mal."
@@ -325,64 +519,6 @@
           }
         }
       }
-    },
-    {
-      "id": "g4-multi-digit-mul",
-      "ccss": "4.NBT.B.5",
-      "generator": "multiDigitMul",
-      "strategyTag": "partial-products",
-      "title": {
-        "en": "Big multiplying",
-        "es": "Multiplicaciones grandes"
-      },
-      "strategy": {
-        "en": "Break one factor apart, multiply each piece, then add",
-        "es": "Separa un factor, multiplica cada parte y suma"
-      },
-      "stages": [
-        {
-          "label": {
-            "en": "2 by 1",
-            "es": "2 por 1"
-          },
-          "params": {
-            "aDigits": [
-              2
-            ],
-            "bDigits": [
-              1
-            ]
-          }
-        },
-        {
-          "label": {
-            "en": "3 by 1",
-            "es": "3 por 1"
-          },
-          "params": {
-            "aDigits": [
-              3
-            ],
-            "bDigits": [
-              1
-            ]
-          }
-        },
-        {
-          "label": {
-            "en": "2 by 2",
-            "es": "2 por 2"
-          },
-          "params": {
-            "aDigits": [
-              2
-            ],
-            "bDigits": [
-              2
-            ]
-          }
-        }
-      ]
     },
     {
       "id": "g4-equiv-fractions",
@@ -444,7 +580,63 @@
             "maxFactor": 5
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "Multiplication and division facts, and the idea of sharing something equally.",
+          "es": "Las tablas de multiplicar y dividir y la idea de repartir algo en partes iguales."
+        },
+        "why": {
+          "en": "2/3 and 8/12 are the same amount written differently, because multiplying the top and bottom by the same number changes how the pieces are cut, not how much there is. This single idea is what every later fraction skill runs on — comparing, adding, simplifying all depend on being able to rewrite a fraction without changing it.",
+          "es": "2/3 y 8/12 son la misma cantidad escrita distinto, porque multiplicar arriba y abajo por el mismo numero cambia como se cortan los pedazos, no cuanto hay. Esta sola idea es la que mueve todas las destrezas de fracciones posteriores: comparar, sumar y simplificar dependen de poder reescribir una fraccion sin cambiarla."
+        },
+        "readyWhen": {
+          "en": "your child multiplies top and bottom together, and can say why the value did not change",
+          "es": "su hijo multiplica arriba y abajo a la vez y puede decir por que el valor no cambio"
+        },
+        "leadsTo": {
+          "en": "Adding fractions with unlike denominators in Grade 5, which is nothing but this done to both fractions.",
+          "es": "Sumar fracciones con distinto denominador en quinto grado, que no es mas que esto hecho a las dos fracciones."
+        },
+        "say": {
+          "en": [
+            "“What did you do to the bottom? Now do it to the top.”",
+            "“Is it still the same amount? How do you know?”",
+            "“Draw it if that helps — same pizza, more slices.”",
+            "“Can you find another fraction equal to this one?”"
+          ],
+          "es": [
+            "“¿Que le hiciste al denominador? Ahora hazselo al numerador.”",
+            "“¿Sigue siendo la misma cantidad? ¿Como lo sabes?”",
+            "“Dibujalo si ayuda: la misma pizza, mas rebanadas.”",
+            "“¿Puedes encontrar otra fraccion igual a esta?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Same Amount, Different Slices",
+            "es": "La misma cantidad, otras rebanadas"
+          },
+          "needs": {
+            "en": "Paper and a pencil",
+            "es": "Papel y lapiz"
+          },
+          "how": {
+            "en": [
+              "One player writes a simple fraction: 3/4.",
+              "The other writes three fractions equal to it: 6/8, 9/12, 12/16.",
+              "Say what you multiplied by each time.",
+              "Swap. Making a wrong one on purpose and having the other catch it is worth a point."
+            ],
+            "es": [
+              "Un jugador escribe una fraccion simple: 3/4.",
+              "El otro escribe tres fracciones iguales a ella: 6/8, 9/12, 12/16.",
+              "Digan por cuanto multiplicaron cada vez.",
+              "Cambien. Hacer una mal a proposito y que el otro la atrape vale un punto."
+            ]
+          }
+        }
+      }
     },
     {
       "id": "g4-factors-multiples",
@@ -498,7 +690,63 @@
             "max": 100
           }
         }
-      ]
+      ],
+      "family": {
+        "buildsOn": {
+          "en": "The multiplication and division facts.",
+          "es": "Las tablas de multiplicar y dividir."
+        },
+        "why": {
+          "en": "Factors fit inside a number; multiples are jumps outward from it. Children mix the two words up for years, and the confusion shows up again in Grade 6 when they meet GCF and LCM. Getting the two ideas apart now, with small numbers, is much cheaper than untangling them later.",
+          "es": "Los factores caben dentro de un numero; los multiplos son saltos hacia afuera. Los ninos confunden las dos palabras durante anos, y la confusion reaparece en sexto grado con el MCD y el mcm. Separar las dos ideas ahora, con numeros pequenos, cuesta mucho menos que desenredarlas despues."
+        },
+        "readyWhen": {
+          "en": "your child uses the two words correctly without stopping to think which is which",
+          "es": "su hijo usa las dos palabras bien sin detenerse a pensar cual es cual"
+        },
+        "leadsTo": {
+          "en": "GCF and LCM in Grade 6, and simplifying fractions.",
+          "es": "El MCD y el mcm en sexto grado y simplificar fracciones."
+        },
+        "say": {
+          "en": [
+            "“Does it fit inside, or is it a jump out?”",
+            "“Name a factor of 24. Now name a multiple of 24.”",
+            "“List the factor pairs. Did you get them all?”",
+            "“Which numbers have the most factors? Why do you think that is?”"
+          ],
+          "es": [
+            "“¿Cabe adentro o es un salto hacia afuera?”",
+            "“Di un factor de 24. Ahora di un multiplo de 24.”",
+            "“Escribe las parejas de factores. ¿Las tienes todas?”",
+            "“¿Que numeros tienen mas factores? ¿Por que crees?”"
+          ]
+        },
+        "game": {
+          "name": {
+            "en": "Factor Hunt",
+            "es": "Caza de factores"
+          },
+          "needs": {
+            "en": "Paper, a pencil and one dice",
+            "es": "Papel, lapiz y un dado"
+          },
+          "how": {
+            "en": [
+              "Pick a number under 50 together.",
+              "Race to write down every factor of it. Check each other's lists.",
+              "Anyone who wrote a number that does not divide evenly loses that one.",
+              "Most correct factors wins. Numbers like 36 and 48 make the best rounds."
+            ],
+            "es": [
+              "Escojan juntos un numero menor que 50.",
+              "Compitan por escribir todos sus factores. Revisen las listas del otro.",
+              "Quien escriba un numero que no divide exacto pierde ese.",
+              "Gana quien tenga mas factores correctos. Numeros como 36 y 48 dan las mejores rondas."
+            ]
+          }
+        }
+      }
     }
   ]
 }

@@ -143,7 +143,13 @@
     "howToPlay": "Como se juega",
     "print": "Imprimir esta pagina",
     "backToPractice": "Volver a la practica",
-    "noContent": "La guia de esta destreza se esta escribiendo."
+    "noContent": "La guia de esta destreza se esta escribiendo.",
+    "buildsOn": "En que se apoya",
+    "howItGrows": "Como se desarrolla",
+    "hereNow": "Aqui esta",
+    "readyWhen": "Listo para la siguiente etapa cuando",
+    "leadsTo": "A donde lleva",
+    "skillN": "Destreza {n} de {total}"
   },
   "settings": {
     "title": "Ajustes",
