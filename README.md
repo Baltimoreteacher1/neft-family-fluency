@@ -79,7 +79,7 @@ verification test.
 ```bash
 npm install
 npm test          # 71 unit tests
-npm run test:e2e  # 9 Playwright tests at 360×740
+npm run test:e2e  # 12 Playwright tests at 360×740
 npm run serve     # http://localhost:8127
 ```
 

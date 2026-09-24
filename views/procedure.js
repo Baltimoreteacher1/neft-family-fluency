@@ -27,7 +27,11 @@ export function renderProcedure(item, handlers) {
   let mistakes = 0;
 
   function paint() {
-    const lines = prompts.map((p, i) => line(p, i));
+    // Only the steps already done, plus the one being worked on. Showing the
+    // rest gives the answer away: the label "3 x 8 =" IS the answer to the
+    // question above it ("how many 8s fit into 28?"), so a visible future step
+    // turns the workspace into a worked solution the child copies down.
+    const lines = prompts.slice(0, at + 1).map((p, i) => line(p, i));
     mount(
       root,
       el("p", {
@@ -37,6 +41,14 @@ export function renderProcedure(item, handlers) {
       }),
       bracket(item),
       el("div", { class: "work" }, el("div", { class: "work__frame" }, lines)),
+      // Say how much is left without showing what it is.
+      at + 1 < prompts.length
+        ? el(
+            "p",
+            { class: "muted", style: "margin:8px 0 0" },
+            t("procedure.stepsLeft", { n: prompts.length - at - 1 }),
+          )
+        : null,
     );
 
     const active = root.querySelector(".work__in:not([disabled])");
@@ -137,18 +149,24 @@ function bracket(item) {
 function buildPrompts(item) {
   const prompts = [];
 
-  prompts.push({
-    label:
-      t("procedure.estimatePrompt", {
-        divisor: item.b,
-        rounded: item.estimate.roundedDivisor,
-      }) +
-      " " +
-      t("procedure.estimateAnswer"),
-    answer: item.estimate.about,
-    // An estimate is an estimate: anything in the right neighbourhood passes.
-    tolerance: Math.max(1, Math.round(item.estimate.about * 0.5)),
-  });
+  // The estimate step belongs to week 8, where the divisor has two digits and
+  // "estimate, then divide" is the strategy being taught. Asking it of a
+  // single-digit divisor produces "round 8 to 8", which is both pointless and
+  // faintly ridiculous.
+  if (item.b >= 10) {
+    prompts.push({
+      label:
+        t("procedure.estimatePrompt", {
+          divisor: item.b,
+          rounded: item.estimate.roundedDivisor,
+        }) +
+        " " +
+        t("procedure.estimateAnswer"),
+      answer: item.estimate.about,
+      // An estimate is an estimate: anything in the right neighbourhood passes.
+      tolerance: Math.max(1, Math.round(item.estimate.about * 0.5)),
+    });
+  }
 
   for (const step of item.steps) {
     prompts.push({

@@ -94,7 +94,8 @@
     "finalAnswer": "La respuesta es",
     "remainderPrompt": "Residuo",
     "stepCorrect": "Ese paso esta bien",
-    "stepRetry": "Revisa ese paso otra vez"
+    "stepRetry": "Revisa ese paso otra vez",
+    "stepsLeft": "faltan {n} paso(s)"
   },
   "check": {
     "title": "Repaso del viernes",

@@ -5,7 +5,7 @@
 // the teacher view decodes it -> the "Send to teacher" link carries it.
 
 import { test, expect } from '@playwright/test';
-import { createProfile, completeSet, answerCurrentFact } from './helpers.js';
+import { createProfile, completeSet, answerCurrentFact, openRoute } from './helpers.js';
 
 test.describe('the weekly loop', () => {
   test('a family can go from nothing to a decoded progress code', async ({ page }) => {
@@ -137,7 +137,7 @@ test.describe('the procedure workspace', () => {
     // The Friday Check, not practice: practice spirals earlier fact weeks in,
     // so its first item is often a multiplication fact rather than a long
     // division. The check stays on week 7, which is what we want to exercise.
-    await page.goto('/index.html#/week/7/check');
+    await openRoute(page, 'week/7/check');
     await page.getByRole('button', { name: 'Start' }).click();
     await expect(page.locator('.bracket')).toBeVisible();
 
@@ -146,6 +146,44 @@ test.describe('the procedure workspace', () => {
     await page.locator('.work__line[data-state="active"] button').click();
     await expect(page.locator('.feedback')).toHaveText('Check that step again');
     await expect(page.locator('.work__in[data-state="no"]')).toBeVisible();
+  });
+
+  test('the workspace never shows a step the child has not reached', async ({ page }) => {
+    // The step labels contain their own answers: "3 x 8 =" IS the answer to
+    // "how many 8s fit into 28?" above it. Rendering the whole trace at once
+    // turned the workspace into a worked solution to copy down.
+    await createProfile(page);
+    await openRoute(page, 'week/7/check');
+    await page.getByRole('button', { name: 'Start' }).click();
+    await expect(page.locator('.bracket')).toBeVisible();
+
+    // Exactly one line, and it is the active one.
+    await expect(page.locator('.work__line')).toHaveCount(1);
+    await expect(page.locator('.work__line[data-state="active"]')).toHaveCount(1);
+
+    // Answering reveals the next line, and only the next line.
+    const firstLabel = await page.locator('.work__q').first().innerText();
+    const fitMatch = firstLabel.match(/How many (\d+)s fit into (\d+)\?/);
+    expect(fitMatch, `unexpected first prompt: ${firstLabel}`).not.toBeNull();
+    const digit = Math.floor(Number(fitMatch[2]) / Number(fitMatch[1]));
+
+    await page.locator('.work__in:not([disabled])').fill(String(digit));
+    await page.locator('.work__line[data-state="active"] button').click();
+    await expect(page.locator('.work__line')).toHaveCount(2);
+    await expect(page.locator('.work__line[data-state="active"]')).toHaveCount(1);
+  });
+
+  test('a single-digit divisor is not asked to be rounded to itself', async ({ page }) => {
+    // Week 7 divisors are 2-9, where "round 8 to 8" is both pointless and
+    // faintly ridiculous. Estimation is week 8's strategy, not week 7's.
+    await createProfile(page);
+    await openRoute(page, 'week/7/check');
+    await page.getByRole('button', { name: 'Start' }).click();
+    await expect(page.locator('.bracket')).toBeVisible();
+
+    const first = await page.locator('.work__q').first().innerText();
+    expect(first).not.toMatch(/Round (\d) to \1/);
+    expect(first).toMatch(/How many/);
   });
 });
 

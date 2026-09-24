@@ -93,7 +93,8 @@
     "finalAnswer": "The answer is",
     "remainderPrompt": "Remainder",
     "stepCorrect": "That step is right",
-    "stepRetry": "Check that step again"
+    "stepRetry": "Check that step again",
+    "stepsLeft": "{n} more step(s)"
   },
   "check": {
     "title": "Friday Check",
