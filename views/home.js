@@ -1,14 +1,9 @@
-// Home: who is practising?
-//
-// The first screen a family ever sees, and the one a returning child taps
-// through in half a second. Tapping an avatar goes straight to that child's
-// grade dashboard -- never via a menu.
+// Who is practising. Tap a face and go.
 
 import { el, mount } from '../engine/dom.js';
-import { t } from '../engine/i18n.js';
-import { storage, KEY } from '../engine/storage.js';
+import { t, loadLang } from '../engine/i18n.js';
+import { storage, KEY, remove } from '../engine/storage.js';
 import { loadProfiles, saveProfiles, newProfile } from '../engine/model.js';
-import { remove } from '../engine/storage.js';
 
 const AVATARS = [
   '\u{1F98A}', '\u{1F431}', '\u{1F436}', '\u{1F98B}', '\u{1F41D}', '\u{1F422}',
@@ -18,178 +13,144 @@ const AVATARS = [
 
 export async function render(container, app) {
   const profiles = loadProfiles();
-  mount(container, profiles.length ? picker(app, profiles) : creator(app));
+  mount(container,
+    languageBar(app),
+    profiles.length ? picker(app, profiles) : creator(app),
+  );
+}
+
+/**
+ * The language switch sits on the first screen, not in Settings.
+ *
+ * It used to be behind a gear labelled in English, so a Spanish-speaking
+ * parent who landed in English had to guess which icon would rescue them.
+ * Each label is written in its own language, so neither depends on already
+ * understanding the other.
+ */
+function languageBar(app) {
+  return el('div', { class: 'langbar' },
+    el('div', { class: 'lang-toggle', role: 'group', 'aria-label': 'Language / Idioma' },
+      [['en', 'English'], ['es', 'Español']].map(([code, label]) =>
+        el('button', {
+          type: 'button',
+          lang: code,
+          'aria-pressed': String(app.settings.lang === code),
+          onClick: async () => {
+            if (app.settings.lang === code) return;
+            app.saveSettings({ lang: code });
+            await loadLang(code);
+            app.render();
+          },
+        }, label),
+      ),
+    ),
+  );
 }
 
 function picker(app, profiles) {
   return el('div', {},
-    el('div', { class: 'card' },
-      el('h2', { text: t('home.who') }),
-      el('ul', { class: 'profiles' },
-        profiles.map((p) =>
-          el('li', {},
-            el('button', {
-              class: 'profile',
-              onClick: () => choose(app, p),
-            },
-              el('span', { class: 'profile__avatar', 'aria-hidden': 'true', text: p.avatar }),
-              el('span', { class: 'profile__name', text: p.nickname }),
-              el('span', { class: 'profile__grade', text: t('grade.label', { n: p.grade }) }),
-              // The class tag is small, optional, and only appears once a
-              // family has chosen to send progress to a teacher.
-              p.classCode
-                ? el('span', { class: 'profile__tag', text: `${p.classCode} · #${p.studentNumber ?? '?'}` })
-                : null,
-            ),
+    el('ul', { class: 'faces' },
+      profiles.map((p) =>
+        el('li', {},
+          el('button', { class: 'face', onClick: () => choose(app, p) },
+            el('span', { class: 'face__avatar', 'aria-hidden': 'true', text: p.avatar }),
+            el('span', { class: 'face__name', text: p.nickname }),
           ),
         ),
       ),
-      el('button', {
-        class: 'btn btn--soft btn--block',
-        onClick: () => mount(document.getElementById('main'), creator(app)),
-      }, t('home.add')),
     ),
-    el('div', { class: 'card' },
-      // Accurate now that "Send to my teacher" exists: nothing leaves the
-      // device unless the family chooses to send it.
-      el('p', { class: 'muted', text: t('home.privacy') }),
-      profiles.length
-        ? el('button', {
-            class: 'btn btn--ghost btn--small',
-            onClick: () => removeFlow(app, profiles),
-          }, t('home.remove'))
-        : null,
-    ),
+    el('button', {
+      class: 'btn btn--ghost btn--block',
+      onClick: () => mount(document.getElementById('main'), languageBar(app), creator(app)),
+    }, t('home.add')),
+    el('p', { class: 'muted tiny', text: t('home.privacy') }),
   );
 }
 
 function creator(app) {
-  let avatar = AVATARS[0];
+  let avatar = null;
   let grade = null;
-
-  const nickname = el('input', {
-    type: 'text', id: 'f-nick', maxlength: '20', autocomplete: 'off',
-    placeholder: t('home.nicknamePlaceholder'),
-  });
-
-  const avatarButtons = AVATARS.map((a, i) =>
-    el('button', {
-      type: 'button',
-      'aria-pressed': String(a === avatar),
-      'aria-label': t('home.avatarN', { n: i + 1 }),
-      text: a,
-      onClick: (e) => {
-        avatar = a;
-        for (const btn of e.currentTarget.parentElement.children) {
-          btn.setAttribute('aria-pressed', String(btn === e.currentTarget));
-        }
-      },
-    }),
-  );
-
-  // Grades are a grid of big numbers, not a dropdown: a parent picks one in a
-  // single tap and a child can see which one is chosen.
-  const gradeButtons = [1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
-    el('button', {
-      type: 'button',
-      class: 'grade-pick',
-      'aria-pressed': 'false',
-      'aria-label': t('grade.label', { n }),
-      onClick: (e) => {
-        grade = n;
-        for (const btn of e.currentTarget.parentElement.children) {
-          btn.setAttribute('aria-pressed', String(btn === e.currentTarget));
-        }
-        error.textContent = '';
-      },
-    }, String(n)),
-  );
 
   const error = el('p', { class: 'form-error', role: 'alert' });
 
-  const form = el('form', {
-    novalidate: true,
-    onSubmit: (e) => {
-      e.preventDefault();
-      const name = nickname.value.trim();
-      if (!name) {
-        error.textContent = t('home.needNickname');
-        nickname.focus();
-        return;
-      }
-      if (!grade) {
-        error.textContent = t('home.needGrade');
-        return;
-      }
-      const profile = newProfile({ nickname: name, avatar, grade });
-      saveProfiles([...loadProfiles(), profile]);
-      choose(app, profile);
-    },
-  },
-    el('div', { class: 'field' },
-      el('label', { for: 'f-nick', text: t('home.nickname') }),
-      nickname,
-      el('p', { class: 'muted', text: t('home.nicknameHint') }),
+  const avatarGrid = el('div', { class: 'avatar-grid' },
+    AVATARS.map((a, i) =>
+      el('button', {
+        type: 'button',
+        'aria-pressed': 'false',
+        'aria-label': t('home.avatarN', { n: i + 1 }),
+        text: a,
+        onClick: (e) => {
+          avatar = a;
+          for (const b of e.currentTarget.parentElement.children) {
+            b.setAttribute('aria-pressed', String(b === e.currentTarget));
+          }
+          error.textContent = '';
+        },
+      }),
     ),
-    el('fieldset', { class: 'field fieldset' },
-      el('legend', { text: t('home.pickAvatar') }),
-      el('div', { class: 'avatar-grid' }, avatarButtons),
-    ),
-    el('fieldset', { class: 'field fieldset' },
-      el('legend', { text: t('home.pickGrade') }),
-      el('div', { class: 'grade-grid' }, gradeButtons),
-      el('p', { class: 'muted', text: t('home.gradeHint') }),
-    ),
-    error,
-    el('button', { class: 'btn btn--block', type: 'submit' }, t('home.start')),
   );
 
-  return el('div', { class: 'card' },
-    el('h2', { text: t('home.newTitle') }),
-    form,
-    el('p', { class: 'muted', text: t('home.privacy') }),
+  const gradeGrid = el('div', { class: 'grade-grid' },
+    [1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
+      el('button', {
+        type: 'button',
+        class: 'grade-pick',
+        'aria-pressed': 'false',
+        'aria-label': t('grade.label', { n }),
+        onClick: (e) => {
+          grade = n;
+          for (const b of e.currentTarget.parentElement.children) {
+            b.setAttribute('aria-pressed', String(b === e.currentTarget));
+          }
+          error.textContent = '';
+        },
+      }, String(n)),
+    ),
+  );
+
+  // A name is optional. A child who cannot write yet picks a face and a
+  // number and starts; the app never needed the name for anything.
+  const nickname = el('input', {
+    type: 'text', id: 'f-nick', maxlength: '20', autocomplete: 'off',
+    placeholder: t('home.nicknameOptional'),
+  });
+
+  return el('div', {},
+    el('p', { class: 'step', text: t('home.pickAvatar') }),
+    avatarGrid,
+    el('p', { class: 'step', text: t('home.pickGrade') }),
+    gradeGrid,
+    el('div', { class: 'field' }, nickname),
+    error,
+    el('button', {
+      class: 'btn btn--big btn--block',
+      onClick: () => {
+        if (!avatar) { error.textContent = t('home.needAvatar'); return; }
+        if (!grade) { error.textContent = t('home.needGrade'); return; }
+        const profile = newProfile({
+          nickname: nickname.value.trim() || defaultName(avatar),
+          avatar,
+          grade,
+        });
+        saveProfiles([...loadProfiles(), profile]);
+        choose(app, profile);
+      },
+    }, t('home.start')),
+    el('p', { class: 'muted tiny', text: t('home.privacy') }),
   );
 }
 
+/** A profile with no name is still a profile; the avatar names it. */
+function defaultName(avatar) {
+  return avatar;
+}
+
 function choose(app, profile) {
-  // Re-read from storage first: a profile created a moment ago is in storage
-  // but not yet in app.profiles, and app.profile would come back null --
-  // which sends every route straight back here.
   app.reloadProfile();
   app.activeId = profile.id;
   storage.set(KEY.activeProfile, profile.id);
   app.go(`g/${profile.grade}`);
-}
-
-function removeFlow(app, profiles) {
-  mount(document.getElementById('main'),
-    el('div', { class: 'card' },
-      el('h2', { text: t('home.remove') }),
-      el('p', { text: t('home.removeConfirm') }),
-      el('ul', { class: 'profiles' },
-        profiles.map((p) =>
-          el('li', {},
-            el('button', {
-              class: 'profile',
-              onClick: () => {
-                saveProfiles(loadProfiles().filter((x) => x.id !== p.id));
-                remove(KEY.progress(p.id));
-                if (app.activeId === p.id) {
-                  app.activeId = null;
-                  storage.set(KEY.activeProfile, null);
-                }
-                app.go('');
-              },
-            },
-              el('span', { class: 'profile__avatar', 'aria-hidden': 'true', text: p.avatar }),
-              el('span', { class: 'profile__name', text: p.nickname }),
-            ),
-          ),
-        ),
-      ),
-      el('button', { class: 'btn btn--block', onClick: () => app.go('') }, t('app.cancel')),
-    ),
-  );
 }
 
 export { AVATARS };

@@ -40,14 +40,14 @@ export function keypad({ onInput, onSubmit, allowRemainder = false }) {
     if (k === 'del') {
       return el('button', {
         type: 'button', dataset: { key: 'del' },
-        'aria-label': t('practice.keypadDelete'),
+        'aria-label': t('drill.del'),
         onClick: () => { value = value.slice(0, -1); onInput(value); },
       }, '⌫');
     }
     if (k === 'clear') {
       return el('button', {
         type: 'button', dataset: { key: 'clear' },
-        'aria-label': t('practice.keypadClear'),
+        'aria-label': t('drill.clear'),
         onClick: () => { value = ''; onInput(value); },
       }, 'C');
     }
@@ -65,7 +65,7 @@ export function keypad({ onInput, onSubmit, allowRemainder = false }) {
       type: 'button', dataset: { key: 'check' },
       style: 'grid-column: 1 / -1',
       onClick: () => onSubmit(),
-    }, t('practice.check')),
+    }, t('drill.check')),
   );
 
   return {
@@ -92,7 +92,7 @@ export function answerBox({ onSubmit, allowRemainder = false }) {
     autocapitalize: 'off',
     autocorrect: 'off',
     spellcheck: 'false',
-    'aria-label': t('practice.yourAnswer'),
+    'aria-label': t('drill.yourAnswer'),
   });
 
   input.addEventListener('keydown', (e) => {

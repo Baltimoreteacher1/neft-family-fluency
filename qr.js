@@ -48,8 +48,13 @@ function defaultSiteUrl() {
 
 function flyer(lang, classCode, siteUrl) {
   const copy = COPY[lang];
-  // The class code rides in the URL so the family lands with it already chosen.
-  const target = `${siteUrl}${siteUrl.includes('?') ? '&' : '?'}class=${encodeURIComponent(classCode)}`;
+  // The class code AND the language ride in the URL. Without the language the
+  // Spanish half of this flyer opened an English app -- a Spanish-speaking
+  // parent scanned the half they could read and landed somewhere they could
+  // not, with the toggle buried in Settings behind an English label.
+  const sep = siteUrl.includes('?') ? '&' : '?';
+  const target =
+    `${siteUrl}${sep}class=${encodeURIComponent(classCode)}&lang=${lang}`;
 
   return el('section', { class: 'flyer', lang },
     el('h2', { text: copy.heading }),

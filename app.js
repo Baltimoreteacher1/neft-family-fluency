@@ -1,40 +1,28 @@
-// App shell: state, routing, settings.
+// App shell: three screens.
 //
-// Routes are hash-based so the whole app is one static file on a CDN with no
-// server rewrites. Three concepts only:
+//   #/                who is practising
+//   #/g/:grade        what to practise
+//   #/g/:grade/:skill drilling
 //
-//   #/                        home -- who is practising?
-//   #/g/:grade                the grade dashboard (Today + skill cards)
-//   #/g/:grade/:skillId       a skill (Learn / Practice / Play / Check)
-//   #/g/:grade/:skillId/:act  an activity
-//   #/settings
-//
-// Back always goes UP the hierarchy, never into browser history and never off
-// the site.
+// Plus settings. That is the whole app. Back goes up one level, never into
+// browser history and never off the site.
 
 import config from './config.js';
 import { storage, KEY } from './engine/storage.js';
-import { migrate } from './engine/migrate.js';
+import { migrate, WEEK_TO_SKILL } from './engine/migrate.js';
 import { loadLang, preferredLang, t, applyTranslations } from './engine/i18n.js';
 import { el, mount, clear } from './engine/dom.js';
 import { loadProfiles } from './engine/model.js';
-import { locateSkill } from './engine/curriculum.js';
-import { WEEK_TO_SKILL } from './engine/migrate.js';
 import * as homeView from './views/home.js';
-import * as dashboardView from './views/dashboard.js';
-import * as skillView from './views/skill.js';
+import * as skillsView from './views/skills.js';
+import * as drillView from './views/drill.js';
 import * as settingsView from './views/settings.js';
-import * as learnView from './views/learn.js';
-import * as practiceView from './views/practice.js';
-import * as playView from './views/play.js';
-import * as checkView from './views/check.js';
-import * as familyView from './views/family.js';
 
 export const app = {
   config,
   profiles: [],
   activeId: null,
-  settings: { lang: 'en', motion: 'auto', timer: false, sound: false, textSize: 'normal', contrast: 'normal' },
+  settings: { lang: 'en', motion: 'auto' },
   get profile() {
     return this.profiles.find((p) => p.id === this.activeId) || null;
   },
@@ -54,21 +42,12 @@ const main = () => document.getElementById('main');
 
 const ROUTES = [
   { pattern: /^$/, view: homeView, root: true, title: () => t('home.who') },
-  { pattern: /^settings$/, view: settingsView, up: () => backToGrade(), title: () => t('settings.title') },
-  { pattern: /^g\/(\d+)$/, view: dashboardView, up: () => '', needsProfile: true,
-    title: (m) => t('grade.label', { n: m[1] }) },
-  { pattern: /^g\/(\d+)\/([\w-]+)$/, view: skillView, needsProfile: true,
-    up: (m) => `g/${m[1]}`, title: () => t('skill.title') },
-  { pattern: /^g\/(\d+)\/([\w-]+)\/learn$/, view: learnView, needsProfile: true,
-    up: (m) => `g/${m[1]}/${m[2]}`, title: () => t('activity.learn') },
-  { pattern: /^g\/(\d+)\/([\w-]+)\/practice$/, view: practiceView, needsProfile: true,
-    up: (m) => `g/${m[1]}/${m[2]}`, title: () => t('activity.practice') },
-  { pattern: /^g\/(\d+)\/([\w-]+)\/play$/, view: playView, needsProfile: true,
-    up: (m) => `g/${m[1]}/${m[2]}`, title: () => t('activity.play') },
-  { pattern: /^g\/(\d+)\/([\w-]+)\/check$/, view: checkView, needsProfile: true,
-    up: (m) => `g/${m[1]}/${m[2]}`, title: () => t('activity.check') },
-  { pattern: /^g\/(\d+)\/([\w-]+)\/family$/, view: familyView, needsProfile: true,
-    up: (m) => `g/${m[1]}/${m[2]}`, title: () => t('skill.forGrownUps') },
+  { pattern: /^settings$/, view: settingsView, up: () => backToGrade(),
+    title: () => t('settings.title') },
+  { pattern: /^g\/(\d+)$/, view: skillsView, needsProfile: true, up: () => '',
+    title: () => t('skills.title') },
+  { pattern: /^g\/(\d+)\/([\w-]+)$/, view: drillView, needsProfile: true,
+    up: (m) => `g/${m[1]}`, title: () => t('drill.title') },
 ];
 
 export function go(path) {
@@ -86,34 +65,36 @@ function backToGrade() {
 }
 
 /**
- * Old URLs from the week-based app. A family with a bookmark or a printed
- * flyer must land somewhere sensible, not on a blank screen.
- *
- *   #/levels        -> the child's grade dashboard
- *   #/week/N        -> the skill that week became
- *   #/week/N/act    -> that skill's activity
+ * Old URLs. Bookmarks and printed flyers still point at the week-based app and
+ * at the four-activity version that followed it; both now land on the drill
+ * for whichever skill that was.
  */
-async function legacyRedirect(path) {
+function legacyRedirect(path) {
   if (path === 'levels') {
     go(backToGrade());
     return true;
   }
-  const m = path.match(/^week\/(\d+)(?:\/(learn|practice|play|check))?$/);
-  if (!m) return false;
 
-  const target = WEEK_TO_SKILL[Number(m[1])];
-  if (!target) {
-    go(backToGrade());
+  const week = path.match(/^week\/(\d+)(?:\/\w+)?$/);
+  if (week) {
+    const target = WEEK_TO_SKILL[Number(week[1])];
+    go(target ? `g/${target.grade}/${target.skillId}` : backToGrade());
     return true;
   }
-  go(`g/${target.grade}/${target.skillId}${m[2] ? `/${m[2]}` : ''}`);
-  return true;
+
+  // The four activities and the grown-ups page are gone; their URLs open the
+  // skill itself rather than 404ing.
+  const activity = path.match(/^g\/(\d+)\/([\w-]+)\/\w+$/);
+  if (activity) {
+    go(`g/${activity[1]}/${activity[2]}`);
+    return true;
+  }
+  return false;
 }
 
 async function render() {
   const path = currentPath();
-
-  if (await legacyRedirect(path)) return;
+  if (legacyRedirect(path)) return;
 
   const route = ROUTES.find((r) => r.pattern.test(path)) || ROUTES[0];
   const match = path.match(route.pattern) || [];
@@ -132,8 +113,7 @@ async function render() {
     console.error(err);
     mount(main(),
       el('div', { class: 'card' },
-        el('h2', { text: t('app.wentWrong') }),
-        el('p', { class: 'muted', text: String(err.message || err) }),
+        el('p', { text: t('app.wentWrong') }),
         el('button', { class: 'btn', onClick: () => go(backToGrade()) }, t('app.back')),
       ),
     );
@@ -142,29 +122,31 @@ async function render() {
   window.scrollTo(0, 0);
 }
 
-/** The header: Back, where you are, the avatar switcher, and Settings. */
 function paintChrome(route, match) {
   const back = document.getElementById('btn-back');
   const title = document.getElementById('page-title');
   const switcher = document.getElementById('btn-switch');
+  const settings = document.getElementById('btn-settings');
 
   title.textContent = route.title(match);
 
-  if (route.root) {
-    back.hidden = true;
-  } else {
-    back.hidden = false;
-    back.onclick = () => go(route.up ? route.up(match) : '');
-  }
+  back.hidden = Boolean(route.root);
+  if (!route.root) back.onclick = () => go(route.up ? route.up(match) : '');
 
-  // One tap to switch child, from anywhere. Siblings share phones and taking
-  // turns should not cost four taps.
+  // One tap to switch child, from anywhere. Siblings share phones.
   const profile = app.profile;
   switcher.hidden = !profile || route.root;
   if (profile) {
     switcher.textContent = profile.avatar;
     switcher.setAttribute('aria-label', t('app.switchFrom', { name: profile.nickname }));
   }
+
+  // Settings is a grown-up's door, so it stays out of the drill.
+  settings.hidden = route.root || path0(route) === 'drill';
+}
+
+function path0(route) {
+  return route.view === drillView ? 'drill' : '';
 }
 
 export function saveSettings(patch) {
@@ -177,16 +159,10 @@ function applyPreferences() {
   const root = document.documentElement;
   if (app.settings.motion === 'reduced') root.dataset.motion = 'reduced';
   else delete root.dataset.motion;
-
-  if (app.settings.contrast === 'high') root.dataset.contrast = 'high';
-  else delete root.dataset.contrast;
-
-  root.dataset.textSize = app.settings.textSize || 'normal';
 }
 
 async function boot() {
-  // Before anything reads storage: convert v1 data if this device has any.
-  // Safe to call every boot; it returns immediately once it has run.
+  // Convert v1 data if this device has any. Safe on every boot.
   try {
     migrate();
   } catch (err) {
@@ -194,13 +170,11 @@ async function boot() {
   }
 
   app.settings = {
-    lang: preferredLang(), motion: 'auto', timer: false, sound: false,
-    textSize: 'normal', contrast: 'normal',
+    lang: preferredLang(), motion: 'auto',
     ...storage.get(KEY.settings, {}),
   };
 
-  // A flyer QR can carry ?lang=es so a Spanish-speaking family lands in
-  // Spanish without hunting for a toggle.
+  // A flyer QR carries ?lang=es so a Spanish-speaking family lands in Spanish.
   const fromLink = new URLSearchParams(location.search).get('lang');
   if (fromLink === 'es' || fromLink === 'en') app.settings.lang = fromLink;
 
@@ -216,7 +190,7 @@ async function boot() {
   document.getElementById('btn-switch').addEventListener('click', () => go(''));
   window.addEventListener('hashchange', render);
 
-  // A returning child lands on their dashboard, one tap from Today.
+  // A returning child lands on their own list, one tap from drilling.
   if (!location.hash && app.profile) go(`g/${app.profile.grade}`);
   else render();
 
