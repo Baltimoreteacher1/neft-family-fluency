@@ -35,8 +35,8 @@ export async function render(container, app, match) {
             el('span', { class: 'visually-hidden',
               text: t('skills.stagesDone', { done, total: stages }) }),
           ),
-          // For the grown-up in the room: which Common Core standard this skill
-          // practises. Closed by default so the child's list stays quiet.
+          // Which Common Core standard this skill practises. Closed by default
+          // so the child's list stays quiet.
           el('details', { class: 'std' },
             el('summary', { text: t('skills.standard') }),
             el('p', { class: 'std__body' },

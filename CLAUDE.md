@@ -26,9 +26,10 @@ division, 8 weeks.
 7. **Accessibility is a gate, not a polish pass.** WCAG AA contrast, full keyboard
    support, `aria-live` for answer feedback, honours `prefers-reduced-motion` **and** a
    manual reduced-motion toggle. Timers are **off by default**.
-8. **Never show a grade level to a student.** The student-facing word is **"Level"**
-   (Level 1-8 in this strand). Grade bands may appear in teacher-only or family-only
-   text.
+8. **The student-facing word for a rung is "Level"** (Level 1-8 in this strand). Joel
+   OK'd students seeing grade level (2026-10-29), so CCSS codes such as `5.NBT.B.5` may
+   show on the skill list and the Skill Passport. Don't rename existing "Level" copy
+   without being asked.
 9. **Bilingual.** Every family-facing string exists in `i18n/en.json` *and*
    `i18n/es.json`. New Spanish strings are tagged `"reviewed": false` and listed in
    SETUP.md until a human confirms them.
