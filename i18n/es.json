@@ -65,6 +65,17 @@
     "mastered": "Dominada",
     "print": "Imprimir",
     "showDone": "Rellenar lo que ya hice",
-    "standard": "Estandar"
+    "standard": "Estandar",
+    "layout": "Formato",
+    "layoutPage": "Una pagina",
+    "layoutBooklet": "Folleto doblado",
+    "foldHelp": "Folleto: imprime por los dos lados en horizontal (voltea por el borde corto) y dobla la hoja por la mitad.",
+    "pageN": "Pagina {n}",
+    "started": "Empece: ____________",
+    "backTitle": "Como funciona",
+    "keyCode": "El codigo debajo de cada destreza es el estandar Common Core que practica.",
+    "complete": "¡Pasaporte completo!",
+    "signed": "Firma: ____________",
+    "date": "Fecha: ____________"
   }
 }

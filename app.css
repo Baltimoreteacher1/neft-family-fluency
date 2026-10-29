@@ -511,13 +511,44 @@ input[type="text"], input[type="number"] {
 }
 .passport__star { font-size: 38px; line-height: 34px; color: #fff; -webkit-text-stroke: 2px #1a1a1a; }
 .passport__label { font-size: 0.75rem; text-align: center; }
-.passport[data-filled="true"] .passport__circle[data-done="true"] { background: var(--grade-accent); }
-.passport[data-filled="true"] .passport__star[data-done="true"] { color: var(--grade-accent); }
+.passport-wrap[data-filled="true"] .passport__circle[data-done="true"] { background: var(--grade-accent); }
+.passport-wrap[data-filled="true"] .passport__star[data-done="true"] { color: var(--grade-accent); }
+
+/* Which layout shows. Both are always in the DOM so the colour-in toggle and
+   the print button treat them the same. */
+.passport-wrap[data-layout="page"] .booklet,
+.passport-wrap[data-layout="booklet"] .passport { display: none; }
+.passport-fold { margin: -4px 0 var(--gap); font-size: 0.85rem; }
+.passport-wrap[data-layout="page"] ~ .passport-fold { display: none; }
+
+/* Booklet. On screen the four pages stack in reading order; in print they are
+   imposed two to a landscape sheet: outside = back | cover, inside = p2 | p3. */
+.booklet { display: flex; flex-direction: column; gap: 16px; }
+.booklet__page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  color: #1a1a1a;
+  background: #fff;
+  border: 3px solid var(--grade-accent);
+  border-radius: var(--radius);
+}
+.booklet__cover { order: 1; align-items: center; justify-content: center; text-align: center; min-height: 340px; }
+.booklet__p2 { order: 2; }
+.booklet__p3 { order: 3; }
+.booklet__back { order: 4; gap: 4px; }
+.booklet__big-star { font-size: 72px; line-height: 1; color: var(--grade-accent); -webkit-text-stroke: 3px #1a1a1a; }
+.booklet__title { margin: 8px 0 0; font-size: 2rem; }
+.booklet__name { margin: 12px 0 0; font-size: 1.6rem; font-weight: 700; }
+.booklet__grade { margin: 4px 0 24px; font-weight: 700; color: #444; }
+.booklet__line { margin: 18px 0 0; color: #444; }
+.booklet__running { margin: 0 0 8px; font-size: 0.8rem; color: #555; }
+.booklet__complete { margin-top: 16px; padding: 12px; border: 3px double #1a1a1a; border-radius: 10px; }
 
 @media print {
   @page { margin: 12mm; }
   body { background: #fff; }
-  .skip-link, .topbar, .passport-controls, #live, #live-assertive { display: none; }
+  .skip-link, .topbar, .passport-controls, .passport-fold, #live, #live-assertive { display: none; }
   .shell { max-width: none; padding: 0; }
   .passport { padding: 10px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .passport__title { font-size: 1.2rem; }
@@ -530,4 +561,33 @@ input[type="text"], input[type="number"] {
   .passport__circle { width: 26px; height: 26px; }
   .passport__star { font-size: 30px; line-height: 26px; }
   .passport__label { font-size: 0.7rem; }
+
+  /* Booklet sheets: two half-letter pages side by side, no browser margin. */
+  .passport-wrap[data-layout="booklet"] { margin: 0; }
+  .booklet { display: grid; gap: 0; }
+  .booklet__page {
+    width: 5.5in;
+    height: calc(8.5in - 1px);
+    box-sizing: border-box;
+    padding: 0.4in;
+    overflow: hidden;
+    border-radius: 0;
+    border-width: 2px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .booklet { grid-template-columns: 5.5in 5.5in; grid-auto-rows: calc(8.5in - 1px); }
+  /* Sheet 1 (outside): back left, cover right. Sheet 2 (inside): p2 left, p3 right. */
+  .booklet__back { order: 1; }
+  .booklet__cover { order: 2; min-height: 0; }
+  .booklet__p2 { order: 3; break-before: page; }
+  .booklet__p3 { order: 4; }
+  .booklet .passport__list { gap: 10px; }
+  .booklet .passport__skill { padding: 10px 12px; }
+  .booklet .passport__std { margin: 2px 0 10px; font-size: 0.9rem; }
+  .booklet .passport__name { font-size: 1.2rem; }
+  .booklet .passport__circle { width: 38px; height: 38px; }
+  .booklet .passport__star { font-size: 46px; line-height: 38px; }
+  .booklet .passport__label { font-size: 0.8rem; }
+  .booklet .passport__steps { gap: 8px 20px; }
 }

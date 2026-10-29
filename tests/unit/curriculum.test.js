@@ -118,3 +118,14 @@ test('every skill standard has a plain-language sentence in both languages', () 
     assert.ok(used.has(code), `standards.json lists ${code}, which no skill uses`);
   }
 });
+
+test('no grade has more skills than a folded passport booklet can hold', async () => {
+  const { BOOKLET_MAX_SKILLS } = await import('../../views/passport.js').catch(() => ({}));
+  // passport.js touches the DOM only inside render(), so importing it is safe;
+  // fall back to the documented constant if a runtime refuses the import.
+  const max = BOOKLET_MAX_SKILLS ?? 8;
+  for (const { meta, data } of grades) {
+    assert.ok(data.skills.length <= max,
+      `grade ${meta.grade} has ${data.skills.length} skills; the booklet holds ${max}`);
+  }
+});

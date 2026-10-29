@@ -64,6 +64,17 @@
     "mastered": "Mastered",
     "print": "Print",
     "showDone": "Fill in what I have done so far",
-    "standard": "Standard"
+    "standard": "Standard",
+    "layout": "Layout",
+    "layoutPage": "One page",
+    "layoutBooklet": "Folded booklet",
+    "foldHelp": "Booklet: print on both sides in landscape (flip on the short edge), then fold the sheet in half.",
+    "pageN": "Page {n}",
+    "started": "Started: ____________",
+    "backTitle": "How it works",
+    "keyCode": "The code under each skill is the Common Core standard it practises.",
+    "complete": "Passport complete!",
+    "signed": "Signed: ____________",
+    "date": "Date: ____________"
   }
 }

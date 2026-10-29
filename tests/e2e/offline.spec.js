@@ -58,7 +58,7 @@ test.describe('offline', () => {
 
     // The Skill Passport is part of the shell too.
     await page.goto('/index.html#/g/3/passport');
-    await expect(page.locator('.passport__skill')).toHaveCount(expected);
+    await expect(page.locator('.passport .passport__skill')).toHaveCount(expected);
 
     await context.setOffline(false);
   });
