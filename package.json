@@ -9,7 +9,8 @@
     "test": "node --test tests/unit/",
     "test:e2e": "playwright test",
     "serve": "PORT=8127 node tests/tools/serve.js",
-    "deploy": "bash scripts/deploy.sh"
+    "deploy": "bash scripts/deploy.sh",
+    "ship": "bash scripts/ship.sh"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

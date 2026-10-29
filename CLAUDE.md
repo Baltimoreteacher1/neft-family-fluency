@@ -110,6 +110,21 @@ ALLOW_DEPLOY=1 npm run deploy   # exports committed HEAD, guards against an empt
 ```
 
 Commit first (the script refuses uncommitted tracked changes). Never add a build command.
+
+### Joel's words are the authorization
+
+For this repo Joel gave standing permission (2026-10-29): when he says **"commit"**,
+**"push"**, or **"deploy live" / "make live" / "ship"**, do it without asking again.
+
+| He says | Do |
+| --- | --- |
+| commit | `git add` the relevant files, Conventional Commit message |
+| push | `git push origin HEAD:main` |
+| deploy live / make live / ship | commit anything pending, then `npm run ship` (tests, push to `main`, deploy, verify live) |
+
+Report the live `CACHE_VERSION` afterwards. Bump `CACHE_VERSION` in `sw.js` first if any
+cached asset changed. Still stop and ask for anything beyond that: changing Cloudflare
+settings, secrets or tokens, force-pushing.
 Never deploy by hand from the working directory: it would upload `node_modules/` and
 `test-results/`.
 
