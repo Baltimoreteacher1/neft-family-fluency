@@ -111,6 +111,11 @@ ALLOW_DEPLOY=1 npm run deploy   # exports committed HEAD, guards against an empt
 
 Commit first (the script refuses uncommitted tracked changes). Never add a build command.
 
+`.github/workflows/deploy.yml` runs the same script on every push to `main`, but only once
+the repo secret `CLOUDFLARE_API_TOKEN` exists (it skips, rather than fails, before that).
+`npm run ship` detects the secret: with it, ship pushes and watches the workflow; without
+it, ship uploads directly. Never both.
+
 ### Joel's words are the authorization
 
 For this repo Joel gave standing permission (2026-10-29): when he says **"commit"**,

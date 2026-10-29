@@ -1,0 +1,54 @@
+# Deploy to Cloudflare Pages on every push to main.
+#
+# The Pages project is direct-upload (no Git connection), so this runs the same
+# guarded script a person would: tests, export of the committed tree, upload,
+# then a check that the live sw.js shows the new CACHE_VERSION.
+#
+# Needs one repo secret: CLOUDFLARE_API_TOKEN (Account > Cloudflare Pages > Edit).
+# Until it exists the job skips instead of failing.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: c68f3337bff203b1bd7f2b92dbb9de44
+      ALLOW_DEPLOY: "1"
+    steps:
+      - name: Check for the Cloudflare token
+        id: token
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::notice::CLOUDFLARE_API_TOKEN is not set; skipping deploy."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.token.outputs.present == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.token.outputs.present == 'true'
+        with:
+          node-version: 24
+
+      - name: Unit tests
+        if: steps.token.outputs.present == 'true'
+        run: npm test --silent
+
+      - name: Deploy
+        if: steps.token.outputs.present == 'true'
+        run: bash scripts/deploy.sh
