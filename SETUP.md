@@ -64,7 +64,7 @@ Then, from the repo folder:
 
 ```bash
 git add config.js && git commit -m "config: point at the live progress form" && git push
-npx wrangler pages deploy . --project-name neft-family-fluency --branch main
+ALLOW_DEPLOY=1 npm run deploy
 ```
 
 **Or skip the redeploy entirely:** open
@@ -73,19 +73,20 @@ override**, and paste the form's **pre-filled link** (Form → ⋮ → *Get pre-
 link* → type anything → *Get link*). That carries both values, and the override
 is stored on your device. Use this if the form ever changes mid-year.
 
-### 3 — Turn on auto-deploy from GitHub (about 1 minute, optional)
+### 3 — How the site is deployed
 
-Right now the site is deployed, but a `git push` will not update it until you
-connect the repo once.
+The Cloudflare Pages project is a **direct-upload** project: it has no Git
+connection, and Cloudflare cannot add one to an existing direct-upload project.
+A `git push` therefore never updates the site. To publish, commit and run:
 
-1. Go to **https://dash.cloudflare.com** → **Workers & Pages** → **neft-family-fluency**.
-2. **Settings** → **Builds & deployments** → **Connect to Git**.
-3. Choose GitHub → **Baltimoreteacher1/neft-family-fluency**.
-4. Production branch: **main**. Framework preset: **None**.
-   Build command: **leave blank**. Build output directory: **`/`**.
-5. **Save**.
+```bash
+ALLOW_DEPLOY=1 npm run deploy
+```
 
-From then on, push to `main` = deploy.
+It uploads only what is committed (never `node_modules/`), refuses an empty
+export, and confirms the live site picked up the new version. If you ever want
+deploy-on-push, create a *new* Pages project connected to GitHub (or add a
+GitHub Action that runs this script with a Cloudflare API token as a secret).
 
 ### 4 — Check the Spanish (whenever you have time, not urgent)
 

@@ -1,7 +1,7 @@
 # CLAUDE.md — neft-family-fluency
 
 A free, week-by-week math fluency portal that **families** use at home. Static site on
-Cloudflare Pages (push to `main` = deploy). Long-term goal is a Grade 1-8 skill ladder;
+Cloudflare Pages (direct upload: `ALLOW_DEPLOY=1 npm run deploy`; pushing to `main` does NOT deploy). Long-term goal is a Grade 1-8 skill ladder;
 this repo currently ships **one strand**: multiplication & division facts -> multi-digit
 division, 8 weeks.
 
@@ -101,8 +101,17 @@ whole one is a bug, not a rounding preference.
 
 ## Deploy
 
-Cloudflare Pages project `neft-family-fluency`, output dir `.` (the repo root). Push to
-`main` deploys. Never add a build command.
+Cloudflare Pages project `neft-family-fluency` is a **direct-upload project with no Git
+connection** (`wrangler pages project list` shows Git Provider: No), so a push to `main`
+deploys nothing. Ship with:
+
+```bash
+ALLOW_DEPLOY=1 npm run deploy   # exports committed HEAD, guards against an empty export, verifies sw.js live
+```
+
+Commit first (the script refuses uncommitted tracked changes). Never add a build command.
+Never deploy by hand from the working directory: it would upload `node_modules/` and
+`test-results/`.
 
 ## Things that have bitten this repo
 
