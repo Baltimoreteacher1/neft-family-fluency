@@ -15,6 +15,7 @@ export async function render(container, app, match) {
   const progress = loadProgress(app.profile.id);
 
   mount(container,
+    el('p', { class: 'grade-chip', text: t('grade.label', { n: grade }) }),
     el('ul', { class: 'picklist' },
       data.skills.map((skill) => {
         const record = progress.skills[skill.id];

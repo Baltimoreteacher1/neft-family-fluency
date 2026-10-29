@@ -467,6 +467,7 @@ input[type="text"], input[type="number"] {
   gap: 12px;
   margin-bottom: var(--gap);
 }
+.grade-chip { margin: 0 0 8px; font-weight: 700; color: var(--grade-accent); }
 .std { padding: 4px 6px 0; }
 .std summary {
   min-height: var(--tap);
@@ -495,7 +496,10 @@ input[type="text"], input[type="number"] {
   border-radius: 10px;
   break-inside: avoid;
 }
-.passport__name { margin: 0; font-size: 1.1rem; font-weight: 700; }
+.passport__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.passport__name { font-size: 1.1rem; font-weight: 700; }
+.passport__code { font-size: 0.8rem; color: #555; white-space: nowrap; }
+.passport__grade { margin: 0 0 6px; font-weight: 700; color: #444; }
 .passport__std { margin: 4px 0 10px; font-size: 0.85rem; color: #444; }
 .passport__steps { display: flex; flex-wrap: wrap; gap: 14px 18px; }
 .passport__step { display: grid; justify-items: center; gap: 4px; min-width: 64px; }

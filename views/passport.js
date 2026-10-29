@@ -18,6 +18,7 @@ export async function render(container, app, match) {
   const sheet = el('section', { class: 'passport', dataset: { filled: 'false' } },
     el('h2', { class: 'passport__title',
       text: t('passport.owner', { name: app.profile.nickname }) }),
+    el('p', { class: 'passport__grade', text: t('grade.label', { n: grade }) }),
     el('p', { class: 'passport__how', text: t('passport.how') }),
     el('ol', { class: 'passport__list' },
       data.skills.map((skill) => stamp(skill, progress.skills[skill.id], standards, app.lang)),
@@ -44,9 +45,10 @@ function stamp(skill, record, standards, lang) {
   const standard = standards[skill.ccss];
 
   return el('li', { class: 'passport__skill' },
-    // No CCSS code here: it starts with the grade number, and this sheet is the
-    // child's. The sentence stays; the code lives behind "For grown-ups".
-    el('p', { class: 'passport__name', text: skill.title[lang] || skill.title.en }),
+    el('div', { class: 'passport__head' },
+      el('span', { class: 'passport__name', text: skill.title[lang] || skill.title.en }),
+      el('span', { class: 'passport__code', text: skill.ccss }),
+    ),
     el('p', { class: 'passport__std', text: standard?.[lang] || standard?.en || '' }),
     el('div', { class: 'passport__steps' },
       skill.stages.map((stage, i) =>
