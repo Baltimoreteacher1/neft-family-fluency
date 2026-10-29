@@ -44,6 +44,11 @@ jobs:
         if: steps.token.outputs.present == 'true'
         with:
           node-version: 24
+          cache: npm
+
+      - name: Install test dependencies
+        if: steps.token.outputs.present == 'true'
+        run: npm ci
 
       - name: Unit tests
         if: steps.token.outputs.present == 'true'
