@@ -10,7 +10,7 @@
 // that nobody receives.
 // ---------------------------------------------------------------------------
 
-const CACHE_VERSION = 'v7';
+const CACHE_VERSION = 'v8';
 const CACHE = `ewl-fluency-${CACHE_VERSION}`;
 
 // Everything needed to run offline from a cold start. The curriculum and both
@@ -27,6 +27,7 @@ const SHELL = [
   'config.js',
   'manifest.webmanifest',
   'curriculum/index.json',
+  'curriculum/standards.json',
   'i18n/en.json',
   'i18n/es.json',
   'engine/rng.js',
@@ -59,6 +60,7 @@ const SHELL = [
   'generators/exponents.js',
   'views/home.js',
   'views/skills.js',
+  'views/passport.js',
   'views/drill.js',
   'views/settings.js',
   'views/keypad.js',

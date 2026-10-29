@@ -2,12 +2,14 @@
 
 import { el, mount } from '../engine/dom.js';
 import { t } from '../engine/i18n.js';
-import { loadGrade, gradeMeta } from '../engine/curriculum.js';
+import { loadGrade, gradeMeta, loadStandards } from '../engine/curriculum.js';
 import { loadProgress } from '../engine/model.js';
 
 export async function render(container, app, match) {
   const grade = Number(match[1]);
-  const [data, meta] = await Promise.all([loadGrade(grade), gradeMeta(grade)]);
+  const [data, meta, standards] = await Promise.all([
+    loadGrade(grade), gradeMeta(grade), loadStandards(),
+  ]);
   document.documentElement.style.setProperty('--grade-accent', meta.accent);
 
   const progress = loadProgress(app.profile.id);
@@ -33,9 +35,23 @@ export async function render(container, app, match) {
             el('span', { class: 'visually-hidden',
               text: t('skills.stagesDone', { done, total: stages }) }),
           ),
+          // For the grown-up in the room: which Common Core standard this skill
+          // practises. Closed by default so the child's list stays quiet.
+          el('details', { class: 'std' },
+            el('summary', { text: t('skills.standard') }),
+            el('p', { class: 'std__body' },
+              el('strong', { class: 'std__code', text: skill.ccss }),
+              ' ',
+              standards[skill.ccss]?.[app.lang] || standards[skill.ccss]?.en || ''),
+          ),
         );
       }),
     ),
+
+    el('button', {
+      class: 'btn btn--block',
+      onClick: () => app.go(`g/${grade}/passport`),
+    }, t('skills.passport')),
 
     // One quiet link out, for a grown-up who wants a different grade.
     el('button', {

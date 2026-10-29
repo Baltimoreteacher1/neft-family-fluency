@@ -103,3 +103,18 @@ test('each grade has a distinct accent', () => {
   const seen = new Set(index.grades.map((g) => g.accent.toLowerCase()));
   assert.equal(seen.size, index.grades.length, 'two grades share an accent colour');
 });
+
+test('every skill standard has a plain-language sentence in both languages', () => {
+  const { standards } = JSON.parse(
+    readFileSync(here('../../curriculum/standards.json'), 'utf8'),
+  );
+  for (const skill of allSkills) {
+    for (const lang of ['en', 'es']) {
+      assert.ok(standards[skill.ccss]?.[lang], `${skill.ccss} (${skill.id}) has no ${lang} sentence`);
+    }
+  }
+  const used = new Set(allSkills.map((s) => s.ccss));
+  for (const code of Object.keys(standards)) {
+    assert.ok(used.has(code), `standards.json lists ${code}, which no skill uses`);
+  }
+});

@@ -3,6 +3,7 @@
 //   #/                who is practising
 //   #/g/:grade        what to practise
 //   #/g/:grade/:skill drilling
+//   #/g/:grade/passport the printable Skill Passport
 //
 // Plus settings. That is the whole app. Back goes up one level, never into
 // browser history and never off the site.
@@ -15,6 +16,7 @@ import { el, mount, clear } from './engine/dom.js';
 import { loadProfiles } from './engine/model.js';
 import * as homeView from './views/home.js';
 import * as skillsView from './views/skills.js';
+import * as passportView from './views/passport.js';
 import * as drillView from './views/drill.js';
 import * as settingsView from './views/settings.js';
 
@@ -46,6 +48,8 @@ const ROUTES = [
     title: () => t('settings.title') },
   { pattern: /^g\/(\d+)$/, view: skillsView, needsProfile: true, up: () => '',
     title: () => t('skills.title') },
+  { pattern: /^g\/(\d+)\/passport$/, view: passportView, needsProfile: true,
+    up: (m) => `g/${m[1]}`, title: () => t('passport.title') },
   { pattern: /^g\/(\d+)\/([\w-]+)$/, view: drillView, needsProfile: true,
     up: (m) => `g/${m[1]}`, title: () => t('drill.title') },
 ];

@@ -107,6 +107,7 @@ Highest value first — these are the ones families actually read:
 | `family/week-01…08.json` → `why`, `say`, `game.how` | The whole family-facing guidance, 8 weeks × 3 blocks. |
 | `check.focusAccuracy`, `check.badgeNotYet` | The "not yet, and that's fine" wording. Tone matters more than literal accuracy here. |
 | `procedure.*` | Long-division step prompts. |
+| `curriculum/standards.json` → `es` | The one-sentence Common Core standards shown under "For grown-ups" and on the Skill Passport (41 sentences). Flagged by `"reviewedEs": false`. |
 
 Accents are deliberately omitted throughout (plain ASCII) so the text renders
 identically on every old Android font. Add them if you prefer — nothing depends

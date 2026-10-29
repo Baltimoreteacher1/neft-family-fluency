@@ -28,7 +28,9 @@
   "skills": {
     "title": "What to practise",
     "stagesDone": "{done} of {total} done",
-    "change": "Settings"
+    "change": "Settings",
+    "standard": "For grown-ups: the standard",
+    "passport": "Print my Skill Passport"
   },
   "drill": {
     "title": "Practice",
@@ -54,5 +56,14 @@
   "a11y": {
     "skipToMain": "Skip to main content",
     "keypad": "Number keypad"
+  },
+  "passport": {
+    "title": "Skill Passport",
+    "owner": "{name}'s Skill Passport",
+    "how": "Color a circle each time you finish a step in the app. Color the star when you master the skill.",
+    "mastered": "Mastered",
+    "print": "Print",
+    "showDone": "Fill in what I have done so far",
+    "standard": "Standard"
   }
 }

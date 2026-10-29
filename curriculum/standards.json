@@ -1,0 +1,171 @@
+{
+  "$comment": "One plain-language sentence per Common Core standard a skill points at, paraphrased for families. Skills name a code in their grade file (\"ccss\"); this file is the only place the sentence lives. Spanish is machine-translated and unreviewed (see SETUP.md).",
+  "schemaVersion": 1,
+  "reviewedEs": false,
+  "standards": {
+    "1.OA.C.6": {
+      "en": "Add and subtract within 20 using strategies like making ten and doubles.",
+      "es": "Sumar y restar hasta 20 con estrategias como formar diez y dobles."
+    },
+    "1.OA.B.4": {
+      "en": "Understand subtraction as a missing-addend problem: 8 - 3 = ? is the same as 3 + ? = 8.",
+      "es": "Entender la resta como un sumando que falta: 8 - 3 = ? es lo mismo que 3 + ? = 8."
+    },
+    "1.NBT.C.5": {
+      "en": "Mentally find 10 more or 10 less than a two-digit number.",
+      "es": "Hallar mentalmente 10 mas o 10 menos que un numero de dos digitos."
+    },
+    "1.OA.D.8": {
+      "en": "Find the missing number in an addition or subtraction equation.",
+      "es": "Hallar el numero que falta en una ecuacion de suma o resta."
+    },
+    "2.OA.B.2": {
+      "en": "Fluently add and subtract within 20 using mental strategies.",
+      "es": "Sumar y restar con fluidez hasta 20 usando estrategias mentales."
+    },
+    "2.NBT.B.8": {
+      "en": "Mentally add or subtract 10 or 100 to or from a number from 100 to 900.",
+      "es": "Sumar o restar mentalmente 10 o 100 a un numero entre 100 y 900."
+    },
+    "2.NBT.B.5": {
+      "en": "Fluently add and subtract within 100 using place value and the relationship between addition and subtraction.",
+      "es": "Sumar y restar con fluidez hasta 100 usando el valor posicional y la relacion entre la suma y la resta."
+    },
+    "2.NBT.A.2": {
+      "en": "Count within 1000 and skip-count by 5s, 10s and 100s.",
+      "es": "Contar hasta 1000 y contar de 5 en 5, de 10 en 10 y de 100 en 100."
+    },
+    "3.OA.C.7": {
+      "en": "Fluently multiply and divide within 100, and know all products of two one-digit numbers from memory.",
+      "es": "Multiplicar y dividir con fluidez hasta 100, y saber de memoria todos los productos de dos numeros de un digito."
+    },
+    "3.NBT.A.2": {
+      "en": "Fluently add and subtract within 1000.",
+      "es": "Sumar y restar con fluidez hasta 1000."
+    },
+    "3.NBT.A.3": {
+      "en": "Multiply one-digit numbers by multiples of 10 (10 to 90).",
+      "es": "Multiplicar numeros de un digito por multiplos de 10 (de 10 a 90)."
+    },
+    "4.NBT.B.4": {
+      "en": "Fluently add and subtract multi-digit whole numbers using the standard algorithm.",
+      "es": "Sumar y restar con fluidez numeros enteros de varios digitos con el algoritmo estandar."
+    },
+    "4.NBT.B.5": {
+      "en": "Multiply a number of up to four digits by one digit, and two two-digit numbers, using place value.",
+      "es": "Multiplicar un numero de hasta cuatro digitos por uno de un digito, y dos numeros de dos digitos, usando el valor posicional."
+    },
+    "4.NBT.B.6": {
+      "en": "Divide a number of up to four digits by one digit, with remainders.",
+      "es": "Dividir un numero de hasta cuatro digitos entre uno de un digito, con residuos."
+    },
+    "4.NF.A.1": {
+      "en": "Explain why equivalent fractions are equal, and make equivalent fractions.",
+      "es": "Explicar por que las fracciones equivalentes son iguales, y formar fracciones equivalentes."
+    },
+    "4.OA.B.4": {
+      "en": "Find all factor pairs for a number from 1 to 100, and recognize its multiples.",
+      "es": "Hallar todos los pares de factores de un numero del 1 al 100, y reconocer sus multiplos."
+    },
+    "5.NBT.B.5": {
+      "en": "Fluently multiply multi-digit whole numbers using the standard algorithm.",
+      "es": "Multiplicar con fluidez numeros enteros de varios digitos con el algoritmo estandar."
+    },
+    "5.NBT.B.6": {
+      "en": "Divide a number of up to four digits by a two-digit number.",
+      "es": "Dividir un numero de hasta cuatro digitos entre uno de dos digitos."
+    },
+    "5.NBT.B.7": {
+      "en": "Add, subtract, multiply and divide decimals to hundredths using place value.",
+      "es": "Sumar, restar, multiplicar y dividir decimales hasta las centesimas usando el valor posicional."
+    },
+    "5.NBT.A.2": {
+      "en": "Explain the patterns in zeros when multiplying or dividing by a power of 10.",
+      "es": "Explicar los patrones de ceros al multiplicar o dividir por una potencia de 10."
+    },
+    "5.NF.A.1": {
+      "en": "Add and subtract fractions with unlike denominators by making equivalent fractions.",
+      "es": "Sumar y restar fracciones con denominadores distintos usando fracciones equivalentes."
+    },
+    "5.NF.B.4": {
+      "en": "Multiply a fraction by a whole number or by another fraction.",
+      "es": "Multiplicar una fraccion por un numero entero o por otra fraccion."
+    },
+    "6.NS.B.2": {
+      "en": "Fluently divide multi-digit numbers using the standard algorithm.",
+      "es": "Dividir con fluidez numeros de varios digitos con el algoritmo estandar."
+    },
+    "6.NS.B.3": {
+      "en": "Fluently add, subtract, multiply and divide multi-digit decimals.",
+      "es": "Sumar, restar, multiplicar y dividir con fluidez decimales de varios digitos."
+    },
+    "6.NS.B.4": {
+      "en": "Find the greatest common factor of two numbers up to 100 and the least common multiple of two numbers up to 12.",
+      "es": "Hallar el maximo comun divisor de dos numeros hasta 100 y el minimo comun multiplo de dos numeros hasta 12."
+    },
+    "6.NS.A.1": {
+      "en": "Divide fractions by fractions and explain what the answer means.",
+      "es": "Dividir fracciones entre fracciones y explicar que significa la respuesta."
+    },
+    "6.EE.A.2": {
+      "en": "Write, read and evaluate expressions in which letters stand for numbers.",
+      "es": "Escribir, leer y evaluar expresiones en las que las letras representan numeros."
+    },
+    "6.EE.B.7": {
+      "en": "Solve one-step equations like x + p = q and px = q.",
+      "es": "Resolver ecuaciones de un paso como x + p = q y px = q."
+    },
+    "6.RP.A.2": {
+      "en": "Understand a unit rate, such as 3 cups of flour for every 1 cup of sugar.",
+      "es": "Entender una tasa unitaria, como 3 tazas de harina por cada 1 taza de azucar."
+    },
+    "7.NS.A.1": {
+      "en": "Add and subtract rational numbers, including negatives, and show it on a number line.",
+      "es": "Sumar y restar numeros racionales, incluyendo negativos, y mostrarlo en una recta numerica."
+    },
+    "7.NS.A.2": {
+      "en": "Multiply and divide rational numbers, including negatives.",
+      "es": "Multiplicar y dividir numeros racionales, incluyendo negativos."
+    },
+    "7.NS.A.3": {
+      "en": "Solve real-world problems with the four operations on rational numbers.",
+      "es": "Resolver problemas de la vida real con las cuatro operaciones con numeros racionales."
+    },
+    "7.RP.A.3": {
+      "en": "Use proportional reasoning to solve percent problems.",
+      "es": "Usar razonamiento proporcional para resolver problemas de porcentaje."
+    },
+    "7.EE.B.4": {
+      "en": "Solve two-step equations like px + q = r.",
+      "es": "Resolver ecuaciones de dos pasos como px + q = r."
+    },
+    "7.RP.A.2": {
+      "en": "Recognize and represent proportional relationships between quantities.",
+      "es": "Reconocer y representar relaciones proporcionales entre cantidades."
+    },
+    "8.EE.A.1": {
+      "en": "Know and apply the properties of whole-number exponents.",
+      "es": "Conocer y aplicar las propiedades de los exponentes enteros."
+    },
+    "8.EE.A.2": {
+      "en": "Use square root and cube root symbols to solve equations like x² = p and x³ = p.",
+      "es": "Usar los simbolos de raiz cuadrada y raiz cubica para resolver ecuaciones como x² = p y x³ = p."
+    },
+    "8.EE.A.3": {
+      "en": "Use numbers in scientific notation to estimate very large or very small quantities.",
+      "es": "Usar numeros en notacion cientifica para estimar cantidades muy grandes o muy pequenas."
+    },
+    "8.EE.C.7": {
+      "en": "Solve linear equations in one variable, including multi-step equations.",
+      "es": "Resolver ecuaciones lineales con una variable, incluyendo ecuaciones de varios pasos."
+    },
+    "8.EE.B.5": {
+      "en": "Graph proportional relationships and read the unit rate as the slope.",
+      "es": "Graficar relaciones proporcionales e interpretar la tasa unitaria como la pendiente."
+    },
+    "8.NS.A.2": {
+      "en": "Use rational approximations of irrational numbers to compare their size and place them on a number line.",
+      "es": "Usar aproximaciones racionales de numeros irracionales para comparar su tamano y ubicarlos en una recta numerica."
+    }
+  }
+}

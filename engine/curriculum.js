@@ -38,6 +38,19 @@ export async function loadGrade(grade) {
   return promise;
 }
 
+let standardsPromise = null;
+
+/** Plain-language sentence for each CCSS code, keyed by code: { en, es }. */
+export function loadStandards() {
+  if (!standardsPromise) {
+    standardsPromise = fetch(url('standards.json')).then((r) => {
+      if (!r.ok) throw new Error(`Could not load the standards (${r.status})`);
+      return r.json().then((d) => d.standards);
+    });
+  }
+  return standardsPromise;
+}
+
 /** The grades that actually have skills written, for the "Other grades" link. */
 export async function availableGrades() {
   const index = await loadIndex();
