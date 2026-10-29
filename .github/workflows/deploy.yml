@@ -35,6 +35,11 @@ jobs:
             echo "present=false" >> "$GITHUB_OUTPUT"
           else
             echo "present=true" >> "$GITHUB_OUTPUT"
+            # Shape only, never the value: a bad paste shows up here.
+            t=$(printf %s "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')
+            echo "token length after trimming: ${#t}; raw length: ${#CLOUDFLARE_API_TOKEN}"
+            printf %s "$t" | grep -Eq '^cfut_[A-Za-z0-9]{48}$' \
+              && echo "token shape: ok" || echo "::warning::token shape is not a cfut_ Cloudflare token"
           fi
 
       - uses: actions/checkout@v4
@@ -56,4 +61,8 @@ jobs:
 
       - name: Deploy
         if: steps.token.outputs.present == 'true'
-        run: bash scripts/deploy.sh
+        run: |
+          # Whitespace pasted along with the secret breaks the Authorization header.
+          CLOUDFLARE_API_TOKEN=$(printf %s "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')
+          export CLOUDFLARE_API_TOKEN
+          bash scripts/deploy.sh
