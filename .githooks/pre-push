@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Deploy on push: when this push updates main, run the unit tests (a failure
+# blocks the push), then deploy the pushed commit in the background once it has
+# landed on origin. Uses the Cloudflare login already on this machine; no token.
+#
+# Skips when DEPLOY_HOOK_SKIP=1 (npm run ship deploys itself) or when the repo
+# has a CLOUDFLARE_API_TOKEN secret (the Deploy workflow does it then).
+# Log: .git/deploy-hook.log
+set -uo pipefail
+
+zero=0000000000000000000000000000000000000000
+sha=
+while read -r _ local_sha remote_ref _; do
+  if [ "$remote_ref" = refs/heads/main ] && [ "$local_sha" != "$zero" ]; then
+    sha=$local_sha
+  fi
+done
+[ -n "$sha" ] || exit 0
+[ "${DEPLOY_HOOK_SKIP:-}" = 1 ] && exit 0
+
+if gh secret list --json name --jq '.[].name' 2>/dev/null | grep -qx CLOUDFLARE_API_TOKEN; then
+  echo "deploy hook: the Deploy workflow handles this push."
+  exit 0
+fi
+
+echo "deploy hook: running unit tests..."
+npm test --silent || { echo "deploy hook: tests failed; push blocked." >&2; exit 1; }
+
+root=$(git rev-parse --show-toplevel)
+log=$(git rev-parse --git-dir)/deploy-hook.log
+nohup bash -c '
+  cd "$1"
+  for _ in $(seq 40); do
+    [ "$(git ls-remote origin refs/heads/main | cut -f1)" = "$2" ] && landed=1 && break
+    sleep 2
+  done
+  [ "${landed:-}" = 1 ] || { echo "push did not land on origin/main; not deploying."; exit 1; }
+  ALLOW_DEPLOY=1 bash scripts/deploy.sh "$2"
+' _ "$root" "$sha" >"$log" 2>&1 </dev/null &
+echo "deploy hook: deploying ${sha:0:7} in the background (log: $log)"
+exit 0

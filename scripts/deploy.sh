@@ -6,19 +6,22 @@
 # so untracked files (node_modules, test-results) can never ship, refuses to
 # upload an empty or incomplete export, and then checks the live site.
 #
-#   ALLOW_DEPLOY=1 npm run deploy
+#   ALLOW_DEPLOY=1 npm run deploy        # deploys HEAD; tracked files must be clean
+#   ALLOW_DEPLOY=1 bash scripts/deploy.sh <sha>   # deploys that commit
 set -euo pipefail
 
 PROJECT=neft-family-fluency
 LIVE=https://neft-family-fluency.pages.dev
 
 [ "${ALLOW_DEPLOY:-}" = 1 ] || { echo "Production deploy: set ALLOW_DEPLOY=1." >&2; exit 1; }
-[ -z "$(git status --porcelain --untracked-files=no)" ] || {
-  echo "Uncommitted changes to tracked files; commit first so what ships is what is in git." >&2
-  exit 1
-}
+if [ -z "${1:-}" ]; then
+  [ -z "$(git status --porcelain --untracked-files=no)" ] || {
+    echo "Uncommitted changes to tracked files; commit first so what ships is what is in git." >&2
+    exit 1
+  }
+fi
 
-sha=$(git rev-parse --short HEAD)
+sha=$(git rev-parse --short "${1:-HEAD}")
 [ -n "$sha" ] || { echo "Could not read HEAD." >&2; exit 1; }
 
 dir=$(mktemp -d)

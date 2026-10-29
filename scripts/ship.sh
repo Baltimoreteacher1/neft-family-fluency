@@ -4,13 +4,14 @@
 #
 # Once the repo has a CLOUDFLARE_API_TOKEN secret, the Deploy workflow does the
 # upload on push, so this just pushes and watches it. Until then it uploads
-# directly. One path runs per ship, never both.
+# directly. One path runs per ship, never both (the pre-push hook is told to
+# stand down with DEPLOY_HOOK_SKIP=1).
 #
 #   npm run ship
 set -euo pipefail
 
 npm test --silent
-git push origin HEAD:main
+DEPLOY_HOOK_SKIP=1 git push origin HEAD:main
 
 if gh secret list --json name --jq '.[].name' | grep -qx CLOUDFLARE_API_TOKEN; then
   sleep 5

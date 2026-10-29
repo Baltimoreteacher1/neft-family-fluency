@@ -113,6 +113,11 @@ Commit first (the script refuses uncommitted tracked changes). Never add a build
 
 `.github/workflows/deploy.yml` runs the same script on every push to `main`, but only once
 the repo secret `CLOUDFLARE_API_TOKEN` exists (it skips, rather than fails, before that).
+`.githooks/pre-push` (enable once per clone: `git config core.hooksPath .githooks`) deploys
+on any push to `main` from this machine: tests gate the push, then the pushed commit is
+deployed in the background (log `.git/deploy-hook.log`). It stands down when the secret
+exists, so only one path ever deploys.
+
 `npm run ship` detects the secret: with it, ship pushes and watches the workflow; without
 it, ship uploads directly. Never both.
 
