@@ -5,7 +5,6 @@
 // not cost much to load in the first place.
 
 import { test, expect } from '@playwright/test';
-import { createProfile, completeSet } from './helpers.js';
 
 test.describe('offline', () => {
   test('the app works with the network disabled after the first visit', async ({ page, context }) => {
@@ -23,32 +22,43 @@ test.describe('offline', () => {
     // rather than assuming activation means every entry landed.
     await page.waitForTimeout(2_000);
 
-    await createProfile(page);
+    // A profile: avatar, grade 3, Start. That lands on the skill list.
+    await page.locator('.avatar-grid button').first().click();
+    await page.locator('.grade-grid .grade-pick').nth(2).click();
+    await page.getByRole('button', { name: 'Start' }).click();
+    await expect(page.locator('.pick').first()).toBeVisible();
 
     // --- the network goes away ---
     await context.setOffline(true);
 
     await page.reload();
     // The profile is on the device, so the app comes straight back to that
-    // child's dashboard rather than the browser's offline page.
-    await expect(page.locator('.today')).toBeVisible({ timeout: 15_000 });
+    // child's skill list rather than the browser's offline page.
     const expected = await page.evaluate(async () => {
       const r = await fetch('curriculum/grade-3.json');
       return (await r.json()).skills.length;
     });
-    await expect(page.locator('.skillcard')).toHaveCount(expected);
+    await expect(page.locator('.pick')).toHaveCount(expected);
 
-    // Questions are generated on the phone, so practice must work offline too.
-    await page.locator('.skillcard').first().click();
-    await page.getByRole('button', { name: /Practice/ }).first().click();
-    await expect(page.locator('.prompt')).toBeVisible();
-    await completeSet(page, { max: 3 });
-    await expect(page.locator('.qbar')).toContainText('Question 4 of 12');
+    // The standards sentences are cached with the shell.
+    await page.locator('.std summary').first().click();
+    await expect(page.locator('.std__body').first()).toContainText('3.');
 
-    // The grown-up page is part of the app shell now, so it is cached with it.
-    await page.locator('#btn-back').click();
-    await page.getByRole('button', { name: 'For grown-ups' }).click();
-    await expect(page.locator('#main')).toContainText('Why this strategy works', { timeout: 15_000 });
+    // Questions are generated on the phone, so the drill must work offline too.
+    await page.locator('.pick').first().click();
+    await expect(page.locator('.drill__count')).toHaveText('1 / 10');
+    for (let i = 0; i < 3; i++) {
+      const text = (await page.locator('.prompt').innerText()).trim();
+      const [, a, op, b] = text.match(/^(\d+)\s*([×÷])\s*(\d+)$/);
+      await page.fill('.answer', String(op === '×' ? a * b : a / b));
+      await page.locator('[data-key=check]').click();
+      await page.waitForTimeout(700);
+    }
+    await expect(page.locator('.drill__count')).toHaveText('4 / 10');
+
+    // The Skill Passport is part of the shell too.
+    await page.goto('/index.html#/g/3/passport');
+    await expect(page.locator('.passport__skill')).toHaveCount(expected);
 
     await context.setOffline(false);
   });

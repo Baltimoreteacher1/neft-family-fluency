@@ -519,8 +519,15 @@ input[type="text"], input[type="number"] {
   body { background: #fff; }
   .skip-link, .topbar, .passport-controls, #live, #live-assertive { display: none; }
   .shell { max-width: none; padding: 0; }
-  .passport { padding: 12px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .passport__list { gap: 8px; }
-  .passport__skill { padding: 8px 10px; }
-  .passport__std { margin-bottom: 6px; }
+  .passport { padding: 10px; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .passport__title { font-size: 1.2rem; }
+  .passport__how { margin-bottom: 8px; font-size: 0.85rem; }
+  .passport__grade { margin-bottom: 2px; }
+  .passport__list { gap: 6px; }
+  .passport__skill { padding: 6px 10px; }
+  .passport__std { margin: 2px 0 4px; font-size: 0.8rem; }
+  .passport__steps { gap: 4px 14px; }
+  .passport__circle { width: 26px; height: 26px; }
+  .passport__star { font-size: 30px; line-height: 26px; }
+  .passport__label { font-size: 0.7rem; }
 }
